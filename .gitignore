@@ -1,0 +1,8 @@
+.idea
+.idea/*
+*.lnk
+*.ink
+.vscode
+*.vscode
+vscode/*
+*.iml
