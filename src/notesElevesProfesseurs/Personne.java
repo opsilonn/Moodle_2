@@ -9,7 +9,7 @@ public class Personne
     protected String ID;
     protected String nom;
     protected String prenom;
-    protected Date dateNaissance;
+    protected Date   dateNaissance;
 
 
 
@@ -33,7 +33,7 @@ public class Personne
 
     public String toString()
     {
-        return ID + " - "
+        return ID + "    #  Personne  # - "
                 + prenom + " " + nom
                 + " , né le " + new SimpleDateFormat("dd MMM yyyy").format(dateNaissance);
     }
