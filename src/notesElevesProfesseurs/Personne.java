@@ -1,10 +1,16 @@
 package notesElevesProfesseurs;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.UUID;
+import java.text.SimpleDateFormat;  // Format des dates
+import java.util.Date;  // On préfère utiliser des classes déjà existantes en Java
+import java.util.UUID;  // Pour la génération d'identifiants uniques
 
-public class Personne
+
+/**
+ * Représente une classe Personne
+ * Cette classe existe car elle caractérise les informations communes à un {@link Eleve} et un {@link Professeur}.
+ * Ces deux classes héritent donc de {@link Personne}.
+ */
+public abstract class Personne
 {
     protected String ID;
     protected String nom;
@@ -12,29 +18,47 @@ public class Personne
     protected Date   dateNaissance;
 
 
+    private static final String NOM_PAR_DEFAUT = "Doe";  // #NoMagicValues
+    private static final String PRENOM_PAR_DEFAUT = "John";  // #NoMagicValues
 
+
+    /**
+     * Constructeur par défaut
+     */
     public Personne()
     {
         ID = UUID.randomUUID().toString();
-        nom = "Doe";
-        prenom = "John";
+        nom = NOM_PAR_DEFAUT;
+        prenom = PRENOM_PAR_DEFAUT;
         dateNaissance = new Date();
     }
 
 
-    public Personne(String pNom, String pPrenom, Date pDateNaissance)
+    /**
+     * Instancie une personne en se basant sur son nom, son prénom et sa date de naissance
+     * @param nom Nom de la personne à instancier
+     * @param prenom Prénom de la personne à instancier
+     * @param dateNaissance Date de naissance de la personne à instancier
+     */
+    protected Personne(String nom, String prenom, Date dateNaissance)
     {
-        ID = UUID.randomUUID().toString();
-        nom = pNom;
-        prenom = pPrenom;
-        dateNaissance = pDateNaissance;
+        this.ID = UUID.randomUUID().toString();
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
     }
 
 
+    /**
+     * Créé une représentation textuelle de l'instance
+     * @return Représentation textuelle de l'instance
+     */
     public String toString()
     {
-        return ID + "    #  Personne  # - "
-                + prenom + " " + nom
-                + " , né le " + new SimpleDateFormat("dd MMM yyyy").format(dateNaissance);
+        return String.format(
+          "%s    #  Personne  # - %s %s, né le %s",
+          this.ID, this.prenom, this.nom,
+          new SimpleDateFormat("dd MM yyyy").format(this.dateNaissance)
+        );
     }
 }
