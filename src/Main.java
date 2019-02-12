@@ -1,6 +1,4 @@
-import notesElevesProfesseurs.Eleve;
-import notesElevesProfesseurs.Personne;
-import notesElevesProfesseurs.Professeur;
+import src.notesElevesProfesseurs.*;
 
 import java.util.Date;
 
@@ -17,7 +15,11 @@ public class Main
         Professeur P = new Professeur();
         Professeur P2 = new Professeur("Pro" , "Faiseur", new Date());
 
-
+        Matiere M = new Matiere();
+        Matiere M2 = new Matiere("1234","Hello");
+        
+        Evaluation Ev = new Evaluation();
+                
 
         System.out.println(p1);
         System.out.println(p2);
@@ -27,5 +29,10 @@ public class Main
 
         System.out.println(P);
         System.out.println(P2);
+        
+        System.out.println(M);
+        System.out.println(M2);
+        
+         System.out.println(Ev);
     }
 }

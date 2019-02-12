@@ -1,10 +1,11 @@
-package notesElevesProfesseurs;
+package src.notesElevesProfesseurs;
 
 public class Evaluation
 {
     private double note;
     private Eleve auteur;
     private Professeur correcteur;
+    private Matiere matiere;
 
 
     private static final double NOTE_PAR_DEFAUT = 10.0;  // #NoMagicNumbers
@@ -20,6 +21,7 @@ public class Evaluation
         this.note = NOTE_PAR_DEFAUT;
         this.auteur = new Eleve();
         this.correcteur = new Professeur();
+        this.matiere = new Matiere();
     }
 
 
@@ -28,11 +30,12 @@ public class Evaluation
      * @param auteur {@link Eleve} à l'origine de l'évaluation
      * @param correcteur {@link Professeur} correcteur
      */
-    public Evaluation(Eleve auteur, Professeur correcteur)
+    public Evaluation(Eleve auteur, Professeur correcteur, Matiere matiere)
     {
         this.note = NOTE_PAR_DEFAUT;
         this.auteur = auteur;
         this.correcteur = correcteur;
+        this.matiere = matiere;
     }
 
 
@@ -40,9 +43,12 @@ public class Evaluation
      * Créé une représentation textuelle de l'instance
      * @return Représentation textuelle de l'instance
      */
+    @Override
     public String toString()
     {
-        // TODO: implement this method
-        return "Cé Pô Implaimantay";
+        return "(" + auteur + " " 
+                + correcteur + " " 
+                + matiere + " " 
+                + note + ")";
     }
 }

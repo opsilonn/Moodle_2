@@ -1,4 +1,4 @@
-
+﻿
 GENERAL :
     Comment définir une matière ?
         - Int => Par un code
@@ -6,7 +6,7 @@ GENERAL :
         - String => Par le nom de la matière
 
     De toutes manières, il faudra créer un tableau pour associer le nom et le code de chaque matière
-
+Pour moi y a un String code et le nom de la matière. ex : [250CT Databases]
 
 
    Comment définir une évaluation ?

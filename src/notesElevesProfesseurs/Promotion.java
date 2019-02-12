@@ -1,4 +1,4 @@
-package notesElevesProfesseurs;
+package src.notesElevesProfesseurs;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

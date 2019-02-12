@@ -1,4 +1,4 @@
-package notesElevesProfesseurs;
+package src.notesElevesProfesseurs;
 
 
 import java.text.SimpleDateFormat;
@@ -19,10 +19,10 @@ public class Eleve extends Personne
     }
 
 
-    public String toString()
+    /*public String toString()
     {
         return ID + "   #    Elève   # - : "
                 + prenom + " " + nom
                 + " , né le " + new SimpleDateFormat("dd MMM yyyy").format(dateNaissance);
-    }
+    }*/
 }
