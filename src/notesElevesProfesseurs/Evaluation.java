@@ -24,9 +24,9 @@ public class Evaluation
 
 
     /**
-     * Instancie une évaluation à partir de son auteur {@link Eleve} et de son correcteur {@link Professeur}
-     * @param auteur
-     * @param correcteur
+     * Instancie une évaluation à partir de son auteur ({@link Eleve}) et de son correcteur ({@link Professeur})
+     * @param auteur {@link Eleve} à l'origine de l'évaluation
+     * @param correcteur {@link Professeur} correcteur
      */
     public Evaluation(Eleve auteur, Professeur correcteur)
     {
