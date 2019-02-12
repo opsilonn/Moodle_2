@@ -19,12 +19,4 @@ public class Professeur extends Personne
     {
         super(pNom, pPrenom, pDateNaissance);
     }
-
-
-    public String toString()
-    {
-        return ID + "   # Professeur # - : "
-                + prenom + " " + nom
-                + " , né le " + new SimpleDateFormat("dd MMM yyyy").format(dateNaissance);
-    }
 }
