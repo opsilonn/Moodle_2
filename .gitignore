@@ -1,8 +1,15 @@
+./.idea
 .idea
 .idea/*
+./.idea/*
 *.lnk
 *.ink
 .vscode
 *.vscode
 vscode/*
+./*.iml
 *.iml
+out
+out/*
+./out
+./out/*
