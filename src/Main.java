@@ -15,6 +15,7 @@ public class Main
         Professeur P = new Professeur();
         Professeur P2 = new Professeur("Pro" , "Faiseur", new Date());
 
+<<<<<<< HEAD
         Matiere M = new Matiere();
         Matiere M2 = new Matiere("1234","Hello");
         
@@ -24,6 +25,8 @@ public class Main
         System.out.println(p1);
         System.out.println(p2);
 
+=======
+>>>>>>> 3def1041fb4b0165196d6d9761d4f95e90583a35
         System.out.println(E);
         System.out.println(E2);
 

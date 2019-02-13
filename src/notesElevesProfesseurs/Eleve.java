@@ -2,7 +2,6 @@ package src.notesElevesProfesseurs;
 
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 public class Eleve extends Personne
@@ -13,16 +12,17 @@ public class Eleve extends Personne
     }
 
 
-    public Eleve(String pNom, String pPrenom, Date pDateNaissance)
     {
-        super(pNom, pPrenom, pDateNaissance);
     }
 
 
+<<<<<<< HEAD
     /*public String toString()
     {
         return ID + "   #    Elève   # - : "
                 + prenom + " " + nom
                 + " , né le " + new SimpleDateFormat("dd MMM yyyy").format(dateNaissance);
     }*/
+=======
+>>>>>>> 3def1041fb4b0165196d6d9761d4f95e90583a35
 }
