@@ -9,10 +9,16 @@ import java.util.ArrayList;
  */
 public class Promotion
 {
-
+    /**
+     * Constructeur par défaut
+     */
     public Promotion() { }
 
 
+    /**
+     * Créé une représentation textuelle de l'instance
+     * @return Représentation textuelle de l'instance
+     */
     public String toString()
     {
         return "Cé Pô Implaimantay";
