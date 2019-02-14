@@ -1,36 +1,44 @@
-package src.notesElevesProfesseurs;
+package notesElevesProfesseurs;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Représente un professeur
+ *
+ * Chaque professeur possède une liste de {@link Matiere}s qu'il enseigne
+ *
+ * Cette classe hérite de {@link Personne}
+ */
 public class Professeur extends Personne
 {
-    List<Matiere> matiere;
+    private List<Matiere> matieres;  // Matières enseignées
 
 
+    /**
+     * Constructeur par défaut pour un {@link Professeur}
+     * Créé une liste de {@link Matiere}s vide et une {@link Personne} vide
+     */
+    @Deprecated  // On doit éviter de créer des Professeurs vides
     public Professeur()
     {
         super();
-        matiere = new ArrayList<Matiere>();
+        this.matieres = new ArrayList<Matiere>();
     }
 
 
-<<<<<<< HEAD
-    public Professeur(String pNom, String pPrenom, Date pDateNaissance)
+    /**
+     * Constructeur pour un professeur.
+     *
+     * Reprend exactement le constructeur de {@link Personne}
+     * @param nom Nom du Professeur à instancier ({@link Personne})
+     * @param prenom Prénom du Professeur à instancier ({@link Personne})
+     * @param dateNaissance Date de naissance du Professeur à instancier ({@link Personne})
+     */
+    public Professeur(String nom, String prenom, Date dateNaissance)
     {
-        super(pNom, pPrenom, pDateNaissance);
-        matiere = new ArrayList<Matiere>();
+        super(nom, prenom, dateNaissance);
+        matieres = new ArrayList<Matiere>();
     }
-
-
-    /*public String toString()
-    {
-        return ID + "   # Professeur # - : "
-                + prenom + " " + nom
-                + " , né le " + new SimpleDateFormat("dd MMM yyyy").format(dateNaissance);
-    }*/
-=======
->>>>>>> 3def1041fb4b0165196d6d9761d4f95e90583a35
 }

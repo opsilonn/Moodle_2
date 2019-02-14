@@ -1,4 +1,4 @@
-package src.notesElevesProfesseurs;
+package notesElevesProfesseurs;
 
 public class Evaluation
 {
@@ -13,9 +13,9 @@ public class Evaluation
 
     /**
      * Constructeur par défaut.
-     * Déprécié dans le sens où il vaut mieux ne pas l'utiliser
+     * @deprecated Déprécié dans le sens où il vaut mieux ne pas l'utiliser
      */
-    @Deprecated
+    @Deprecated  // On évite de créer des évaluations vides
     public Evaluation()
     {
         this.note = NOTE_PAR_DEFAUT;
