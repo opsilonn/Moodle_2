@@ -45,4 +45,18 @@ public abstract class Personne {
         this.dateNaissance = dateNaissance;
         this.ID = UUID.randomUUID().toString();   // ID généré par une bibliothèque Java native
     }
+
+
+    /**
+     * Créé une représentation textuelle de l'instance
+     * @return Représentation textuelle de l'instance
+     */
+    public String toString () {
+        return String.format(
+            "Personne #%s : %s %s, né(e) le %s",
+            this.ID,
+            this.nom.toUpperCase(), this.prenom,
+            this.dateNaissance
+        );
+    }
 }
