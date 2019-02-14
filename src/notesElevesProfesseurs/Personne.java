@@ -56,7 +56,7 @@ public abstract class Personne {
             "Personne #%s : %s %s, né(e) le %s",
             this.ID,
             this.nom.toUpperCase(), this.prenom,
-            this.dateNaissance
+            new SimpleDateFormat("dd MMM yyyy").format(this.dateNaissance)
         );
     }
 }
