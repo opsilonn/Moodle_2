@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Une promotion est un ensemble d'{@link Eleve}s
  */
-public class Promotion
+public class Promotion extends ArrayList<Eleve>
 {
     /**
      * Constructeur par défaut
