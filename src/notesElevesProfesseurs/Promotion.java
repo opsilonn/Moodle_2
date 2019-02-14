@@ -9,18 +9,12 @@ import java.util.ArrayList;
  */
 public class Promotion extends ArrayList<Eleve>
 {
-    /**
-     * Constructeur par défaut
-     */
-    public Promotion() { }
+	private String nom;
 
+	private static final String NOM_PAR_DEFAUT = "Promo Scions";
 
-    /**
-     * Créé une représentation textuelle de l'instance
-     * @return Représentation textuelle de l'instance
-     */
-    public String toString()
-    {
-        return "Cé Pô Implaimantay";
-    }
+	/**
+	 * Constructeur par défaut
+	 */
+	public Promotion() {}
 }
