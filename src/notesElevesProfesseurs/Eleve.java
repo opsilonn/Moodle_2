@@ -49,7 +49,7 @@ public class Eleve extends Personne {
     }
 
     /* Calcul de la moyenne des evaluations de l'étudiant */
-    public double getMoyenne() {
+    public double moyenneGenerale() {
         // cas où il n'y a pas d'évaluations
         if (this.evaluations.isEmpty()) {
             throw new IllegalStateException();
@@ -62,9 +62,24 @@ public class Eleve extends Personne {
 
         return sum / this.evaluations.size();
     }
+    
+    
+    /* Moyenne de l'étudiant par matière */
+    public double moyenne(Matiere matiere){
+        int sum = 0;
+        int nb_evaluation = 0;
+        for (Evaluation e : this.evaluations)
+        {
+            if (e.getCodeMatiere() == matiere.getCode()){
+                sum += e.getNote();
+                nb_evaluation ++;
+            }
+        }
+        return sum / nb_evaluation;
+    } 
 
     /* Calcul de la médiane des evaluations de l'étudiant */
-    public double getMediane() {
+    public double mediane() {
         // cas où il n'y a pas d'évaluations
         if (this.evaluations.isEmpty()) {
             throw new IllegalStateException();

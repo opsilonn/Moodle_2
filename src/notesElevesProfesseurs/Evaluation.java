@@ -48,6 +48,10 @@ public class Evaluation implements Comparable<Evaluation>
     public double getCorrecteur(){
         return note;
     }
+    
+    public String getCodeMatiere(){
+        return this.matiere.getCode();
+    }
 
 
     /**

@@ -34,6 +34,10 @@ public class Matiere {
         this.code = code;
         this.nom = nom;
     }
+    
+    public String getCode(){
+        return this.code;
+    }
 
 
     /**
