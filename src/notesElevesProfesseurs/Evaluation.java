@@ -1,6 +1,6 @@
 package notesElevesProfesseurs;
 
-public class Evaluation
+public class Evaluation implements Comparable<Evaluation>
 {
     private double note;
     private Eleve auteur;
@@ -30,12 +30,23 @@ public class Evaluation
      * @param auteur {@link Eleve} à l'origine de l'évaluation
      * @param correcteur {@link Professeur} correcteur
      */
-    public Evaluation(Eleve auteur, Professeur correcteur, Matiere matiere)
+   
+    public Evaluation(Eleve auteur, Professeur correcteur, Matiere matiere, double note)
     {
-        this.note = NOTE_PAR_DEFAUT;
+        this.note = note;
         this.auteur = auteur;
         this.correcteur = correcteur;
         this.matiere = matiere;
+    }
+    
+    // retourne la valeur de la note de l'évaluation
+    public double getNote(){
+        return note;
+    }
+    
+    //retourne le correcteur de l'évaluation
+    public double getCorrecteur(){
+        return note;
     }
 
 
@@ -50,5 +61,14 @@ public class Evaluation
                 + correcteur + " " 
                 + matiere + " " 
                 + note + ")";
+    }
+
+    @Override
+    public int compareTo(Evaluation o) {
+        if (this.note == o.getNote())
+            return 0;
+        if (this.note < o.getNote())
+            return -1;
+        return 1;        
     }
 }

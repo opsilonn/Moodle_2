@@ -1,6 +1,7 @@
 package notesElevesProfesseurs;
 
 import java.text.SimpleDateFormat;  // Format des dates
+import java.time.Year;
 import java.util.Date;  // On préfère utiliser des classes déjà existantes en Java
 import java.util.UUID;  // Pour la génération d'identifiants uniques
 
@@ -11,13 +12,14 @@ import java.util.UUID;  // Pour la génération d'identifiants uniques
  */
 public abstract class Personne {
 
-    protected String ID;
+    protected int ID;
     protected String nom;
     protected String prenom;
     protected Date dateNaissance;
 
     private static final String NOM_PAR_DEFAUT = "Doe";
     private static final String PRENOM_PAR_DEFAUT = "John";
+    private static int index_ID = -1;
 
 
     /**
@@ -28,7 +30,8 @@ public abstract class Personne {
     public Personne() {
         this.nom = NOM_PAR_DEFAUT;
         this.prenom = PRENOM_PAR_DEFAUT;
-        this.ID = UUID.randomUUID().toString();  // ID généré par une bibliothèque Java native
+        this.ID = createID();
+        //this.ID = UUID.randomUUID().toString();  // ID généré par une bibliothèque Java native
         this.dateNaissance = new Date();
     }
 
@@ -43,20 +46,43 @@ public abstract class Personne {
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
-        this.ID = UUID.randomUUID().toString();   // ID généré par une bibliothèque Java native
+        this.ID = createID();
+        //this.ID = UUID.randomUUID().toString();   // ID généré par une bibliothèque Java native
     }
+    
+    public Personne (String nom, String prenom, Date dateNaissance, int ID) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
+        this.ID = ID;
+    }
+    
+    /* ID aura la forme YYYY0000 avec YYYY l'année d'entrée dans l'école*/
+    private int createID(){
+        this.index_ID ++;
+        return Year.now().getValue() * 10000 + this.index_ID;
+    }
+    
+    
+    
 
 
     /**
      * Créé une représentation textuelle de l'instance
      * @return Représentation textuelle de l'instance
      */
-    public String toString () {
+    /*public String toString () {
         return String.format(
             "Personne #%s : %s %s, né(e) le %s",
             this.ID,
             this.nom.toUpperCase(), this.prenom,
             new SimpleDateFormat("dd MMM yyyy").format(this.dateNaissance)
         );
+    }*/
+    
+    //Methode toString pour coller le sujet
+    /// A AMELIORER PAR LA SUITE
+    public String toString(){
+        return "(" + this.prenom + ", " + this.nom.toUpperCase() + ")";
     }
 }
