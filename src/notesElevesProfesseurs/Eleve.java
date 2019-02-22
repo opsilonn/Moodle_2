@@ -19,6 +19,7 @@ public class Eleve extends Personne {
 
     private static final int NB_EVALUATIONS = 10;
 
+
     /**
      * Constructeur par défaut
      *
@@ -29,6 +30,7 @@ public class Eleve extends Personne {
     public Eleve() {
         super();
     }
+
 
     /**
      * Créé un {@link Eleve} à partir des informations nécessaires pour la
@@ -95,24 +97,25 @@ public class Eleve extends Personne {
     }
 
 
-    /* Calcul de la médiane des evaluations de l'étudiant */
-    public double mediane () {
-        // cas où il n'y a pas d'évaluations
+    /**
+     * Calcule la médiane des {@link Evaluation} de l'instance d'{@link Eleve}
+     * @return Valeur de la médiane des {@link Evaluation} de l'instance
+     * @throws IllegalStateException Si aucune {@link Evaluation} n'est associée à l'instance d'{@link Eleve}
+     */
+    public double getMediane () throws IllegalStateException {
+        // Cas où il n'y a pas d'évaluations
         if (this.evaluations.isEmpty()) {
             throw new IllegalStateException();
         }
 
-        // tri des notes de l'étudiant par ordre ascendant
+        // Tri des notes de l'étudiant par ordre ascendant
         Collections.sort(evaluations);
 
-        int middle = evaluations.size() / 2;
-        if (middle % 2 == 1) // si le nb de note est impair : retourne la note du milieu
-        {
+        int middle = evaluations.size() / 2;  // Détermination de la position de l'évaluation médiane
+        if (middle % 2 == 1) {  // Si le nb de note est impair : retourne la note du milieu
             return evaluations.get(middle).getNote();
-        } else {
-            // si le nb de note est pair : moyenne des deux notes du milieu
-            return (evaluations.get(middle - 1).getNote()
-                    + evaluations.get(middle).getNote()) / 2;
+        } else {  // Si le nb de note est pair : moyenne des deux notes du milieu
+            return (evaluations.get(middle - 1).getNote() + evaluations.get(middle).getNote()) / 2;
         }
 
     }
