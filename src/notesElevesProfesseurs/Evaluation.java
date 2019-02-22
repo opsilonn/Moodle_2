@@ -82,12 +82,13 @@ public class Evaluation implements Comparable<Evaluation>
     }
 
 
+    /**
+     * Compare une instance de {@link Evaluation} à l'instance actuelle
+     * @param evaluation Instance de {@link Evaluation} à comparer
+     * @return {@code 0} si les deux évaluations sont égales, -1 si l'instance est inférieure à {@code evaluation}, 1 si {@code evaluation} est inférieure à l'instance
+     */
     @Override
-    public int compareTo(Evaluation o) {
-        if (this.note == o.getNote())
-            return 0;
-        if (this.note < o.getNote())
-            return -1;
-        return 1;        
+    public int compareTo(Evaluation evaluation) {
+        return Double.compare(this.note, evaluation.getNote());
     }
 }
