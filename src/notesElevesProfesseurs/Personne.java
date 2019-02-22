@@ -1,8 +1,7 @@
 package notesElevesProfesseurs;
 
-import java.text.SimpleDateFormat;  // Format des dates
-import java.util.Date;  // On préfère utiliser des classes déjà existantes en Java
-import java.util.UUID;  // Pour la génération d'identifiants uniques
+import java.util.Date;
+import java.util.UUID;
 
 
 /**
