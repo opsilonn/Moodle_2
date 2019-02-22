@@ -62,9 +62,6 @@ public abstract class Personne {
     }
 
 
-
-
-
     /**
      * Créé une représentation textuelle de l'instance
      * @return Représentation textuelle de l'instance
