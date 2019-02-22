@@ -59,7 +59,11 @@ public class Evaluation implements Comparable<Evaluation>
     }
 
 
-    public String getCodeMatiere(){
+    /**
+     * Retourne le {@code code} de la {@link Matiere} de l'{@link Evaluation}
+     * @return Code de la {@link Matiere} de l'instance d'{@link Evaluation}
+     */
+    public String getCodeMatiere() {
         return this.matiere.getCode();
     }
 
