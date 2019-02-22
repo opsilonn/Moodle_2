@@ -1,9 +1,7 @@
 package notesElevesProfesseurs;
 
-import java.text.SimpleDateFormat;  // Format des dates
 import java.time.Year;
 import java.util.Date;  // On préfère utiliser des classes déjà existantes en Java
-import java.util.UUID;  // Pour la génération d'identifiants uniques
 
 
 /**
@@ -48,6 +46,14 @@ public abstract class Personne {
         this.ID = createID();   // ID généré par une bibliothèque Java native
     }
 
+
+    /**
+     * Créé une instance de {@link Personne} en se basant sur son {@code nom}, son {@code prenom}, sa {@code dateNaissance} et son
+     * @param nom Nom de la {@link Personne} à créer
+     * @param prenom Prénom de la {@link Personne} à créer
+     * @param dateNaissance Date de naissance de la {@link Personne} à créer
+     * @param ID Identifiant unique de la  {@link Personne} à créer
+     */
     public Personne (String nom, String prenom, Date dateNaissance, int ID) {
         this.nom = nom;
         this.prenom = prenom;
