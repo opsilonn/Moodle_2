@@ -65,9 +65,8 @@ public abstract class Personne {
     /**
      * Créé un ID pour l'instance, l'ID est de la forme YYYY0000 avec YYYY l'année d'entrée dans l'école
      */
-    private int createID() {
-        Personne.index_ID++;  // Incrémente le nombre total de personnes
-        return Year.now().getValue() * 10000 + Personne.index_ID;  // Génère l'ID
+    private int createID () {
+        return Year.now().getValue() * 10000 + ++Personne.index_ID;  // Génère l'ID
     }
 
 
