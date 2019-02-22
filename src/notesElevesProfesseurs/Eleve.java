@@ -32,4 +32,19 @@ public class Eleve extends Personne
     public Eleve (String nom, String prenom, Date dateNaissance) {
         super(nom, prenom, dateNaissance);
     }
+
+
+    /**
+     * Créé une représentation textuelle de l'instance de {@link Eleve}
+     * @return Représentation textuelle de l'instance
+     */
+    @Override
+    public String toString() {
+        return String.format(
+            "Eleve #%s : %s %s, né(e) le %s",
+            this.ID,
+            this.nom.toUpperCase(), this.prenom,
+            new SimpleDateFormat("dd MMM yyyy").format(this.dateNaissance)
+        );
+    }
 }
