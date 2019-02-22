@@ -54,9 +54,13 @@ public class Eleve extends Personne {
     }
 
 
-    /* Calcul de la moyenne des evaluations de l'étudiant */
-    public double moyenneGenerale () {
-        // cas où il n'y a pas d'évaluations
+    /**
+     * Calcul de la moyenne des évaluations de l'instance d'{@link Eleve}
+     * @return Moyenne des évaluations de l'instance
+     * @throws IllegalStateException S'il n'existe aucune instance d'{@link Evaluation} associée à l'instance d'{@link Eleve}
+     */
+    public double moyenneGenerale () throws IllegalStateException {
+        // Cas où il n'y a pas d'évaluations
         if (this.evaluations.isEmpty()) {
             throw new IllegalStateException();
         }
