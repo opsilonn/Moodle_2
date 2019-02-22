@@ -44,9 +44,15 @@ public class Eleve extends Personne {
         evaluations = new ArrayList<>();
     }
 
+
+    /**
+     * Donne la valeur de l'{@code ID} (identifiant unique) de l'instance d'{@link Eleve}
+     * @return Valeur de la propriété {@code ID} de l'instance
+     */
     public int getID () {
         return this.ID;
     }
+
 
     /* Calcul de la moyenne des evaluations de l'étudiant */
     public double moyenneGenerale () {
