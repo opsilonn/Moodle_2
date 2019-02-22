@@ -6,6 +6,9 @@ public class Evaluation implements Comparable<Evaluation>
     private Eleve auteur;
     private Professeur correcteur;
     private Matiere matiere;
+    private int id;
+
+    private static int _compteur_evaluations = 0;
 
 
     private static final double NOTE_PAR_DEFAUT = 10.0;  // #NoMagicNumbers
@@ -22,6 +25,7 @@ public class Evaluation implements Comparable<Evaluation>
         this.auteur = new Eleve();
         this.correcteur = new Professeur();
         this.matiere = new Matiere();
+        this.id = Evaluation._compteur_evaluations++;
     }
 
 
@@ -37,6 +41,7 @@ public class Evaluation implements Comparable<Evaluation>
         this.auteur = auteur;
         this.correcteur = correcteur;
         this.matiere = matiere;
+        this.id = Evaluation._compteur_evaluations++;
     }
     
     // retourne la valeur de la note de l'évaluation
