@@ -21,11 +21,7 @@ public class Evaluation implements Comparable<Evaluation>
     @Deprecated  // On évite de créer des évaluations vides
     public Evaluation()
     {
-        this.note = NOTE_PAR_DEFAUT;
-        this.auteur = new Eleve();
-        this.correcteur = new Professeur();
-        this.matiere = new Matiere();
-        this.id = Evaluation._compteur_evaluations++;
+        this(new Eleve(), new Professeur(), new Matiere(),  NOTE_PAR_DEFAUT);
     }
 
 
