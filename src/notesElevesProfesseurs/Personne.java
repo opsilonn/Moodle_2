@@ -1,7 +1,9 @@
 package notesElevesProfesseurs;
 
-import java.util.Date;
-import java.util.UUID;
+import java.text.SimpleDateFormat;  // Format des dates
+import java.time.Year;
+import java.util.Date;  // On préfère utiliser des classes déjà existantes en Java
+import java.util.UUID;  // Pour la génération d'identifiants uniques
 
 
 /**
@@ -10,13 +12,14 @@ import java.util.UUID;
  */
 public abstract class Personne {
 
-    protected String ID;
+    protected int ID;
     protected String nom;
     protected String prenom;
     protected Date dateNaissance;
 
     private static final String NOM_PAR_DEFAUT = "Doe";
     private static final String PRENOM_PAR_DEFAUT = "John";
+    private static int index_ID = -1;
 
 
     /**
@@ -27,7 +30,7 @@ public abstract class Personne {
     public Personne() {
         this.nom = NOM_PAR_DEFAUT;
         this.prenom = PRENOM_PAR_DEFAUT;
-        this.ID = UUID.randomUUID().toString();  // ID généré par une bibliothèque Java native
+        this.ID = createID();  // ID généré par une bibliothèque Java native
         this.dateNaissance = new Date();
     }
 
@@ -42,8 +45,24 @@ public abstract class Personne {
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
-        this.ID = UUID.randomUUID().toString();   // ID généré par une bibliothèque Java native
+        this.ID = createID();   // ID généré par une bibliothèque Java native
     }
+
+    public Personne (String nom, String prenom, Date dateNaissance, int ID) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
+        this.ID = ID;
+    }
+
+    /* ID aura la forme YYYY0000 avec YYYY l'année d'entrée dans l'école*/
+    private int createID(){
+        this.index_ID ++;
+        return Year.now().getValue() * 10000 + this.index_ID;
+    }
+
+
+
 
 
     /**
