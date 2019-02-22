@@ -51,12 +51,5 @@ public abstract class Personne {
      * Créé une représentation textuelle de l'instance
      * @return Représentation textuelle de l'instance
      */
-    public String toString () {
-        return String.format(
-            "Personne #%s : %s %s, né(e) le %s",
-            this.ID,
-            this.nom.toUpperCase(), this.prenom,
-            new SimpleDateFormat("dd MMM yyyy").format(this.dateNaissance)
-        );
-    }
+    public abstract String toString ();
 }
