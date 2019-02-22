@@ -41,15 +41,15 @@ public class Eleve extends Personne {
      */
     public Eleve(String nom, String prenom, Date dateNaissance) {
         super(nom, prenom, dateNaissance);
-        evaluations = new ArrayList<Evaluation>();
+        evaluations = new ArrayList<>();
     }
 
-    public int getID() {
+    public int getID () {
         return this.ID;
     }
 
     /* Calcul de la moyenne des evaluations de l'étudiant */
-    public double moyenneGenerale() {
+    public double moyenneGenerale () {
         // cas où il n'y a pas d'évaluations
         if (this.evaluations.isEmpty()) {
             throw new IllegalStateException();
@@ -65,7 +65,7 @@ public class Eleve extends Personne {
 
 
     /* Moyenne de l'étudiant par matière */
-    public double moyenne(Matiere matiere){
+    public double moyenne (Matiere matiere){
         int sum = 0;
         int nb_evaluation = 0;
         for (Evaluation e : this.evaluations)
@@ -79,7 +79,7 @@ public class Eleve extends Personne {
     }
 
     /* Calcul de la médiane des evaluations de l'étudiant */
-    public double mediane() {
+    public double mediane () {
         // cas où il n'y a pas d'évaluations
         if (this.evaluations.isEmpty()) {
             throw new IllegalStateException();
@@ -106,7 +106,9 @@ public class Eleve extends Personne {
      * @return Représentation textuelle de l'instance
      */
     @Override
-    public String toString() {
+    public String toString () {
+        // TODO: Ajouter l'affichage des notes
+
         return String.format(
             "Eleve #%s : %s %s, né(e) le %s",
             this.ID,
@@ -115,8 +117,11 @@ public class Eleve extends Personne {
         );
     }
 
-    /* Retourne le set de tous les correcteurs de l'étudiant */
-    public Set<Professeur> getCorrecteurs() {
+
+    /**
+     *  Retourne le set de tous les correcteurs de l'étudiant
+     */
+    public Set<Professeur> getCorrecteurs () {
         HashSet correcteurs = new HashSet<Professeur>();
         for (Evaluation e : this.evaluations) {
             correcteurs.add(e.getCorrecteur());
@@ -124,16 +129,4 @@ public class Eleve extends Personne {
 
         return correcteurs;
     }
-
-    /*Methode toString de l'étudiant
-    TODO : implementer l'affichage des notes */
-   /* @Override
-    public String toString() {
-        return super.toString()
-                + "notes: " + "A IMPLEMENTER LAFFICHAGE DES NOTES"
-                + "moyenne = " + this.getMoyenne()
-                + "mediane = " + this.getMediane()
-                + "correcteur(s): " + this.getCorrecteurs();
-    }*/
-
 }
