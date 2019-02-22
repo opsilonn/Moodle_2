@@ -39,12 +39,17 @@ public class Evaluation implements Comparable<Evaluation>
         this.matiere = matiere;
         this.id = Evaluation._compteur_evaluations++;
     }
-    
-    // retourne la valeur de la note de l'évaluation
-    public double getNote(){
-        return note;
-    }
-    
+
+
+		/**
+		 * Retourne la valeur de la note de l'évaluation
+		 * @return Valeur de la note de l'évaluation
+		 */
+	    public double getNote() {
+	        return this.note;
+	    }
+
+
     //retourne le correcteur de l'évaluation
     public double getCorrecteur(){
         return note;
