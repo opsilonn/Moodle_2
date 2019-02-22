@@ -1,5 +1,6 @@
 package notesElevesProfesseurs;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
@@ -40,5 +41,20 @@ public class Professeur extends Personne
     {
         super(nom, prenom, dateNaissance);
         matieres = new ArrayList<Matiere>();
+    }
+
+
+    /**
+     * Créé une représentation textuelle de l'instance de {@link Professeur}
+     * @return Représentation textuelle de l'instance
+     */
+    @Override
+    public String toString() {
+        return String.format(
+            "Professeur #%s : %s %s, né(e) le %s",
+            this.ID,
+            this.nom.toUpperCase(), this.prenom,
+            new SimpleDateFormat("dd MMM yyyy").format(this.dateNaissance)
+        );
     }
 }
