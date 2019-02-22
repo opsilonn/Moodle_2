@@ -74,19 +74,26 @@ public class Eleve extends Personne {
     }
 
 
-    /* Moyenne de l'étudiant par matière */
-    public double getMoyenne (Matiere matiere){
-        int sum = 0;
+    /**
+     * Calcule la moyenne de l'instance d'{@link Eleve} dans la {@code matiere} spécifiée
+     * @param matiere {@link Matiere} pour laquelle calculer la moyenne
+     * @return Valeur de la moyenne dans la {@link Matiere} spécifiée
+     */
+    public double getMoyenne (Matiere matiere) {
+        double sum = 0;
         int nb_evaluation = 0;
+
         for (Evaluation e : this.evaluations)
         {
-            if (e.getCodeMatiere() == matiere.getCode()){
+            if (e.getCodeMatiere().equals(matiere.getCode())) {  // TODO: Utiliser plutôt  e.getMatiere().equals(matiere)
                 sum += e.getNote();
-                nb_evaluation ++;
+                nb_evaluation++;
             }
         }
+
         return sum / nb_evaluation;
     }
+
 
     /* Calcul de la médiane des evaluations de l'étudiant */
     public double mediane () {
