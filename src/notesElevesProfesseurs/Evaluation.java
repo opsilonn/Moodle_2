@@ -50,11 +50,15 @@ public class Evaluation implements Comparable<Evaluation>
 	    }
 
 
-    //retourne le correcteur de l'évaluation
-    public double getCorrecteur(){
-        return note;
+    /**
+     * Retourne le {@link Professeur} correcteur de l'évaluation
+     * @return {@link Professeur} correcteur de l'évaluation
+     */
+    public Professeur getCorrecteur() {
+        return this.correcteur;
     }
-    
+
+
     public String getCodeMatiere(){
         return this.matiere.getCode();
     }
