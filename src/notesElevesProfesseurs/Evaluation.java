@@ -75,11 +75,12 @@ public class Evaluation implements Comparable<Evaluation>
     @Override
     public String toString()
     {
-        return "(" + auteur + " " 
-                + correcteur + " " 
-                + matiere + " " 
-                + note + ")";
+        return String.format(
+            "(%s, %s, %s, %d)",
+            this.auteur, this.correcteur, this.matiere, this.note
+        );
     }
+
 
     @Override
     public int compareTo(Evaluation o) {
