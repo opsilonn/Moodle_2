@@ -59,7 +59,7 @@ public class Eleve extends Personne {
      * @return Moyenne des évaluations de l'instance
      * @throws IllegalStateException S'il n'existe aucune instance d'{@link Evaluation} associée à l'instance d'{@link Eleve}
      */
-    public double moyenneGenerale () throws IllegalStateException {
+    public double getMoyenneGenerale () throws IllegalStateException {
         // Cas où il n'y a pas d'évaluations
         if (this.evaluations.isEmpty()) {
             throw new IllegalStateException();
