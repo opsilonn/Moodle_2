@@ -75,7 +75,7 @@ public class Eleve extends Personne {
 
 
     /* Moyenne de l'étudiant par matière */
-    public double moyenne (Matiere matiere){
+    public double getMoyenne (Matiere matiere){
         int sum = 0;
         int nb_evaluation = 0;
         for (Evaluation e : this.evaluations)
