@@ -74,5 +74,7 @@ public abstract class Personne {
      * Créé une représentation textuelle de l'instance
      * @return Représentation textuelle de l'instance
      */
-    public abstract String toString ();
+    public String toString (){
+        return "(" + this.nom + ", " + this.prenom + ")";
+    }
 }
