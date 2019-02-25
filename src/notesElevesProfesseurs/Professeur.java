@@ -1,9 +1,6 @@
 package notesElevesProfesseurs;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-import java.util.ArrayList;
 
 /**
  * Représente un professeur
@@ -14,7 +11,6 @@ import java.util.ArrayList;
  */
 public class Professeur extends Personne {
 
-    //private List<Matiere> matieres;  // Matières enseignées
     private Matiere matiere; // Matière enseigné
 
     /**
@@ -24,7 +20,7 @@ public class Professeur extends Personne {
     @Deprecated  // On doit éviter de créer des Professeurs vides
     public Professeur() {
         super();
-        //this.matieres = new ArrayList<Matiere>();
+
         matiere = new Matiere("216ST", "mathématiques");
     }
 
@@ -43,23 +39,11 @@ public class Professeur extends Personne {
         this.matiere = matiere;
     }
 
-    /**
-     * Créé une représentation textuelle de l'instance de {@link Professeur}
-     *
-     * @return Représentation textuelle de l'instance
-     */
-    /*@Override
-    public String toString() {
-        return String.format(
-            "Professeur #%s : %s %s, né(e) le %s",
-            this.ID,
-            this.nom.toUpperCase(), this.prenom,
-            new SimpleDateFormat("dd MMM yyyy").format(this.dateNaissance)
-        );
-    }*/
+
     public Eleve rechercher(Promotion promo, int idEleve) {
         return promo.rechercher(idEleve);
     }
+
 
     public void setNote(Promotion promo, int idEleve, int note, int index) throws IllegalStateException {
         Eleve eleve = this.rechercher(promo, idEleve);
