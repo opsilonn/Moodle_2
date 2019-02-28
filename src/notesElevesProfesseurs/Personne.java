@@ -74,7 +74,25 @@ public abstract class Personne {
      * Créé une représentation textuelle de l'instance
      * @return Représentation textuelle de l'instance
      */
+    @Override
     public String toString (){
         return "(" + this.nom + ", " + this.prenom + ")";
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof Personne)) {
+            return false;
+        }
+        Personne p = (Personne) o;
+        return p.ID == ID;
+    }
+    
+    @Override
+    public int hashCode() {
+        return nom.hashCode()+ prenom.hashCode() + dateNaissance.hashCode();
     }
 }

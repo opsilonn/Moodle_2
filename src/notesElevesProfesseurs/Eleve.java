@@ -1,6 +1,5 @@
 package notesElevesProfesseurs;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -84,7 +83,12 @@ public class Eleve extends Personne {
      * @param matiere {@link Matiere} pour laquelle calculer la moyenne
      * @return Valeur de la moyenne dans la {@link Matiere} spécifiée
      */
-    public double getMoyenne(Matiere matiere) {
+    public double getMoyenne(Matiere matiere) throws IllegalStateException {
+        // Cas où il n'y a pas d'évaluations
+        if (this.evaluations.isEmpty()) {
+            throw new IllegalStateException();
+        }
+
         double sum = 0;
         int nb_evaluation = 0;
 
@@ -105,7 +109,7 @@ public class Eleve extends Personne {
      * @throws IllegalStateException Si aucune {@link Evaluation} n'est associée
      * à l'instance d'{@link Eleve}
      */
-    public double getMediane() throws IllegalStateException {
+    public double getMedianeGenerale() throws IllegalStateException {
         // Cas où il n'y a pas d'évaluations
         if (this.evaluations.isEmpty()) {
             throw new IllegalStateException();
@@ -126,6 +130,33 @@ public class Eleve extends Personne {
 
     }
 
+    public double getMediane(Matiere matiere) throws IllegalStateException {
+
+        List<Evaluation> evalMatiere = new ArrayList<>();
+        this.evaluations.stream().filter((e) -> (e.getCodeMatiere().equals(matiere.getCode()))).forEachOrdered((e) -> {
+            evalMatiere.add(e);
+        });
+
+        // Cas où il n'y a pas d'évaluations
+        if (evalMatiere.isEmpty()) {
+            throw new IllegalStateException();
+        }
+
+        if (evalMatiere.size() == 1) {
+            return evalMatiere.get(0).getNote();
+        }
+
+        // Tri des notes de l'étudiant par ordre ascendant
+        Collections.sort(evaluations);
+
+        int middle = evalMatiere.size() / 2;  // Détermination de la position de l'évaluation médiane
+        if (middle % 2 == 1) {  // Si le nb de note est impair : retourne la note du milieu
+            return evalMatiere.get(middle).getNote();
+        } else {  // Si le nb de note est pair : moyenne des deux notes du milieu
+            return (evalMatiere.get(middle - 1).getNote() + evalMatiere.get(middle).getNote()) / 2;
+        }
+    }
+
     /**
      * Créé une représentation textuelle de l'instance de {@link Eleve}
      *
@@ -137,21 +168,26 @@ public class Eleve extends Personne {
                 + "id: " + this.ID + "\n"
                 + "promotion: " + this.promotion + "\n"
                 + toStringNotes();
-        //+ this.evaluations.get(0).getNote();
     }
 
     /**
-     * Retourne le set de tous les correcteurs de l'étudiant
+     * Retourne le set de tous les correcteurs de l'élève
+     * @return Set de tous les correcteurs de l'élève
      */
     public Set<Professeur> getCorrecteurs() {
-        HashSet correcteurs = new HashSet<Professeur>();
-        for (Evaluation e : this.evaluations) {
+        HashSet<Professeur> correcteurs = new HashSet<>();
+        this.evaluations.forEach((e) -> {
             correcteurs.add(e.getCorrecteur());
-        }
+        });
 
         return correcteurs;
     }
 
+    /**
+     *
+     * @param index Index de l'évaluation de l'Eleve {@link Eleve}
+     * @return l'Evaluation correspondante à l'index
+     */
     public Evaluation getEvaluation(int index) {
         try {
             return evaluations.get(index);
@@ -160,10 +196,18 @@ public class Eleve extends Personne {
         }
     }
 
+    /**
+     *
+     * @param evaluation Evaluation de l'étudiant à ajouter
+     */
     public void addEvaluation(Evaluation evaluation) {
         this.evaluations.add(evaluation);
     }
 
+    /**
+     *
+     * @param promo Nom de la promotion de l'élève
+     */
     public void setPromo(String promo) {
         this.promotion = promo;
     }
@@ -171,16 +215,37 @@ public class Eleve extends Personne {
     public String toStringNotes() {
         StringBuilder str = new StringBuilder();
         str.append("notes: ");
-        for (Evaluation eval : this.evaluations) {
+        this.evaluations.forEach((Evaluation eval) -> {
             str.append(eval.getCodeMatiere()).append(" ").append(eval.getNote()).append("\n");
-        }
+        });
         try {
             str.append("moyenne = ").append(this.getMoyenneGenerale()).append("\n");
-            str.append("mediane = ").append(this.getMediane()).append("\n");
+            str.append("mediane = ").append(this.getMedianeGenerale()).append("\n");
             str.append("correcteur(s): ").append(this.getCorrecteurs()).append("\n");
             return str.toString();
         } catch (IllegalStateException e) {
             return "pas d'évaluation présente\n";
         }
+    }
+
+    public String toStringforEval() {
+        return super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof Eleve)) {
+            return false;
+        }
+        Eleve e = (Eleve) o;
+        return e.ID == ID;
+    }
+    
+    @Override
+    public int hashCode() {
+        return super.hashCode() + promotion.hashCode();
     }
 }

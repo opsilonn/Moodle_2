@@ -45,7 +45,7 @@ public class Evaluation implements Comparable<Evaluation> {
     public double getNote() {
         return this.note;
     }
-    
+
     public void setNote(double note) {
         this.note = note;
     }
@@ -76,8 +76,8 @@ public class Evaluation implements Comparable<Evaluation> {
     @Override
     public String toString() {
         return String.format(
-                "(%s, %s, %s, %2.2f)",
-                this.auteur, this.correcteur, this.matiere, this.note
+                "(%s %s %s %2.2f)",
+                this.auteur.toStringforEval(), this.correcteur, this.matiere, this.note
         );
     }
 
@@ -93,6 +93,25 @@ public class Evaluation implements Comparable<Evaluation> {
     public int compareTo(Evaluation evaluation) {
         return Double.compare(this.note, evaluation.getNote());
     }
-    
-    
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof Evaluation)) {
+            return false;
+        }
+        Evaluation e = (Evaluation) o;
+        return  e.auteur.equals(auteur) 
+                && e.correcteur.equals(correcteur) 
+                && e.note == note 
+                && e.matiere.equals(matiere)
+                && e.id == id;
+    }
+
+    public int hashCode() {
+        return auteur.hashCode() + correcteur.hashCode() + matiere.hashCode();
+    }
+
 }

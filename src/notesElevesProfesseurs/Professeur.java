@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Représente un professeur
  *
- * Chaque professeur possède une liste de {@link Matiere}s qu'il enseigne
+ * Chaque professeur possède une {@link Matiere} qu'il enseigne
  *
  * Cette classe hérite de {@link Personne}
  */
@@ -33,17 +33,16 @@ public class Professeur extends Personne {
      * @param prenom Prénom du Professeur à instancier ({@link Personne})
      * @param dateNaissance Date de naissance du Professeur à instancier
      * ({@link Personne})
+     * @param matiere Matiere enseignée par le Professeur à instancier
      */
     public Professeur(String nom, String prenom, Date dateNaissance, Matiere matiere) {
         super(nom, prenom, dateNaissance);
         this.matiere = matiere;
     }
 
-
     public Eleve rechercher(Promotion promo, int idEleve) {
         return promo.rechercher(idEleve);
     }
-
 
     public void setNote(Promotion promo, int idEleve, int note, int index) throws IllegalStateException {
         Eleve eleve = this.rechercher(promo, idEleve);
@@ -58,4 +57,22 @@ public class Professeur extends Personne {
             eleve.addEvaluation(new Evaluation(eleve, this, matiere, note));
         }
     }
+    
+     @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof Professeur)) {
+            return false;
+        }
+        Professeur p = (Professeur) o;
+        return p.ID == ID;
+    }
+    
+    @Override
+    public int hashCode() {
+        return super.hashCode() + matiere.hashCode();
+    }
+
 }
