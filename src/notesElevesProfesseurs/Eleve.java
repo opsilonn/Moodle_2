@@ -14,7 +14,7 @@ import java.util.Set;
  */
 public class Eleve extends Personne {
 
-    private List<Evaluation> evaluations;
+    private final List<Evaluation> evaluations;
     private String promotion;
 
     private static final int NB_EVALUATIONS = 10;
@@ -184,7 +184,7 @@ public class Eleve extends Personne {
     }
 
     /**
-     *
+     * Retourne l'évaluation à l'index donné
      * @param index Index de l'évaluation de l'Eleve {@link Eleve}
      * @return l'Evaluation correspondante à l'index
      */
@@ -197,7 +197,7 @@ public class Eleve extends Personne {
     }
 
     /**
-     *
+     * Ajout d'une évaluation à l'étudiant
      * @param evaluation Evaluation de l'étudiant à ajouter
      */
     public void addEvaluation(Evaluation evaluation) {
@@ -205,13 +205,17 @@ public class Eleve extends Personne {
     }
 
     /**
-     *
+     * Assignation de l'attribut promotion pour l'élève
      * @param promo Nom de la promotion de l'élève
      */
     public void setPromo(String promo) {
         this.promotion = promo;
     }
 
+    /**
+     * Créé une représentation textuelle des notes de {@link Eleve}
+     * @return représentation textuelle de l'élève selon Personne
+     */
     public String toStringNotes() {
         StringBuilder str = new StringBuilder();
         str.append("notes: ");
@@ -228,6 +232,10 @@ public class Eleve extends Personne {
         }
     }
 
+    /**
+     * Créé une représentation textuelle de l'instance de {@link Eleve}
+     * @return représentation textuelle de l'élève selon Personne
+     */
     public String toStringforEval() {
         return super.toString();
     }

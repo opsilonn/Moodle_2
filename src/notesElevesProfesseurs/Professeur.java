@@ -11,7 +11,7 @@ import java.util.Date;
  */
 public class Professeur extends Personne {
 
-    private Matiere matiere; // Matière enseigné
+    private final Matiere matiere; // Matière enseigné
 
     /**
      * Constructeur par défaut pour un {@link Professeur} Créé une liste de
@@ -20,7 +20,6 @@ public class Professeur extends Personne {
     @Deprecated  // On doit éviter de créer des Professeurs vides
     public Professeur() {
         super();
-
         matiere = new Matiere("216ST", "mathématiques");
     }
 
@@ -40,10 +39,24 @@ public class Professeur extends Personne {
         this.matiere = matiere;
     }
 
+    /**
+     * Retourne l'Etudiant rechercher
+     * @param promo promotion de l'élève rechercher
+     * @param idEleve ID de l'élève rechercher
+     * @return l'étudiant
+     */
     public Eleve rechercher(Promotion promo, int idEleve) {
         return promo.rechercher(idEleve);
     }
 
+    /**
+     * Mets une note à un étudiant
+     * @param promo  promotion de l'élève rechercher
+     * @param idEleve ID de l'élève rechercher
+     * @param note valeur de la note à ajouter
+     * @param index index de la note à modifier
+     * @throws IllegalStateException
+     */
     public void setNote(Promotion promo, int idEleve, int note, int index) throws IllegalStateException {
         Eleve eleve = this.rechercher(promo, idEleve);
         if (eleve == null) {

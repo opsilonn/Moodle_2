@@ -1,5 +1,12 @@
 package notesElevesProfesseurs;
 
+/**
+ * Classe représentant une évaluation
+ * Chaque évaluation possède une note, un auteur, un correcteur, une matière et une ID.
+ * L'ID n'est pas unique mais correspond à une évaluation globale. 
+ * 
+ * @author Célia
+ */
 public class Evaluation implements Comparable<Evaluation> {
 
     private double note;
@@ -46,6 +53,10 @@ public class Evaluation implements Comparable<Evaluation> {
         return this.note;
     }
 
+    /**
+     * Retourne la note de l'évaluation
+     * @param note
+     */
     public void setNote(double note) {
         this.note = note;
     }
@@ -110,6 +121,7 @@ public class Evaluation implements Comparable<Evaluation> {
                 && e.id == id;
     }
 
+    @Override
     public int hashCode() {
         return auteur.hashCode() + correcteur.hashCode() + matiere.hashCode();
     }

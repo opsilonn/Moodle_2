@@ -12,7 +12,7 @@ import java.util.List;
 public class Promotion {
 
     private String nom;
-    private List<Eleve> eleves;
+    private final List<Eleve> eleves;
 
     private static final String NOM_PAR_DEFAUT = "Promo Scions";
 
@@ -24,19 +24,36 @@ public class Promotion {
         this.eleves = new ArrayList<>();
     }
 
+    /**
+     *Initialization d'une promotion
+     * @param nom Nom de la promotion
+     */
     public Promotion(String nom) {
         this.nom = nom;
         this.eleves = new ArrayList<>();
     }
 
+    /**
+     *Modification du nom de la promotion
+     * @param nom Nom de la promotion
+     */
     public void setNom(String nom) {
         this.nom = nom;
     }
 
+    /**
+     *Retourne le nom de la promotion
+     * @return nom
+     */
     public String getNom() {
         return this.nom;
     }
 
+    /**
+     * Rechercher un l'élève dans la liste eleves
+     * @param idEleve Numero ID de l'étudiant
+     * @return l'étudiant
+     */
     public Eleve rechercher(int idEleve) {
         for (Eleve e : this.eleves) {
             if (e.getID() == idEleve) {
@@ -46,6 +63,10 @@ public class Promotion {
         return null;
     }
 
+    /**
+     *Retourne la liste d'étudiant présent dans la promotion
+     * @return
+     */
     public List<Eleve> getEleves() {
         return eleves;
     }
@@ -53,12 +74,16 @@ public class Promotion {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        for (Eleve e : eleves) {
-            str.append(e.toStringforEval() + "\n");
-        }
+        eleves.forEach((Eleve e) -> {
+            str.append(e.toStringforEval()).append("\n");
+        });
         return str.toString();
     }
 
+    /**
+     * Calcul de la moyenne générale de la promotion
+     * @return la moyenne
+     */
     public double moyenneGeneralePromotion() {
         double sum = 0;
         int size = eleves.size();
@@ -72,6 +97,11 @@ public class Promotion {
         return sum / size;
     }
 
+    /**
+     * Calcul de la moyenne pour la matière de la promotion
+     * @param matiere Matière pour le calcul de la moyenne
+     * @return
+     */
     public double moyennePromotion(Matiere matiere) {
         double sum = 0;
         int size = eleves.size();
@@ -85,6 +115,10 @@ public class Promotion {
         return sum / size;
     }
 
+    /**
+     * Calcul de la médiane de l'ensemble de la promotion
+     * @return médiane
+     */
     public double medianeGeneralePromotion() {
         double sum = 0;
         int size = eleves.size();
@@ -98,6 +132,11 @@ public class Promotion {
         return sum / size;
     }
     
+    /**
+     * Calcul de la médiane de la promotion pour une certaine {@link Matière}
+     * @param matiere Matière pour le calcul de la médiane
+     * @return médiane
+     */
     public double medianePromotion(Matiere matiere) {
         double sum = 0;
         int size = eleves.size();
@@ -111,25 +150,41 @@ public class Promotion {
         return sum / size;
     }
 
+    /**
+     * Ajout d'un étudiant dans la promotion
+     * @param eleveToadd Elève à ajouter à la promotion
+     */
     public void addEleve(Eleve eleveToadd) {
         eleveToadd.setPromo(this.nom);
         eleves.add(eleveToadd);
     }
 
+    /**
+     * Tri de la promotion par la moyenne en ordre croissant
+     */
     public void triMoyenneCroissant() {
         ComparatorEleve c = new ComparatorEleve();
         Collections.sort(eleves, new ComparatorEleve.ComparatorMoyenne());
     }
 
+    /**
+     *Tri de la promotion par la moyenne en ordre décroissant
+     */
     public void triMoyenneDecroissant() {
         Collections.sort(eleves, new ComparatorEleve.ComparatorMoyenne().reversed());
     }
 
+    /**
+     *Tri de la promotion par la médiane en ordre croissant
+     */
     public void triMedianeCroissant() {
         ComparatorEleve c = new ComparatorEleve();
         Collections.sort(eleves, new ComparatorEleve.ComparatorMediane());
     }
 
+    /**
+     * Tri de la promotion par la médiane en ordre décroissant
+     */
     public void triMedianeDecroissant() {
         Collections.sort(eleves, new ComparatorEleve.ComparatorMediane().reversed());
     }

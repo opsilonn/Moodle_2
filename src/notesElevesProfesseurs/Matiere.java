@@ -9,8 +9,8 @@ package notesElevesProfesseurs;
  */
 public class Matiere {
 
-    private String code;  // Identifiant de la matière
-    private String nom;  // Nom de la matière
+    private final String code;  // Identifiant de la matière
+    private final String nom;  // Nom de la matière
 
     private static final String CODE_PAR_DEFAUT = "123AB";
     private static final String NOM_PAR_DEFAUT = "Alphabet";
@@ -35,10 +35,15 @@ public class Matiere {
         this.nom = nom;
     }
 
+    /**
+     * Retourne le code de la matière
+     * @return code
+     */
     public String getCode() {
         return this.code;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == this) {
             return true;
@@ -47,9 +52,10 @@ public class Matiere {
             return false;
         }
         Matiere m = (Matiere) o;
-        return m.code == code;
+        return m.code.equals(code);
     }
 
+    @Override
     public int hashCode() {
         return code.hashCode() + nom.hashCode();
     }
