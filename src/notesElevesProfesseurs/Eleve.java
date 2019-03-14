@@ -130,6 +130,12 @@ public class Eleve extends Personne {
 
     }
 
+    /**
+     * Calculer la médiane par rapport à une matière
+     * @param matiere Matière dans laquelle on cherche la médiane
+     * @return la médiane de la matière
+     * @throws IllegalStateException
+     */
     public double getMediane(Matiere matiere) throws IllegalStateException {
 
         List<Evaluation> evalMatiere = new ArrayList<>();

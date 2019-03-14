@@ -41,6 +41,9 @@ public class ComparatorEleve {
         }
     }
 
+    /**
+     * Comparateur d'Eleve en fonction de la médiane
+     */
     public static class ComparatorMediane implements Comparator<Eleve> {
 
         @Override
