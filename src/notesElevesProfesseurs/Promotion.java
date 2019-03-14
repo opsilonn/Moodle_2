@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * Chaque promotion possède un ensemble d'{@link Eleve}s
- * 
+ *
  * Chaque promotion possède un nom
  */
 public class Promotion {
@@ -25,7 +25,8 @@ public class Promotion {
     }
 
     /**
-     *Initialization d'une promotion
+     * Initialization d'une promotion
+     *
      * @param nom Nom de la promotion
      */
     public Promotion(String nom) {
@@ -34,7 +35,8 @@ public class Promotion {
     }
 
     /**
-     *Modification du nom de la promotion
+     * Modification du nom de la promotion
+     *
      * @param nom Nom de la promotion
      */
     public void setNom(String nom) {
@@ -42,7 +44,8 @@ public class Promotion {
     }
 
     /**
-     *Retourne le nom de la promotion
+     * Retourne le nom de la promotion
+     *
      * @return nom
      */
     public String getNom() {
@@ -51,6 +54,7 @@ public class Promotion {
 
     /**
      * Rechercher un l'élève dans la liste eleves
+     *
      * @param idEleve Numero ID de l'étudiant
      * @return l'étudiant
      */
@@ -64,7 +68,8 @@ public class Promotion {
     }
 
     /**
-     *Retourne la liste d'étudiant présent dans la promotion
+     * Retourne la liste d'étudiant présent dans la promotion
+     *
      * @return
      */
     public List<Eleve> getEleves() {
@@ -74,14 +79,16 @@ public class Promotion {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
+        str.append("Promotion " + this.nom + ":\n");
         eleves.forEach((Eleve e) -> {
-            str.append(e.toStringforEval()).append("\n");
+            str.append("\t" + e.toStringforEval()).append("\n");
         });
         return str.toString();
     }
 
     /**
      * Calcul de la moyenne générale de la promotion
+     *
      * @return la moyenne
      */
     public double moyenneGeneralePromotion() {
@@ -99,6 +106,7 @@ public class Promotion {
 
     /**
      * Calcul de la moyenne pour la matière de la promotion
+     *
      * @param matiere Matière pour le calcul de la moyenne
      * @return
      */
@@ -117,6 +125,7 @@ public class Promotion {
 
     /**
      * Calcul de la médiane de l'ensemble de la promotion
+     *
      * @return médiane
      */
     public double medianeGeneralePromotion() {
@@ -131,9 +140,10 @@ public class Promotion {
         }
         return sum / size;
     }
-    
+
     /**
      * Calcul de la médiane de la promotion pour une certaine {@link Matière}
+     *
      * @param matiere Matière pour le calcul de la médiane
      * @return médiane
      */
@@ -152,6 +162,7 @@ public class Promotion {
 
     /**
      * Ajout d'un étudiant dans la promotion
+     *
      * @param eleveToadd Elève à ajouter à la promotion
      */
     public void addEleve(Eleve eleveToadd) {
@@ -168,14 +179,14 @@ public class Promotion {
     }
 
     /**
-     *Tri de la promotion par la moyenne en ordre décroissant
+     * Tri de la promotion par la moyenne en ordre décroissant
      */
     public void triMoyenneDecroissant() {
         Collections.sort(eleves, new ComparatorEleve.ComparatorMoyenne().reversed());
     }
 
     /**
-     *Tri de la promotion par la médiane en ordre croissant
+     * Tri de la promotion par la médiane en ordre croissant
      */
     public void triMedianeCroissant() {
         ComparatorEleve c = new ComparatorEleve();
@@ -188,7 +199,7 @@ public class Promotion {
     public void triMedianeDecroissant() {
         Collections.sort(eleves, new ComparatorEleve.ComparatorMediane().reversed());
     }
-    
+
     @Override
     public boolean equals(Object o) {
         if (o == this) {

@@ -39,8 +39,18 @@ public class Professeur extends Personne {
         this.matiere = matiere;
     }
 
+    public Professeur(String nom, String prenom, Date dateNaissance, int ID, Matiere matiere) {
+        super(nom, prenom, dateNaissance, ID);
+        this.matiere = matiere;
+    }
+
+    public Matiere getMatiere() {
+        return this.matiere;
+    }
+
     /**
      * Retourne l'Etudiant rechercher
+     *
      * @param promo promotion de l'élève rechercher
      * @param idEleve ID de l'élève rechercher
      * @return l'étudiant
@@ -51,7 +61,8 @@ public class Professeur extends Personne {
 
     /**
      * Mets une note à un étudiant
-     * @param promo  promotion de l'élève rechercher
+     *
+     * @param promo promotion de l'élève rechercher
      * @param idEleve ID de l'élève rechercher
      * @param note valeur de la note à ajouter
      * @param index index de la note à modifier
@@ -70,8 +81,8 @@ public class Professeur extends Personne {
             eleve.addEvaluation(new Evaluation(eleve, this, matiere, note));
         }
     }
-    
-     @Override
+
+    @Override
     public boolean equals(Object o) {
         if (o == this) {
             return true;
@@ -82,7 +93,7 @@ public class Professeur extends Personne {
         Professeur p = (Professeur) o;
         return p.ID == ID;
     }
-    
+
     @Override
     public int hashCode() {
         return super.hashCode() + matiere.hashCode();

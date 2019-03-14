@@ -1,3 +1,5 @@
+import Gestionfichier.FileHandler;
+import notesElevesProfesseurs.School;
 import test.test1;
 
 /**
@@ -13,6 +15,9 @@ public class Main
      */
     public static void main(String[] argv)
     {
-        test1.functiontest1();
+        School ecole = new School();
+        //test1.functiontest1();
+        FileHandler scanner = new FileHandler();
+        scanner.ReadFiles(ecole);
     }
 }

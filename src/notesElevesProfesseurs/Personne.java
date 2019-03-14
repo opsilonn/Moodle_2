@@ -71,6 +71,24 @@ public abstract class Personne {
     }
 
     /**
+     * Donne la valeur de l'{@code ID} (identifiant unique) de l'instance
+     * d'{@link Personne}
+     *
+     * @return Valeur de la propriété {@code ID} de l'instance
+     */
+    public int getID() {
+        return this.ID;
+    }
+
+    public String getNom() {
+        return this.nom;
+    }
+
+    public String getPrenom() {
+        return this.prenom;
+    }
+
+    /**
      * Créé une représentation textuelle de l'instance
      *
      * @return Représentation textuelle de l'instance

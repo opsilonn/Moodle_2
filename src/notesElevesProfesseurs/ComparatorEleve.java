@@ -13,6 +13,9 @@ import java.util.Comparator;
  */
 public class ComparatorEleve {
 
+    /**
+     *Comparateur d'Eleve en fonction de la moyenne
+     */
     public static class ComparatorMoyenne implements Comparator<Eleve> {
 
         @Override
