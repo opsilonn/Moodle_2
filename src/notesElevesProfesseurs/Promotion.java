@@ -81,7 +81,7 @@ public class Promotion {
         StringBuilder str = new StringBuilder();
         str.append("Promotion " + this.nom + ":\n");
         eleves.forEach((Eleve e) -> {
-            str.append("\t" + e.toStringforEval()).append("\n");
+            str.append("\t"  + e.toStringforEval()).append("\n");
         });
         return str.toString();
     }

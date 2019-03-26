@@ -37,8 +37,12 @@ public class School {
     public void addProfesseur(Professeur prof) {
         professeurs.add(prof);
     }
+    
+    public List<Professeur> getProfesseur(){
+        return professeurs;
+    }
 
-    public Professeur getProfesseur(String nom, String prenom, String matiereCode) {
+    public Professeur findProfesseur(String nom, String prenom, String matiereCode) {
         for (Professeur p : professeurs) {
             if (p.getNom().equals(nom) && p.getPrenom().equals(prenom) && p.getMatiere().getCode().equals(matiereCode)) {
                 return p;

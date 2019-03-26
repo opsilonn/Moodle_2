@@ -264,4 +264,18 @@ public class Eleve extends Personne {
     public int hashCode() {
         return super.hashCode() + promotion.hashCode();
     }
+
+    public String elevesToCSV() {
+        String stringCSV = this.nom + ","
+                + this.prenom + ","
+                + this.dateNaissance + ","
+                + this.ID;
+
+        
+        ////A CONTINUER////
+        for (Evaluation eval : this.evaluations) {
+                stringCSV += "";
+        }
+        return stringCSV;
+    }
 }

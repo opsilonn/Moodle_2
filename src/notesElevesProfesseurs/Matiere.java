@@ -42,6 +42,10 @@ public class Matiere {
     public String getCode() {
         return this.code;
     }
+    
+    public String getNom() {
+        return this.nom;
+    }
 
     @Override
     public boolean equals(Object o) {

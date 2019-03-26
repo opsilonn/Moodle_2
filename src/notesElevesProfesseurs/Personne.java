@@ -112,6 +112,6 @@ public abstract class Personne {
 
     @Override
     public int hashCode() {
-        return nom.hashCode() + prenom.hashCode() + dateNaissance.hashCode();
+        return nom.hashCode() + prenom.hashCode() + dateNaissance.hashCode() + ID;
     }
 }

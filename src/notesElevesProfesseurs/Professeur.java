@@ -99,4 +99,13 @@ public class Professeur extends Personne {
         return super.hashCode() + matiere.hashCode();
     }
 
+    public String profToCSV() {
+        return this.nom + ","
+                + this.prenom + ","
+                + this.dateNaissance + ","
+                + this.ID + ","
+                + this.matiere.getCode() + ","
+                + this.matiere.getNom() + "\n";
+    }
+
 }
