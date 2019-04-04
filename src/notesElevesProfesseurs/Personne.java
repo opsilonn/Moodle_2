@@ -28,8 +28,16 @@ public abstract class Personne {
     public Personne() {
         this.nom = NOM_PAR_DEFAUT;
         this.prenom = PRENOM_PAR_DEFAUT;
-        this.ID = createID();  // ID généré par une bibliothèque Java native
+        this.ID = createID(); 
         this.dateNaissance = new Date();
+    }
+    
+    public static void setIndex(int index){
+        index_ID = index;
+    }
+    
+    public static int getIndex(){
+        return index_ID;
     }
 
     /**

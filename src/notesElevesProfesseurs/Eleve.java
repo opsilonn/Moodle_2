@@ -1,5 +1,6 @@
 package notesElevesProfesseurs;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,6 +49,10 @@ public class Eleve extends Personne {
     public Eleve(String nom, String prenom, Date dateNaissance, int ID) {
         super(nom, prenom, dateNaissance, ID);
         evaluations = new ArrayList<>();
+    }
+
+    public String getPromotion() {
+        return this.promotion;
     }
 
     /**
@@ -218,12 +223,26 @@ public class Eleve extends Personne {
         this.promotion = promo;
     }
 
+    public List<Evaluation> getEvaluations(Matiere matiere) {
+        ArrayList<Evaluation> eval_matiere = new ArrayList<>();
+        for (Evaluation eval : this.evaluations) {
+            if (eval.getCodeMatiere().equals(matiere.getCode())) {
+                eval_matiere.add(eval);
+            }
+        }
+        return eval_matiere;
+    }
+
     /**
      * Créé une représentation textuelle des notes de {@link Eleve}
      *
      * @return représentation textuelle de l'élève selon Personne
      */
     public String toStringNotes() {
+        if (this.evaluations.isEmpty()) {
+            return "pas d'évaluation présente\n";
+        }
+
         StringBuilder str = new StringBuilder();
         str.append("notes: ");
         this.evaluations.forEach((Evaluation eval) -> {
@@ -265,17 +284,23 @@ public class Eleve extends Personne {
         return super.hashCode() + promotion.hashCode();
     }
 
+    /**
+     * Fonction retournant une représentation textuelle en CSV d'un élève
+     *
+     * @return la représentation textuelle
+     */
     public String elevesToCSV() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String stringCSV = this.nom + ","
                 + this.prenom + ","
-                + this.dateNaissance + ","
-                + this.ID;
+                + dateFormat.format(this.dateNaissance) + ","
+                + this.ID + ","
+                + this.promotion;
 
-        
-        ////A CONTINUER////
         for (Evaluation eval : this.evaluations) {
-                stringCSV += "";
+            stringCSV += "," + eval.EvalToCSV();
         }
+
         return stringCSV;
     }
 }

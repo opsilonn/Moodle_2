@@ -33,6 +33,10 @@ public class School {
     public Promotion getPromo(String nomPromo) {
         return promotions.get(nomPromo);
     }
+    
+    public Map<String, Promotion> getPromo(){
+        return promotions;
+    }
 
     public void addProfesseur(Professeur prof) {
         professeurs.add(prof);
