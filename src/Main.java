@@ -19,5 +19,7 @@ public class Main
         //test1.functiontest1();
         FileHandler scanner = new FileHandler();
         scanner.ReadFiles(ecole);
+        
+        scanner.WriteFiles(ecole);
     }
 }

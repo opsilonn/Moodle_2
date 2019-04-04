@@ -26,12 +26,12 @@ public class FileHandler {
     File fileEleve;
     File fileProf;
 
-    private static final String FileNameEleve = "C:\\BasededonneesEleves.csv";
-    private static final String FileNameProf = "C:\\BasededonneesProfs.csv";
+    private static final String FILENAMEELEVE = "C:\\BasededonneesEleves.csv";
+    private static final String FILENAMEPROF = "C:\\BasededonneesProfs.csv";
 
     public FileHandler() {
-        fileEleve = new File(FileNameEleve);
-        fileProf = new File(FileNameProf);
+        fileEleve = new File(FILENAMEELEVE);
+        fileProf = new File(FILENAMEPROF);
     }
 
     public boolean ReadFiles(School ecole) {
