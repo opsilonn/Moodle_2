@@ -1,5 +1,6 @@
 package notesElevesProfesseurs;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -99,13 +100,27 @@ public class Professeur extends Personne {
         return super.hashCode() + matiere.hashCode();
     }
 
+    /**
+     * Fonction retournant une représentation textuelle en CSV d'un professeur
+     *
+     * @return la représentation textuelle
+     */
     public String profToCSV() {
-        return this.nom + ","
-                + this.prenom + ","
-                + this.dateNaissance + ","
-                + this.ID + ","
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String stringCSV = this.nom + ","
+                + this.prenom + ",";
+
+        if (this.dateNaissance == null) {
+            stringCSV += dateFormat.format(new Date(0)) + ",";
+        } else {
+            stringCSV += dateFormat.format(this.dateNaissance) + ",";
+        }
+
+        stringCSV += this.ID + ","
                 + this.matiere.getCode() + ","
                 + this.matiere.getNom() + "\n";
+
+        return stringCSV;
     }
 
 }

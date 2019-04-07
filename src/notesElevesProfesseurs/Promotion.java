@@ -81,7 +81,7 @@ public class Promotion {
         StringBuilder str = new StringBuilder();
         str.append("Promotion " + this.nom + ":\n");
         eleves.forEach((Eleve e) -> {
-            str.append("\t"  + e.toStringforEval()).append("\n");
+            str.append("\t" + e.toStringforEval()).append("\n");
         });
         return str.toString();
     }
@@ -158,6 +158,97 @@ public class Promotion {
             }
         }
         return sum / size;
+    }
+
+    /**
+     *
+     * @param matiere matiere pour laquelle il faut trouver la médiane
+     * @param mode mode d'utilisation de la fonction: true -> trouve le max,
+     * false -> trouve le min.
+     * @return
+     */
+    public double medianeMaxMinPromotion(Matiere matiere, boolean mode) {
+        double medianeToReturn = -1;
+        try {
+            medianeToReturn = eleves.get(0).getMediane(matiere);
+        } catch (IllegalStateException exception) {
+        }
+
+        for (Eleve e : this.eleves) {
+            try {
+                double mediane = e.getMediane(matiere);
+                if (medianeToReturn == -1)
+                    medianeToReturn = mediane;
+                else if ((mediane > medianeToReturn && mode == true) || (mediane < medianeToReturn && mode == false)) {
+                    medianeToReturn = mediane;
+                }
+            } catch (IllegalStateException exception) {
+            }
+        }
+        return medianeToReturn;
+    }
+
+    public double medianeMaxMinPromotion(boolean mode) {
+        double medianeToReturn = -1;
+        try {
+            medianeToReturn = eleves.get(0).getMedianeGenerale();
+        } catch (IllegalStateException exception) {
+        }
+
+        for (Eleve e : this.eleves) {
+            try {
+                double mediane = e.getMedianeGenerale();
+                if (medianeToReturn == -1)
+                    medianeToReturn = mediane;
+                else if ((mediane > medianeToReturn && mode == true) || (mediane < medianeToReturn && mode == false)) {
+                    medianeToReturn = mediane;
+                }
+            } catch (IllegalStateException exception) {
+            }
+        }
+        return medianeToReturn;
+    }
+
+    public double moyenneMaxMinPromotion(Matiere matiere, boolean mode) {
+        double moyenneToReturn = -1;
+        try {
+            moyenneToReturn = eleves.get(0).getMoyenne(matiere);
+        } catch (IllegalStateException exception) {
+        };
+
+        for (Eleve e : this.eleves) {
+            try {
+                double moy = e.getMoyenne(matiere);
+                if (moyenneToReturn == -1)
+                    moyenneToReturn = moy;
+                else if ((moy > moyenneToReturn && mode == true) || (moy < moyenneToReturn && mode == false)) {
+                    moyenneToReturn = moy;
+                }
+            } catch (IllegalStateException exception) {
+            }
+        }
+        return moyenneToReturn;
+    }
+
+    public double moyenneMaxMinPromotion(boolean mode) {
+        double moyenneToReturn = -1;
+        try {
+            moyenneToReturn = eleves.get(0).getMoyenneGenerale();
+        } catch (IllegalStateException exception) {
+        };
+
+        for (Eleve e : this.eleves) {
+            try {
+                double moy = e.getMoyenneGenerale();
+                if (moyenneToReturn == -1)
+                    moyenneToReturn = moy;
+                else if ((moy > moyenneToReturn && mode == true) || (moy < moyenneToReturn && mode == false)) {
+                    moyenneToReturn = moy;
+                }
+            } catch (IllegalStateException exception) {
+            }
+        }
+        return moyenneToReturn;
     }
 
     /**

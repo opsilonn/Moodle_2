@@ -125,5 +125,17 @@ public class Evaluation implements Comparable<Evaluation> {
     public int hashCode() {
         return auteur.hashCode() + correcteur.hashCode() + matiere.hashCode();
     }
+    
+    /**
+     * Fonction de création d'une représentation CSV d'une évaluation
+     * @return l'instance textuelle formaté en CSV
+     */
+    public String EvalToCSV(){
+        return this.note + ","
+             + this.correcteur.nom + ","
+             + this.correcteur.prenom + ","
+             + this.matiere.getCode() + ","
+             + this.matiere.getNom();
+    }
 
 }
