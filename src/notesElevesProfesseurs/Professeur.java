@@ -122,5 +122,9 @@ public class Professeur extends Personne {
 
         return stringCSV;
     }
+    
+    public String profToString(){
+        return super.toString() + "Matiere : " + this.getMatiere();
+    }
 
 }

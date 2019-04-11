@@ -177,9 +177,9 @@ public class Promotion {
         for (Eleve e : this.eleves) {
             try {
                 double mediane = e.getMediane(matiere);
-                if (medianeToReturn == -1)
+                if (medianeToReturn == -1) {
                     medianeToReturn = mediane;
-                else if ((mediane > medianeToReturn && mode == true) || (mediane < medianeToReturn && mode == false)) {
+                } else if ((mediane > medianeToReturn && mode == true) || (mediane < medianeToReturn && mode == false)) {
                     medianeToReturn = mediane;
                 }
             } catch (IllegalStateException exception) {
@@ -198,9 +198,9 @@ public class Promotion {
         for (Eleve e : this.eleves) {
             try {
                 double mediane = e.getMedianeGenerale();
-                if (medianeToReturn == -1)
+                if (medianeToReturn == -1) {
                     medianeToReturn = mediane;
-                else if ((mediane > medianeToReturn && mode == true) || (mediane < medianeToReturn && mode == false)) {
+                } else if ((mediane > medianeToReturn && mode == true) || (mediane < medianeToReturn && mode == false)) {
                     medianeToReturn = mediane;
                 }
             } catch (IllegalStateException exception) {
@@ -219,9 +219,9 @@ public class Promotion {
         for (Eleve e : this.eleves) {
             try {
                 double moy = e.getMoyenne(matiere);
-                if (moyenneToReturn == -1)
+                if (moyenneToReturn == -1) {
                     moyenneToReturn = moy;
-                else if ((moy > moyenneToReturn && mode == true) || (moy < moyenneToReturn && mode == false)) {
+                } else if ((moy > moyenneToReturn && mode == true) || (moy < moyenneToReturn && mode == false)) {
                     moyenneToReturn = moy;
                 }
             } catch (IllegalStateException exception) {
@@ -240,9 +240,9 @@ public class Promotion {
         for (Eleve e : this.eleves) {
             try {
                 double moy = e.getMoyenneGenerale();
-                if (moyenneToReturn == -1)
+                if (moyenneToReturn == -1) {
                     moyenneToReturn = moy;
-                else if ((moy > moyenneToReturn && mode == true) || (moy < moyenneToReturn && mode == false)) {
+                } else if ((moy > moyenneToReturn && mode == true) || (moy < moyenneToReturn && mode == false)) {
                     moyenneToReturn = moy;
                 }
             } catch (IllegalStateException exception) {

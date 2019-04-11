@@ -178,7 +178,7 @@ public class FileHandler {
      * @param ecole
      * @return
      */
-    public boolean WriteTeachers(School ecole) {
+    private boolean WriteTeachers(School ecole) {
         boolean fileExists = false;
         if (fileProf.exists()) {
             fileExists = true;
@@ -190,7 +190,6 @@ public class FileHandler {
 
             // Write in the file each professor with a CSV functioning
             for (Professeur p : ecole.getProfesseur()) {
-                System.out.println(p.profToCSV());
                 writer.write(p.profToCSV());
             }
             writer.close();
@@ -207,7 +206,7 @@ public class FileHandler {
      * @param ecole
      * @return
      */
-    public boolean WriteStudents(School ecole) {
+    private boolean WriteStudents(School ecole) {
 
         boolean fileExists = false;
         if (fileEleve.exists()) {

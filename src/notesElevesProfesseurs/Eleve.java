@@ -98,6 +98,8 @@ public class Eleve extends Personne {
                 nb_evaluation++;
             }
         }
+        if(nb_evaluation == 0)
+            throw new IllegalStateException();
 
         return sum / nb_evaluation;
     }
@@ -244,9 +246,9 @@ public class Eleve extends Personne {
         }
 
         StringBuilder str = new StringBuilder();
-        str.append("notes: ");
+        str.append("notes:  ");
         this.evaluations.forEach((Evaluation eval) -> {
-            str.append(eval.getCodeMatiere()).append(" ").append(eval.getNote()).append("\n");
+            str.append(eval.getCodeMatiere()).append(" ").append(eval.getNote()).append("\n\t");
         });
         try {
             str.append("moyenne = ").append(this.getMoyenneGenerale()).append("\n");
