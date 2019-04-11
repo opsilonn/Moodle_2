@@ -19,6 +19,9 @@ import notesElevesProfesseurs.School;
  */
 public class test_Version2 {
 
+    /**
+     * Fonction de test de la version 2
+     */
     public static void main() {
         School ecole = new School();
         FileHandler scanner = new FileHandler();

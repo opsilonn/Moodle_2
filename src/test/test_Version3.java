@@ -17,11 +17,14 @@ import notesElevesProfesseurs.School;
  */
 public class test_Version3 {
     
-    public void main(){
+    /**
+     * Fonction de test de la version 3
+     */
+    public static void main(){
         School ecole = new School();
         FileHandler scanner = new FileHandler();
         scanner.ReadFiles(ecole);
-        ecole.toString();
+        System.out.println(ecole.toString());
         
         List<Eleve> eleves = ecole.getPromo("2013").getEleves();
         System.out.println(eleves.get(0));

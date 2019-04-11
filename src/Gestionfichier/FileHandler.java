@@ -54,7 +54,7 @@ public class FileHandler {
      * @param ecole représente l'école à laquelle appartient les étudiants
      * @return
      */
-    public boolean ReadEleves(School ecole) {
+    private boolean ReadEleves(School ecole) {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         BufferedReader reader;
         String line;
@@ -86,7 +86,6 @@ public class FileHandler {
                     }
                 } 
                 
-                
                 for (int i = 5; i < elements.length; i = i + 5) {
                     Professeur correcteur = ecole.findProfesseur(elements[i + 1], elements[i + 2], elements[i + 3]);
                     if (correcteur != null) {
@@ -116,11 +115,10 @@ public class FileHandler {
 
     /**
      * Fonction qui permet de lire la base de données profs
-     *
      * @param ecole représente l'école à laquelle appartient les profs
      * @return
      */
-    public boolean ReadProfs(School ecole) {
+    private boolean ReadProfs(School ecole) {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         BufferedReader reader;
         String line;

@@ -43,6 +43,10 @@ public class Matiere {
         return this.code;
     }
     
+    /**
+     * Retourne le nom de la matière
+     * @return nom
+     */
     public String getNom() {
         return this.nom;
     }

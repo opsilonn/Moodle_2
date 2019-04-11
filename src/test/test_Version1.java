@@ -14,6 +14,9 @@ import notesElevesProfesseurs.*;
  */
 public class test_Version1 {
 
+    /**
+     * Fonction de test de la version 1
+     */
     public static void main() {
 
         System.out.println("Création d'une promotion : 2021\n");

@@ -40,17 +40,33 @@ public class Professeur extends Personne {
         this.matiere = matiere;
     }
 
+    /**
+     * Constructeur pour un professeur.
+     *
+     * Reprend exactement le constructeur de {@link Personne}
+     *
+     * @param nom Nom du Professeur à instancier ({@link Personne})
+     * @param prenom Prénom du Professeur à instancier ({@link Personne})
+     * @param dateNaissance Date de naissance du Professeur à instancier
+     * ({@link Personne})
+     * @param ID ID du professeur
+     * @param matiere Matiere enseignée par le Professeur à instancier
+     */
     public Professeur(String nom, String prenom, Date dateNaissance, int ID, Matiere matiere) {
         super(nom, prenom, dateNaissance, ID);
         this.matiere = matiere;
     }
 
+    /**
+     * Retourne la matière
+     * @return matière
+     */
     public Matiere getMatiere() {
         return this.matiere;
     }
 
     /**
-     * Retourne l'Etudiant rechercher
+     * Retourne l'Etudiant recherché
      *
      * @param promo promotion de l'élève rechercher
      * @param idEleve ID de l'élève rechercher
