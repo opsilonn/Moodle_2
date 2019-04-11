@@ -50,7 +50,6 @@ public class FileHandler {
 
     /**
      * Fonction qui permet de lire la base de données élèves
-     *
      * @param ecole représente l'école à laquelle appartient les étudiants
      * @return
      */
@@ -71,12 +70,12 @@ public class FileHandler {
             while ((line = reader.readLine()) != null) {
 
                 elements = line.split(",");
-                if (elements.length < 4) {
+                if (elements.length < 5) {
                     System.out.println("The database is not correctly organized");
                     return false;
                 }
 
-                Eleve eleve = new Eleve(elements[0], elements[1], format.parse(elements[2]), Integer.parseInt(elements[3]));
+                Eleve eleve = new Eleve(elements[0], elements[1], format.parse(elements[2]), Integer.parseInt(elements[3]), elements[4]);
                 int year = Integer.parseInt(elements[3].substring(0, 4));
                 if(year == Year.now().getValue())
                 {
@@ -86,7 +85,7 @@ public class FileHandler {
                     }
                 } 
                 
-                for (int i = 5; i < elements.length; i = i + 5) {
+                for (int i = 6; i < elements.length; i = i + 5) {
                     Professeur correcteur = ecole.findProfesseur(elements[i + 1], elements[i + 2], elements[i + 3]);
                     if (correcteur != null) {
                         Evaluation eval = new Evaluation(eleve, correcteur, correcteur.getMatiere(), Double.parseDouble(elements[i]));
@@ -100,8 +99,8 @@ public class FileHandler {
                     }
                 }
 
-                ecole.addPromo(new Promotion(elements[4]));
-                Promotion promo = ecole.getPromo(elements[4]);
+                ecole.addPromo(new Promotion(elements[5]));
+                Promotion promo = ecole.getPromo(elements[5]);
                 promo.addEleve(eleve);
             }
             reader.close();
@@ -135,8 +134,8 @@ public class FileHandler {
             reader.readLine();
             while ((line = reader.readLine()) != null) {
                 elements = line.split(",");
-                Matiere matiere = new Matiere(elements[4], elements[5]);
-                Professeur professeur = new Professeur(elements[0], elements[1], format.parse(elements[2]), Integer.parseInt(elements[3]), matiere);
+                Matiere matiere = new Matiere(elements[5], elements[6]);
+                Professeur professeur = new Professeur(elements[0], elements[1], format.parse(elements[2]), Integer.parseInt(elements[3]), elements[4],matiere);
                 int year = Integer.parseInt(elements[3].substring(0, 4));
                 if(year == Year.now().getValue())
                 {
@@ -184,7 +183,7 @@ public class FileHandler {
         FileWriter writer;
         try {
             writer = new FileWriter(fileProf);
-            writer.write("Nom,Prenom,Birthdate,ID,CodeMatiere,NomMatiere\n");
+            writer.write("Nom,Prenom,Birthdate,ID,MDP,CodeMatiere,NomMatiere\n");
 
             // Write in the file each professor with a CSV functioning
             for (Professeur p : ecole.getProfesseur()) {

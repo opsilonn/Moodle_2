@@ -44,11 +44,13 @@ public class test_Version2 {
         p.addEleve(E1);
         p.addEleve(E2);
         ecole.addPromo(p);
-        System.out.println("Ecriture des données sur le fichier csv :");
+        System.out.println("\nEcriture des données sur le fichier csv.\n");
         scanner.WriteFiles(ecole);
 
-        scanner.ReadFiles(ecole);
-        System.out.println("Affichage des nouvelles données lues sur le fichier csv :\n" + ecole.toString());
+        
+        School ecole2 = new School();
+        scanner.ReadFiles(ecole2);
+        System.out.println("Affichage des nouvelles données lues sur le fichier csv :\n" + ecole2.toString());
 
     }
 

@@ -52,8 +52,8 @@ public class Professeur extends Personne {
      * @param ID ID du professeur
      * @param matiere Matiere enseignée par le Professeur à instancier
      */
-    public Professeur(String nom, String prenom, Date dateNaissance, int ID, Matiere matiere) {
-        super(nom, prenom, dateNaissance, ID);
+    public Professeur(String nom, String prenom, Date dateNaissance, int ID, String password, Matiere matiere) {
+        super(nom, prenom, dateNaissance, ID, password);
         this.matiere = matiere;
     }
 
@@ -133,6 +133,7 @@ public class Professeur extends Personne {
         }
 
         stringCSV += this.ID + ","
+                + this.password + ","
                 + this.matiere.getCode() + ","
                 + this.matiere.getNom() + "\n";
 

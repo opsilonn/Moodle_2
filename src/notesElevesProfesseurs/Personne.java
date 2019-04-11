@@ -10,6 +10,7 @@ import java.util.Date;  // On préfère utiliser des classes déjà existantes e
 public abstract class Personne {
 
     protected int ID;
+    protected String password;
     protected String nom;
     protected String prenom;
     protected Date dateNaissance;
@@ -17,6 +18,7 @@ public abstract class Personne {
     private static final String NOM_PAR_DEFAUT = "Doe";
     private static final String PRENOM_PAR_DEFAUT = "John";
     private static int index_ID = -1;
+    private static String PASSWORD_PAR_DEFAUT = "1";
 
     /**
      * Constructeur par défaut
@@ -30,6 +32,7 @@ public abstract class Personne {
         this.prenom = PRENOM_PAR_DEFAUT;
         this.ID = createID(); 
         this.dateNaissance = new Date();
+        this.password = PASSWORD_PAR_DEFAUT;
     }
     
     public static void setIndex(int index){
@@ -52,6 +55,7 @@ public abstract class Personne {
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
         this.ID = createID();   // ID généré par une bibliothèque Java native
+        this.password = PASSWORD_PAR_DEFAUT;
     }
 
     /**
@@ -63,11 +67,12 @@ public abstract class Personne {
      * @param dateNaissance Date de naissance de la {@link Personne} à créer
      * @param ID Identifiant unique de la {@link Personne} à créer
      */
-    public Personne(String nom, String prenom, Date dateNaissance, int ID) {
+    public Personne(String nom, String prenom, Date dateNaissance, int ID, String password) {
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
         this.ID = ID;
+        this.password = password;
     }
 
     /**

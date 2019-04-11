@@ -17,9 +17,9 @@ public class Main {
 
         //test_Version1.main();
         System.out.println("____________________________________________");
-        //test_Version2.main();
+        test_Version2.main();
         System.out.println("____________________________________________");
-        test_Version3.main();
+        //test_Version3.main();
 
     }
 }

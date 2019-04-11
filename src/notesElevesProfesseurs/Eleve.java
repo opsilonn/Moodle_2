@@ -46,8 +46,8 @@ public class Eleve extends Personne {
         evaluations = new ArrayList<>();
     }
 
-    public Eleve(String nom, String prenom, Date dateNaissance, int ID) {
-        super(nom, prenom, dateNaissance, ID);
+    public Eleve(String nom, String prenom, Date dateNaissance, int ID, String password) {
+        super(nom, prenom, dateNaissance, ID, password);
         evaluations = new ArrayList<>();
     }
 
@@ -297,6 +297,7 @@ public class Eleve extends Personne {
                 + this.prenom + ","
                 + dateFormat.format(this.dateNaissance) + ","
                 + this.ID + ","
+                + this.password + ","
                 + this.promotion;
 
         for (Evaluation eval : this.evaluations) {
