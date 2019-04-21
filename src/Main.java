@@ -15,11 +15,7 @@ public class Main {
      */
     public static void main(String[] argv) {
 
-        //test_Version1.main();
-        System.out.println("____________________________________________");
-        //test_Version2.main();
-        System.out.println("____________________________________________");
         test_Version3.main();
-
+        //Stats_Bulletin.main();
     }
 }

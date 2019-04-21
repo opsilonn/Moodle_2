@@ -24,10 +24,8 @@ public class test_Version3 {
         School ecole = new School();
         FileHandler scanner = new FileHandler();
         scanner.ReadFiles(ecole);
-        System.out.println(ecole.toString());
         
         List<Eleve> eleves = ecole.getPromo("2013").getEleves();
-        System.out.println(eleves.get(0));
         Bulletin.createBulletin(eleves.get(0), ecole);
     }
     
