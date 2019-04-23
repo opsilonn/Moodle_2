@@ -93,10 +93,17 @@ public abstract class Personne {
         return this.ID;
     }
 
+    /** @return Valeur de la propriété {@code password} de l'instance */
+    public String getPassword() {
+        return this.password;
+    }
+
+    /** @return Valeur de la propriété {@code nom} de l'instance */
     public String getNom() {
         return this.nom;
     }
 
+    /** @return Valeur de la propriété {@code prenom} de l'instance */
     public String getPrenom() {
         return this.prenom;
     }

@@ -27,8 +27,8 @@ public class FileHandler {
     File fileEleve;
     File fileProf;
 
-    private static final String FILENAME_ELEVE = "C:\\Users\\CéliaB\\Documents\\GitHub\\Moodle_2\\Moodle_2\\src\\Gestionfichier\\BasededonneesEleves.csv";
-    private static final String FILENAME_PROF = "C:\\Users\\CéliaB\\Documents\\GitHub\\Moodle_2\\Moodle_2\\src\\Gestionfichier\\BasededonneesProfs.csv";
+    private static final String FILENAME_ELEVE = "BasededonneesEleves.csv";
+    private static final String FILENAME_PROF  = "BasededonneesProfs.csv";
 
     public FileHandler() {
         fileEleve = new File(FILENAME_ELEVE);
