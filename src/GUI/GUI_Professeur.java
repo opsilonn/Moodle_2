@@ -3,6 +3,8 @@ package GUI;
 
 import GUIcomponents.CustomJFrame;
 import notesElevesProfesseurs.Professeur;
+import notesElevesProfesseurs.School;
+
 import javax.swing.*;
 
 
@@ -19,9 +21,9 @@ public class GUI_Professeur extends CustomJFrame
     private JLabel labelID;
     private JLabel labelMatiere;
 
-    public GUI_Professeur(Professeur prof)
+    public GUI_Professeur(Professeur prof, School ecole)
     {
-        super("Professeur - " + prof.getPrenom() + " " + prof.getNom(), true, dimX, dimY);
+        super("Professeur - " + prof.getPrenom() + " " + prof.getNom(), ecole, true, dimX, dimY);
         this.prof = prof;
 
         // On rentre tous les labels
