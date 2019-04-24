@@ -24,11 +24,11 @@ import notesElevesProfesseurs.*;
  */
 public class FileHandler {
 
-    File fileEleve;
-    File fileProf;
+    private File fileEleve;
+    private File fileProf;
 
-    private static final String FILENAME_ELEVE = "BasededonneesEleves.csv";
-    private static final String FILENAME_PROF  = "BasededonneesProfs.csv";
+    private static final String FILENAME_ELEVE = "./src/Gestionfichier/BasededonneesEleves.csv";
+    private static final String FILENAME_PROF  = "./src/Gestionfichier/BasededonneesProfs.csv";
 
     public FileHandler() {
         fileEleve = new File(FILENAME_ELEVE);

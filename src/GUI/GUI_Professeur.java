@@ -4,10 +4,16 @@ package GUI;
 import GUIcomponents.CustomJFrame;
 import notesElevesProfesseurs.Professeur;
 import notesElevesProfesseurs.School;
-
 import javax.swing.*;
 
 
+/**
+ * Fenêtre dédiée à l'utilisation du logiciel par un {@link Professeur}
+ *
+ * Cette classe hérite de {@link CustomJFrame}
+ *
+ * @author Hugues
+ */
 public class GUI_Professeur extends CustomJFrame
 {
     private static final int dimX = 500;
@@ -21,6 +27,7 @@ public class GUI_Professeur extends CustomJFrame
     private JLabel labelID;
     private JLabel labelMatiere;
 
+
     public GUI_Professeur(Professeur prof, School ecole)
     {
         super("Professeur - " + prof.getPrenom() + " " + prof.getNom(), ecole, true, dimX, dimY);
@@ -30,6 +37,11 @@ public class GUI_Professeur extends CustomJFrame
         labelNom.setText( prof.getPrenom() + " " + prof.getNom().toUpperCase() );
         labelID.setText( String.valueOf( prof.getID() ) );
         labelMatiere.setText( prof.getMatiere().toString() );
+
+
+        buttonChercherEleve.addActionListener(e -> { GUI_chercherEleve promo = new GUI_chercherEleve(ecole, prof.getMatiere()); });
+
+
 
         add(panel);
         pack();

@@ -53,9 +53,19 @@ public class Evaluation implements Comparable<Evaluation> {
         return this.note;
     }
 
+
     /**
-     * Retourne la note de l'évaluation
-     * @param note
+     * Retourne la {@link Matiere} de l'évaluation
+     *
+     * @return {@link Matiere} de l'évaluation
+     */
+    public Matiere getMatiere() {
+        return this.matiere;
+    }
+
+    /**
+     * Assigne la valeur de la note de l'évaluation
+     * @param note valeur à assigner à la note de l'évaluation
      */
     public void setNote(double note) {
         this.note = note;
@@ -137,5 +147,4 @@ public class Evaluation implements Comparable<Evaluation> {
              + this.matiere.getCode() + ","
              + this.matiere.getNom();
     }
-
 }

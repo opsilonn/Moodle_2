@@ -1,17 +1,22 @@
 package GUI;
 
+
 import GUIcomponents.CustomJFrame;
 import notesElevesProfesseurs.Eleve;
+import notesElevesProfesseurs.Evaluation;
 import notesElevesProfesseurs.School;
-
 import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.List;
 
 
+/**
+ * Fenêtre dédiée à l'utilisation du logiciel par un {@link Eleve}
+ *
+ * Cette classe hérite de {@link CustomJFrame}
+ *
+ * @author Hugues
+ */
 public class GUI_Eleve extends CustomJFrame
 {
     private static final int dimX = 500;
@@ -32,6 +37,8 @@ public class GUI_Eleve extends CustomJFrame
 
     private JScrollPane bulletin;
     private JTable bulletinValeurs;
+    private JLabel labelNote;
+    private JButton buttonPromotion;
 
 
     public GUI_Eleve(Eleve eleve, School ecole)
@@ -54,55 +61,41 @@ public class GUI_Eleve extends CustomJFrame
         }
 
 
+        // On donne aux JButtons leurs listeners
         buttonCorrecteur.addActionListener(e -> System.out.println("YO !!"));
+        buttonPromotion.addActionListener(e -> { GUI_chercherPromotion promo = new GUI_chercherPromotion(ecole); });
 
 
-        //headers for the table
-        String[] columns = new String[] {"Id", "Nom", "Prénom", "some random Number", "Sexe"};
-
-        int MAX = 50;
-        Object [][] data = new Object [MAX][5];
-
-        for(int i = 0; i < MAX; i++)
+        // On affiche toutes les notes de l'élève
+        List<Evaluation> evaluations = eleve.getEvaluation();
+        if(evaluations.size() == 0)
         {
-            data[i][0] = i;
-            switch(i%3)
+            bulletin.setVisible(false);
+            bulletinValeurs.setVisible(false);
+        }
+        else
+        {
+            labelNote.setVisible(false);
+
+            //headers for the table
+            String[] columns = new String[] {"Matière", "ID", "Note", "Correcteur"};
+            Object [][] data = new Object [evaluations.size()][columns.length];
+
+            int index = 0;
+            for (Evaluation eval : evaluations)
             {
-                case 0:
-                    data[i][1] = "BEGEOT";
-                    data[i][2] = "Hugues";
-                    data[i][4] = "H";
-                    break;
-
-                case 1:
-                    data[i][1] = "BRIAND";
-                    data[i][2] = "Camille";
-                    data[i][4] = "H";
-                    break;
-
-                case 2:
-                    data[i][1] = "BUNOUF";
-                    data[i][2] = "Célia";
-                    data[i][4] = "F";
-                    break;
-
-
-                default:
-                    data[i][1] = "DOE";
-                    data[i][2] = "JOHN";
-                    data[i][4] = "X";
-                    break;
+                data[index][0] = eval.getMatiere();
+                data[index][1] = eval.getCodeMatiere();
+                data[index][2] = String.valueOf( eval.getNote() );
+                data[index][3] = eval.getCorrecteur().toString();
+                index++;
             }
 
-            data[i][3] = ThreadLocalRandom.current().nextInt(0, 100 );
+
+            //create table model with data
+            DefaultTableModel model = new DefaultTableModel(data, columns);
+            bulletinValeurs.setModel(model);
         }
-
-
-
-
-        //create table model with data
-        DefaultTableModel model = new DefaultTableModel(data, columns);
-        bulletinValeurs.setModel(model);
 
         add(panel);
         pack();

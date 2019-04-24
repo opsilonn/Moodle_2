@@ -6,7 +6,6 @@ import notesElevesProfesseurs.Eleve;
 import notesElevesProfesseurs.Professeur;
 import notesElevesProfesseurs.Promotion;
 import notesElevesProfesseurs.School;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.Map;
@@ -14,9 +13,11 @@ import java.util.Objects;
 
 
 /**
- * GUI_Login is extending the CustomJFrame class.
- *  It corresponds to the Login's JFrame (connect with ID and Password).
- * @author Hugues Begeot
+ * Fenêtre permettant de se connecter au logiciel (version 4).
+ *
+ * Cette classe hérite de {@link CustomJFrame}
+ *
+ * @author Hugues
  */
 public class GUI_Login extends CustomJFrame
 {

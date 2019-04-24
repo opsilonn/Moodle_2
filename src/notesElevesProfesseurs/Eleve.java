@@ -1,5 +1,6 @@
 package notesElevesProfesseurs;
 
+
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ArrayList;
@@ -8,13 +9,14 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+
 /**
  * Représente un élève
  *
  * Cette classe hérite de {@link Personne}
  */
-public class Eleve extends Personne {
-
+public class Eleve extends Personne
+{
     private final List<Evaluation> evaluations;
     private String promotion;
 
@@ -27,7 +29,8 @@ public class Eleve extends Personne {
      * {@link Personne} vide
      */
     @Deprecated
-    public Eleve() {
+    public Eleve()
+    {
         super();
         evaluations = new ArrayList<>();
     }
@@ -194,6 +197,18 @@ public class Eleve extends Personne {
     }
 
     /**
+     * Retourne toutes les évaluations de l'Eleve {@link Eleve}
+     *
+     * @return la liste d'évaluations
+     */
+    public List<Evaluation> getEvaluation()
+    {
+        try { return  evaluations; }
+        catch (Exception e) { return null; }
+    }
+
+
+    /**
      * Retourne l'évaluation à l'index donné
      *
      * @param index Index de l'évaluation de l'Eleve {@link Eleve}
@@ -206,6 +221,7 @@ public class Eleve extends Personne {
             return null;
         }
     }
+
 
     /**
      * Ajout d'une évaluation à l'étudiant
