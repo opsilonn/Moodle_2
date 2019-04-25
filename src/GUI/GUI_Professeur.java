@@ -42,7 +42,6 @@ public class GUI_Professeur extends CustomJFrame
         buttonChercherEleve.addActionListener(e -> { GUI_chercherEleve promo = new GUI_chercherEleve(ecole, prof.getMatiere()); });
 
 
-
         add(panel);
         pack();
         revalidate();

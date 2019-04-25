@@ -14,7 +14,7 @@ public class Main
     /**
      * Fonction main du projet qui lance les classes de test
      *
-     * @param argv
+     * @param argv Any argument sent via the console
      */
     public static void main(String[] argv) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException
     {

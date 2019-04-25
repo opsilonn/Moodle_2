@@ -20,7 +20,8 @@ public class Bulletin {
      */
     public static void createBulletin(Eleve eleve, School ecole) {
         ArrayList<Matiere> matieres = new ArrayList<>();
-        for (Professeur prof : ecole.getProfesseur()) {
+        for (Professeur prof : ecole.getProfesseur())
+        {
             matieres.add(prof.getMatiere());
         }
 
@@ -28,12 +29,15 @@ public class Bulletin {
 
         Promotion promo = ecole.getPromo(eleve.getPromotion());
 
-        for (Matiere m : matieres) {
-            try {
+        for (Matiere m : matieres)
+        {
+            try
+            {
                 System.out.println("\nMatière: " + m);
-
                 System.out.print("Evaluations dans la matière: ");
-                for (Evaluation eval : eleve.getEvaluations(m)) {
+
+                for (Evaluation eval : eleve.getEvaluations(m))
+                {
                     System.out.println(eval.getNote() + " ");
                 }
 
@@ -48,7 +52,8 @@ public class Bulletin {
                 System.out.println("Médiane Promo Mini: " + promo.medianeMaxMinPromotion(m, false));
                 System.out.println("Médiane Promo Maxi: " + promo.medianeMaxMinPromotion(m, true));
                 
-            } catch (IllegalStateException e) {
+            } catch (IllegalStateException e)
+            {
                 System.out.println("pas d'évaluation pour cette matière.");
             }
         }
@@ -63,7 +68,5 @@ public class Bulletin {
         System.out.println("Moyenne Générale Promo MAXI: " + promo.moyenneMaxMinPromotion(true));
         System.out.println("Médiane Générale Promo MINI: " + promo.medianeMaxMinPromotion(false));
         System.out.println("Médiane Générale Promo MAXI: " + promo.medianeMaxMinPromotion(true));
-        
     }
-
 }
