@@ -114,8 +114,9 @@ public class GUI_chercherEleve extends CustomJFrame
                     Object[][] data = new Object[eleve.getEvaluations(matiere).size()][columns.length];
 
                     int index = 0;
-                    for (Evaluation eval : eleve.getEvaluations(matiere)) {
-                        data[index][0] = eval.getCodeMatiere();
+                    for (Evaluation eval : eleve.getEvaluations(matiere))
+                    {
+                        data[index][0] = eval.getID();
                         data[index][1] = String.valueOf(eval.getNote());
                         index++;
                     }

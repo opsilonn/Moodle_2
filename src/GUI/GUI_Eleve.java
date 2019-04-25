@@ -78,16 +78,17 @@ public class GUI_Eleve extends CustomJFrame
             labelNote.setVisible(false);
 
             //headers for the table
-            String[] columns = new String[] {"Matière", "ID", "Note", "Correcteur"};
+            String[] columns = new String[] {"Matière", "ID - Matière", "Note", "ID-Note", "Correcteur"};
             Object [][] data = new Object [evaluations.size()][columns.length];
 
             int index = 0;
             for (Evaluation eval : evaluations)
             {
-                data[index][0] = eval.getMatiere();
+                data[index][0] = eval.getMatiere().getNom();
                 data[index][1] = eval.getCodeMatiere();
                 data[index][2] = String.valueOf( eval.getNote() );
-                data[index][3] = eval.getCorrecteur().toString();
+                data[index][3] = eval.getID();
+                data[index][4] = eval.getCorrecteur().toString();
                 index++;
             }
 

@@ -107,22 +107,13 @@ public class FileHandler
                     }
                 } 
                 
-                for (int i = 6; i < elements.length; i = i + 5)
+                for (int i = 6; i < elements.length; i = i + 2)
                 {
-                    Professeur correcteur = ecole.findProfesseur(elements[i + 1], elements[i + 2], elements[i + 3]);
+                    Professeur correcteur = ecole.getProfesseur(Integer.parseInt(elements[i + 1]));
                     if (correcteur != null)
-                    {
-                        Evaluation eval = new Evaluation(eleve, correcteur, correcteur.getMatiere(), Double.parseDouble(elements[i]));
-                        eleve.addEvaluation(eval);
-                    }
+                        eleve.addEvaluation( new Evaluation( eleve, correcteur, correcteur.getMatiere(), Double.parseDouble(elements[i]) ) );
                     else
-                    {
-                        Matiere matiere = new Matiere(elements[i + 3], elements[i + 4]);
-                        correcteur = new Professeur(elements[i + 1], elements[i + 2], null, matiere);
-                        Evaluation eval = new Evaluation(eleve, correcteur, correcteur.getMatiere(), Double.parseDouble(elements[i]));
-                        eleve.addEvaluation(eval);
-                        ecole.addProfesseur(correcteur);
-                    }
+                        System.out.println("ID-correcteur : " + elements[i + 1] + " | correcteur non trouvé");
                 }
 
                 ecole.addPromo(new Promotion(elements[5]));

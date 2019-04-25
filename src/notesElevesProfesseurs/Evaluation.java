@@ -89,6 +89,15 @@ public class Evaluation implements Comparable<Evaluation> {
         return this.matiere.getCode();
     }
 
+
+    /**
+     * Retourne le {@code code} de l'{@link Evaluation}
+     *
+     * @return Code de l'instance d'{@link Evaluation}
+     */
+    public int getID() { return id; }
+
+
     /**
      * Créé une représentation textuelle de l'instance
      *
@@ -142,9 +151,6 @@ public class Evaluation implements Comparable<Evaluation> {
      */
     public String EvalToCSV(){
         return this.note + ","
-             + this.correcteur.nom + ","
-             + this.correcteur.prenom + ","
-             + this.matiere.getCode() + ","
-             + this.matiere.getNom();
+             + this.correcteur.ID;
     }
 }

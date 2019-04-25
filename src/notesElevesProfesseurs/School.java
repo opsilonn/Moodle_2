@@ -5,37 +5,42 @@
  */
 package notesElevesProfesseurs;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 /**
  *
  * @author Célia
  */
-public class School {
-
+public class School
+{
     private Map<String, Promotion> promotions;
     private List<Professeur> professeurs;
 
     /**
      * Constructeur d'une école
      */
-    public School() {
+    public School()
+    {
         promotions = new HashMap();
         professeurs = new ArrayList();
     }
+
 
     /**
      * Ajoute une {@link Promotion} à l'école
      * @param newPromo Nouvelle {@link Promotion} à ajouter
      */
-    public void addPromo(Promotion newPromo) {
-        if (!promotions.containsKey(newPromo.getNom())) {
+    public void addPromo(Promotion newPromo)
+    {
+        if (!promotions.containsKey(newPromo.getNom()))
             promotions.put(newPromo.getNom(), newPromo);
-        }
     }
+
 
     /**
      * Retourne la {@link Promotion} recherchée
@@ -46,6 +51,7 @@ public class School {
         return promotions.get(nomPromo);
     }
 
+
     /**
      * Retourne la totalité des promotions de l'école
      * @return toutes les {@link Promotion}
@@ -53,6 +59,7 @@ public class School {
     public Map<String, Promotion> getPromo() {
         return promotions;
     }
+
 
     /**
      * Ajoute un professeur à l'école
@@ -62,6 +69,7 @@ public class School {
         professeurs.add(prof);
     }
 
+
     /**
      * Retourne l'intégralité des professeurs de l'école
      * @return La liste de {@link Professeur} de l'école
@@ -70,6 +78,23 @@ public class School {
         return professeurs;
     }
 
+
+
+    /**
+     * Retourne le {@link Professeur} correspondant à l'ID entré
+     * @param ID ID du {@link Professeur} recherché
+     * @return Le {@link Professeur} correspondant
+     */
+    public Professeur getProfesseur(int ID)
+    {
+        for (Professeur prof : professeurs)
+        {
+            if(prof.getID() == ID) return prof;
+        }
+        return null;
+    }
+
+
     /**
      * Cherche un professeur dans l'école
      * @param nom Nom du professeur
@@ -77,14 +102,18 @@ public class School {
      * @param matiereCode Code de la matière enseignée
      * @return le professeur
      */
-    public Professeur findProfesseur(String nom, String prenom, String matiereCode) {
-        for (Professeur p : professeurs) {
-            if (p.getNom().equals(nom) && p.getPrenom().equals(prenom) && p.getMatiere().getCode().equals(matiereCode)) {
+    public Professeur findProfesseur(String nom, String prenom, String matiereCode)
+    {
+        for (Professeur p : professeurs)
+        {
+            if (p.getNom().equals(nom) && p.getPrenom().equals(prenom) && p.getMatiere().getCode().equals(matiereCode))
+            {
                 return p;
             }
         }
         return null;
     }
+
 
     @Override
     public String toString() {
