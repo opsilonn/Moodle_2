@@ -20,6 +20,7 @@ public class test_Version4
         School ecole = new School();
         FileHandler scanner = new FileHandler();
         scanner.ReadFiles(ecole);
+        System.out.println(ecole.toString());
 
 
         // On affiche la fenêtre LOGIN

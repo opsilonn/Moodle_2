@@ -16,8 +16,8 @@ import java.util.Map;
  */
 public class School {
 
-    Map<String, Promotion> promotions;
-    List<Professeur> professeurs;
+    private Map<String, Promotion> promotions;
+    private List<Professeur> professeurs;
 
     /**
      * Constructeur d'une école
@@ -28,8 +28,8 @@ public class School {
     }
 
     /**
-     * Ajoute une promotion à l'école
-     * @param newPromo Nouvelle promotion à ajouter
+     * Ajoute une {@link Promotion} à l'école
+     * @param newPromo Nouvelle {@link Promotion} à ajouter
      */
     public void addPromo(Promotion newPromo) {
         if (!promotions.containsKey(newPromo.getNom())) {
@@ -38,9 +38,9 @@ public class School {
     }
 
     /**
-     * Retourne la promotion rechercher
-     * @param nomPromo
-     * @return la promotion recherchée
+     * Retourne la {@link Promotion} recherchée
+     * @param nomPromo Nom de la {@link Promotion} recherchée
+     * @return la {@link Promotion} recherchée
      */
     public Promotion getPromo(String nomPromo) {
         return promotions.get(nomPromo);
@@ -48,7 +48,7 @@ public class School {
 
     /**
      * Retourne la totalité des promotions de l'école
-     * @return
+     * @return toutes les {@link Promotion}
      */
     public Map<String, Promotion> getPromo() {
         return promotions;
@@ -56,7 +56,7 @@ public class School {
 
     /**
      * Ajoute un professeur à l'école
-     * @param prof
+     * @param prof {@link Professeur} à ajouter à l'éoole
      */
     public void addProfesseur(Professeur prof) {
         professeurs.add(prof);
@@ -64,7 +64,7 @@ public class School {
 
     /**
      * Retourne l'intégralité des professeurs de l'école
-     * @return
+     * @return La liste de {@link Professeur} de l'école
      */
     public List<Professeur> getProfesseur() {
         return professeurs;
@@ -90,17 +90,15 @@ public class School {
     public String toString() {
         StringBuilder str = new StringBuilder();
 
-        if (!promotions.isEmpty()) {
-            promotions.keySet().forEach((String s) -> {
-                str.append(getPromo(s).toString() + "\n");
-            });
+        if (!promotions.isEmpty())
+        {
+            promotions.keySet().forEach((String s) -> str.append(getPromo(s).toString()).append("\n"));
         }
 
-        if (!professeurs.isEmpty()) {
+        if (!professeurs.isEmpty())
+        {
             str.append("Professeurs : " + "\n");
-            professeurs.forEach((Professeur p) -> {
-                str.append("\t" + p.toString() + "\n");
-            });
+            professeurs.forEach((Professeur p) -> str.append("\t").append(p.toString()).append("\n"));
         }
 
         if (str.length() == 0) {

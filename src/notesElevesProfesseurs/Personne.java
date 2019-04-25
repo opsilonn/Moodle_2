@@ -7,8 +7,8 @@ import java.util.Date;  // On préfère utiliser des classes déjà existantes e
  * Classe de base pour chaque entité de type {@link Personne} Ne doit pas
  * pouvoir être instanciée en tant que telle, et est donc abstraite.
  */
-public abstract class Personne {
-
+public abstract class Personne
+{
     protected int ID;
     protected String password;
     protected String nom;
