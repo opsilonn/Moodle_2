@@ -46,11 +46,26 @@ public class Eleve extends Personne {
         evaluations = new ArrayList<>();
     }
 
+    /**
+     * Créé un {@link Eleve} à partir des informations nécessaires pour la
+     * création d'une {@link Personne}
+     *
+     * @param nom Nom de l'{@link Eleve} à instancier ({@link Personne})
+     * @param prenom Prénom de l'{@link Eleve} à instancier ({@link Personne})
+     * @param dateNaissance Date de naissance de l'{@link Eleve} à instancier
+     * ({@link Personne})
+     * @param ID ID étudiant de l'élève à créer.
+     */
     public Eleve(String nom, String prenom, Date dateNaissance, int ID) {
         super(nom, prenom, dateNaissance, ID);
         evaluations = new ArrayList<>();
     }
 
+    /**
+     * Retourne la promotion de l'instance
+     *
+     * @return la promotion de l'élève
+     */
     public String getPromotion() {
         return this.promotion;
     }
