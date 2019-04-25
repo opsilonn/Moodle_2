@@ -5,6 +5,7 @@
  */
 package Gestionfichier;
 
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,19 +19,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import notesElevesProfesseurs.*;
 
+
 /**
  *
  * @author Célia
  */
-public class FileHandler {
-
+public class FileHandler
+{
     private File fileEleve;
     private File fileProf;
 
     private static final String FILENAME_ELEVE = "./src/Gestionfichier/BasededonneesEleves.csv";
     private static final String FILENAME_PROF  = "./src/Gestionfichier/BasededonneesProfs.csv";
 
-    public FileHandler() {
+    public FileHandler()
+    {
         fileEleve = new File(FILENAME_ELEVE);
         fileProf = new File(FILENAME_PROF);
     }
@@ -41,36 +44,54 @@ public class FileHandler {
      * @param ecole représente l'ecole à remplir grâce aux fichiers
      * @return si l'opération a été réussie
      */
-    public boolean ReadFiles(School ecole) {
-        boolean flag;
-        flag = ReadProfs(ecole);
-        flag = flag && ReadEleves(ecole);
-        return flag;
+    public boolean ReadFiles(School ecole)
+    {
+        return ReadProfs(ecole) && ReadEleves(ecole);
     }
+
+
+    /**
+     * Fonction qui renvoie le fichier à lire
+     *
+     * @param file fichier à lire
+     * @return le fichier à lire si l'opération est réussie, sinon renvoie null
+     */
+    private BufferedReader bufferReader(File file)
+    {
+        try
+        {
+            return new BufferedReader(new FileReader(file));
+        }
+        catch (FileNotFoundException ex)
+        {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+
 
     /**
      * Fonction qui permet de lire la base de données élèves
      * @param ecole représente l'école à laquelle appartient les étudiants
-     * @return
+     * @return si l'opération a été réussie
      */
-    private boolean ReadEleves(School ecole) {
+    private boolean ReadEleves(School ecole)
+    {
+        BufferedReader reader = bufferReader(fileEleve);
+        if(reader == null) return false;
+
+
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        BufferedReader reader;
         String line;
-        String[] elements;
-        try {
-            reader = new BufferedReader(new FileReader(fileEleve));
-        } catch (FileNotFoundException ex) {
-            System.out.println(ex.getMessage());
-            return false;
-        }
 
-        try {
+        try
+        {
             reader.readLine();
-            while ((line = reader.readLine()) != null) {
-
-                elements = line.split(",");
-                if (elements.length < 5) {
+            while ((line = reader.readLine()) != null)
+            {
+                String[] elements = line.split(",");
+                if (elements.length < 5)
+                {
                     System.out.println("The database is not correctly organized");
                     return false;
                 }
@@ -80,17 +101,22 @@ public class FileHandler {
                 if(year == Year.now().getValue())
                 {
                     int number = Integer.parseInt(elements[3].substring(5));
-                    if ( number > Personne.getIndex()){
+                    if ( number > Personne.getIndex())
+                    {
                         Personne.setIndex(number);
                     }
                 } 
                 
-                for (int i = 6; i < elements.length; i = i + 5) {
+                for (int i = 6; i < elements.length; i = i + 5)
+                {
                     Professeur correcteur = ecole.findProfesseur(elements[i + 1], elements[i + 2], elements[i + 3]);
-                    if (correcteur != null) {
+                    if (correcteur != null)
+                    {
                         Evaluation eval = new Evaluation(eleve, correcteur, correcteur.getMatiere(), Double.parseDouble(elements[i]));
                         eleve.addEvaluation(eval);
-                    } else {
+                    }
+                    else
+                    {
                         Matiere matiere = new Matiere(elements[i + 3], elements[i + 4]);
                         correcteur = new Professeur(elements[i + 1], elements[i + 2], null, matiere);
                         Evaluation eval = new Evaluation(eleve, correcteur, correcteur.getMatiere(), Double.parseDouble(elements[i]));
@@ -104,7 +130,9 @@ public class FileHandler {
                 promo.addEleve(eleve);
             }
             reader.close();
-        } catch (IOException | ParseException ex) {
+        }
+        catch (IOException | ParseException ex)
+        {
             Logger.getLogger(FileHandler.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
@@ -112,28 +140,27 @@ public class FileHandler {
         return true;
     }
 
+
+
     /**
      * Fonction qui permet de lire la base de données profs
      * @param ecole représente l'école à laquelle appartient les profs
-     * @return
+     * @return si l'opération a été réussie
      */
-    private boolean ReadProfs(School ecole) {
+    private boolean ReadProfs(School ecole)
+    {
+        BufferedReader reader = bufferReader(fileProf);
+        if(reader == null) return false;
+
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        BufferedReader reader;
         String line;
-        String[] elements;
 
-        try {
-            reader = new BufferedReader(new FileReader(fileProf));
-        } catch (FileNotFoundException ex) {
-            System.out.println(ex.getMessage());
-            return false;
-        }
-
-        try {
+        try
+        {
             reader.readLine();
-            while ((line = reader.readLine()) != null) {
-                elements = line.split(",");
+            while ((line = reader.readLine()) != null)
+            {
+                String[] elements = line.split(",");
                 Matiere matiere = new Matiere(elements[5], elements[6]);
                 Professeur professeur = new Professeur(elements[0], elements[1], format.parse(elements[2]), Integer.parseInt(elements[3]), elements[4],matiere);
                 int year = Integer.parseInt(elements[3].substring(0, 4));
@@ -148,86 +175,88 @@ public class FileHandler {
                 ecole.addProfesseur(professeur);
             }
             reader.close();
-        } catch (IOException | ParseException ex) {
+        }
+        catch (IOException | ParseException ex)
+        {
             System.out.println(ex.getMessage());
             return false;
         }
 
         return true;
     }
+
 
     /**
      * Fonction qui permet d'écrire dans les bases de données
      *
-     * @param ecole
-     * @return
+     * @param ecole structure à écrire dans les fichiers .csv
+     * @return si l'opération est réussie ou non
      */
-    public boolean WriteFiles(School ecole) {
-        boolean flag;
-        flag = WriteTeachers(ecole);
-        flag = flag && WriteStudents(ecole);
-        return flag;
+    public boolean WriteFiles(School ecole)
+    {
+        return WriteTeachers(ecole) && WriteStudents(ecole);
     }
+
 
     /**
      * Fonction qui permet d'écrire dans la base de données profs
      *
-     * @param ecole
-     * @return
+     * @param ecole structure à écrire dans les fichiers .csv
+     * @return si l'opération est réussie ou non
      */
-    private boolean WriteTeachers(School ecole) {
-        boolean fileExists = false;
-        if (fileProf.exists()) {
-            fileExists = true;
-        }
-        FileWriter writer;
-        try {
-            writer = new FileWriter(fileProf);
+    private boolean WriteTeachers(School ecole)
+    {
+        try
+        {
+            FileWriter writer = new FileWriter(fileProf);
             writer.write("Nom,Prenom,Birthdate,ID,MDP,CodeMatiere,NomMatiere\n");
 
             // Write in the file each professor with a CSV functioning
-            for (Professeur p : ecole.getProfesseur()) {
+            for (Professeur p : ecole.getProfesseur())
+            {
                 writer.write(p.profToCSV());
             }
             writer.close();
-        } catch (IOException ex) {
+        }
+        catch (IOException ex)
+        {
             System.out.println(ex.getMessage());
             return false;
         }
         return true;
     }
 
+
     /**
      * Fonction qui permet d'écrire dans la base de données étudiants
      *
-     * @param ecole
-     * @return
+     * @param ecole structure à écrire dans les fichiers .csv
+     * @return si l'opération est réussie ou non
      */
-    private boolean WriteStudents(School ecole) {
-
-        boolean fileExists = false;
-        if (fileEleve.exists()) {
-            fileExists = true;
-        }
-        FileWriter writer;
-        try {
-            writer = new FileWriter(fileEleve);
+    private boolean WriteStudents(School ecole)
+    {
+        try
+        {
+            FileWriter writer = new FileWriter(fileEleve);
             String columnsName = "Nom,Prenom,Birthdate,ID,Promotion,Evnote,EvCorrNom,EvCorrPrenom,CodeMatiere,NomMatiere";
             writer.write(columnsName);
             
             // Write in the file each professor with a CSV functioning
-            for (String promo_name : ecole.getPromo().keySet()) {
-                for (Eleve e : ecole.getPromo(promo_name).getEleves()) {
+            for (String promo_name : ecole.getPromo().keySet())
+            {
+                for (Eleve e : ecole.getPromo(promo_name).getEleves())
+                {
                     writer.write('\n' + e.elevesToCSV());
                 }
             }
 
             writer.close();
-        } catch (IOException ex) {
+        }
+        catch (IOException ex)
+        {
             System.out.println(ex.getMessage());
             return false;
         }
         return true;
     }
-
 }
