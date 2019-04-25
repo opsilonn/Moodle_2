@@ -46,11 +46,26 @@ public class Eleve extends Personne {
         evaluations = new ArrayList<>();
     }
 
+    /**
+     * Créé un {@link Eleve} à partir des informations nécessaires pour la
+     * création d'une {@link Personne}
+     *
+     * @param nom Nom de l'{@link Eleve} à instancier ({@link Personne})
+     * @param prenom Prénom de l'{@link Eleve} à instancier ({@link Personne})
+     * @param dateNaissance Date de naissance de l'{@link Eleve} à instancier
+     * ({@link Personne})
+     * @param ID ID étudiant de l'élève à créer.
+     */
     public Eleve(String nom, String prenom, Date dateNaissance, int ID) {
         super(nom, prenom, dateNaissance, ID);
         evaluations = new ArrayList<>();
     }
 
+    /**
+     * Retourne la promotion de l'instance
+     *
+     * @return la promotion de l'élève
+     */
     public String getPromotion() {
         return this.promotion;
     }
@@ -98,8 +113,9 @@ public class Eleve extends Personne {
                 nb_evaluation++;
             }
         }
-        if(nb_evaluation == 0)
+        if (nb_evaluation == 0) {
             throw new IllegalStateException();
+        }
 
         return sum / nb_evaluation;
     }
@@ -137,7 +153,7 @@ public class Eleve extends Personne {
      *
      * @param matiere Matière dans laquelle on cherche la médiane
      * @return la médiane de la matière
-     * @throws IllegalStateException
+     * @throws IllegalStateException lorsqu'il n'y a pas de notes pour lesquelles faire la matière
      */
     public double getMediane(Matiere matiere) throws IllegalStateException {
 
@@ -225,6 +241,11 @@ public class Eleve extends Personne {
         this.promotion = promo;
     }
 
+    /**
+     * Retourne une liste d'{@link Evaluation} de la matière renseignée
+     * @param matiere Matière dont nous cherchons les évaluations
+     * @return la liste des évaluations
+     */
     public List<Evaluation> getEvaluations(Matiere matiere) {
         ArrayList<Evaluation> eval_matiere = new ArrayList<>();
         for (Evaluation eval : this.evaluations) {

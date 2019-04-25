@@ -70,7 +70,7 @@ public class Promotion {
     /**
      * Retourne la liste d'étudiant présent dans la promotion
      *
-     * @return
+     * @return liste d'étudiants de la promotion
      */
     public List<Eleve> getEleves() {
         return eleves;
@@ -107,8 +107,8 @@ public class Promotion {
     /**
      * Calcul de la moyenne pour la matière de la promotion
      *
-     * @param matiere Matière pour le calcul de la moyenne
-     * @return
+     * @param matiere {@link Matiere} pour le calcul de la moyenne
+     * @return la moyenne de la promotion dans la {@link Matiere} 
      */
     public double moyennePromotion(Matiere matiere) {
         double sum = 0;
@@ -142,10 +142,10 @@ public class Promotion {
     }
 
     /**
-     * Calcul de la médiane de la promotion pour une certaine {@link Matière}
+     * Calcul de la médiane de la promotion pour une certaine {@link Matiere}
      *
-     * @param matiere Matière pour le calcul de la médiane
-     * @return médiane
+     * @param matiere {@link Matiere} pour le calcul de la médiane
+     * @return mediane de l'instance dans la matiere
      */
     public double medianePromotion(Matiere matiere) {
         double sum = 0;
@@ -158,97 +158,6 @@ public class Promotion {
             }
         }
         return sum / size;
-    }
-
-    /**
-     *
-     * @param matiere matiere pour laquelle il faut trouver la médiane
-     * @param mode mode d'utilisation de la fonction: true -> trouve le max,
-     * false -> trouve le min.
-     * @return
-     */
-    public double medianeMaxMinPromotion(Matiere matiere, boolean mode) {
-        double medianeToReturn = -1;
-        try {
-            medianeToReturn = eleves.get(0).getMediane(matiere);
-        } catch (IllegalStateException exception) {
-        }
-
-        for (Eleve e : this.eleves) {
-            try {
-                double mediane = e.getMediane(matiere);
-                if (medianeToReturn == -1) {
-                    medianeToReturn = mediane;
-                } else if ((mediane > medianeToReturn && mode == true) || (mediane < medianeToReturn && mode == false)) {
-                    medianeToReturn = mediane;
-                }
-            } catch (IllegalStateException exception) {
-            }
-        }
-        return medianeToReturn;
-    }
-
-    public double medianeMaxMinPromotion(boolean mode) {
-        double medianeToReturn = -1;
-        try {
-            medianeToReturn = eleves.get(0).getMedianeGenerale();
-        } catch (IllegalStateException exception) {
-        }
-
-        for (Eleve e : this.eleves) {
-            try {
-                double mediane = e.getMedianeGenerale();
-                if (medianeToReturn == -1) {
-                    medianeToReturn = mediane;
-                } else if ((mediane > medianeToReturn && mode == true) || (mediane < medianeToReturn && mode == false)) {
-                    medianeToReturn = mediane;
-                }
-            } catch (IllegalStateException exception) {
-            }
-        }
-        return medianeToReturn;
-    }
-
-    public double moyenneMaxMinPromotion(Matiere matiere, boolean mode) {
-        double moyenneToReturn = -1;
-        try {
-            moyenneToReturn = eleves.get(0).getMoyenne(matiere);
-        } catch (IllegalStateException exception) {
-        };
-
-        for (Eleve e : this.eleves) {
-            try {
-                double moy = e.getMoyenne(matiere);
-                if (moyenneToReturn == -1) {
-                    moyenneToReturn = moy;
-                } else if ((moy > moyenneToReturn && mode == true) || (moy < moyenneToReturn && mode == false)) {
-                    moyenneToReturn = moy;
-                }
-            } catch (IllegalStateException exception) {
-            }
-        }
-        return moyenneToReturn;
-    }
-
-    public double moyenneMaxMinPromotion(boolean mode) {
-        double moyenneToReturn = -1;
-        try {
-            moyenneToReturn = eleves.get(0).getMoyenneGenerale();
-        } catch (IllegalStateException exception) {
-        };
-
-        for (Eleve e : this.eleves) {
-            try {
-                double moy = e.getMoyenneGenerale();
-                if (moyenneToReturn == -1) {
-                    moyenneToReturn = moy;
-                } else if ((moy > moyenneToReturn && mode == true) || (moy < moyenneToReturn && mode == false)) {
-                    moyenneToReturn = moy;
-                }
-            } catch (IllegalStateException exception) {
-            }
-        }
-        return moyenneToReturn;
     }
 
     /**

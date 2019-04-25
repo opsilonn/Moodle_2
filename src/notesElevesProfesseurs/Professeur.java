@@ -83,7 +83,7 @@ public class Professeur extends Personne {
      * @param idEleve ID de l'élève rechercher
      * @param note valeur de la note à ajouter
      * @param index index de la note à modifier
-     * @throws IllegalStateException
+     * @throws IllegalStateException lorsque l'étudiant n'est pas trouvé
      */
     public void setNote(Promotion promo, int idEleve, int note, int index) throws IllegalStateException {
         Eleve eleve = this.rechercher(promo, idEleve);

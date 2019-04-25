@@ -11,7 +11,7 @@ import notesElevesProfesseurs.Eleve;
 import notesElevesProfesseurs.Matiere;
 import notesElevesProfesseurs.Professeur;
 import notesElevesProfesseurs.Promotion;
-import notesElevesProfesseurs.School;
+import notesElevesProfesseurs.Ecole;
 
 /**
  *
@@ -23,7 +23,7 @@ public class test_Version2 {
      * Fonction de test de la version 2
      */
     public static void main() {
-        School ecole = new School();
+        Ecole ecole = new Ecole();
         FileHandler scanner = new FileHandler();
         scanner.ReadFiles(ecole);
 

@@ -1,10 +1,10 @@
 package notesElevesProfesseurs;
 
 /**
- * Classe représentant une évaluation
- * Chaque évaluation possède une note, un auteur, un correcteur, une matière et une ID.
- * L'ID n'est pas unique mais correspond à une évaluation globale. 
- * 
+ * Classe représentant une évaluation. Chaque évaluation possède une note, un
+ * auteur ({@link Eleve}), un correcteur({@link Professeur}), une matière
+ * ({@link Matiere}).
+ *
  * @author Célia
  */
 public class Evaluation implements Comparable<Evaluation> {
@@ -13,7 +13,6 @@ public class Evaluation implements Comparable<Evaluation> {
     private Eleve auteur;
     private Professeur correcteur;
     private Matiere matiere;
-    private int id;
 
     private static int _compteur_evaluations = 0;
 
@@ -35,13 +34,14 @@ public class Evaluation implements Comparable<Evaluation> {
      *
      * @param auteur {@link Eleve} à l'origine de l'évaluation
      * @param correcteur {@link Professeur} correcteur
+     * @param matiere {@link Matiere} de l'évaluation
+     * @param note valeur de la note à l'évaluation
      */
     public Evaluation(Eleve auteur, Professeur correcteur, Matiere matiere, double note) {
         this.note = note;
         this.auteur = auteur;
         this.correcteur = correcteur;
         this.matiere = matiere;
-        this.id = Evaluation._compteur_evaluations++;
     }
 
     /**
@@ -55,7 +55,8 @@ public class Evaluation implements Comparable<Evaluation> {
 
     /**
      * Retourne la note de l'évaluation
-     * @param note
+     *
+     * @param note valeur de la note à modifier ou ajouter
      */
     public void setNote(double note) {
         this.note = note;
@@ -114,28 +115,28 @@ public class Evaluation implements Comparable<Evaluation> {
             return false;
         }
         Evaluation e = (Evaluation) o;
-        return  e.auteur.equals(auteur) 
-                && e.correcteur.equals(correcteur) 
-                && e.note == note 
-                && e.matiere.equals(matiere)
-                && e.id == id;
+        return e.auteur.equals(auteur)
+                && e.correcteur.equals(correcteur)
+                && e.note == note
+                && e.matiere.equals(matiere);
     }
 
     @Override
     public int hashCode() {
         return auteur.hashCode() + correcteur.hashCode() + matiere.hashCode();
     }
-    
+
     /**
      * Fonction de création d'une représentation CSV d'une évaluation
+     *
      * @return l'instance textuelle formaté en CSV
      */
-    public String EvalToCSV(){
+    public String EvalToCSV() {
         return this.note + ","
-             + this.correcteur.nom + ","
-             + this.correcteur.prenom + ","
-             + this.matiere.getCode() + ","
-             + this.matiere.getNom();
+                + this.correcteur.nom + ","
+                + this.correcteur.prenom + ","
+                + this.matiere.getCode() + ","
+                + this.matiere.getNom();
     }
 
 }
