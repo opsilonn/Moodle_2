@@ -70,7 +70,7 @@ public class Promotion {
     /**
      * Retourne la liste d'étudiant présent dans la promotion
      *
-     * @return
+     * @return la liste des étudiants
      */
     public List<Eleve> getEleves() {
         return eleves;
@@ -108,7 +108,7 @@ public class Promotion {
      * Calcul de la moyenne pour la matière de la promotion
      *
      * @param matiere Matière pour le calcul de la moyenne
-     * @return
+     * @return la moyenne de la promotion
      */
     public double moyennePromotion(Matiere matiere) {
         double sum = 0;
@@ -142,7 +142,7 @@ public class Promotion {
     }
 
     /**
-     * Calcul de la médiane de la promotion pour une certaine {@link Matière}
+     * Calcul de la médiane de la promotion pour une certaine {@link Matiere}
      *
      * @param matiere Matière pour le calcul de la médiane
      * @return médiane
@@ -163,9 +163,9 @@ public class Promotion {
     /**
      *
      * @param matiere matiere pour laquelle il faut trouver la médiane
-     * @param mode mode d'utilisation de la fonction: true -> trouve le max,
-     * false -> trouve le min.
-     * @return
+     * @param mode mode d'utilisation de la fonction: true = trouve le max,
+     * false = trouve le min.
+     * @return la médiane max ou min de la promotion sur la matière demandée
      */
     public double medianeMaxMinPromotion(Matiere matiere, boolean mode) {
         double medianeToReturn = -1;

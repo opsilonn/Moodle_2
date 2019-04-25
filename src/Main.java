@@ -16,6 +16,5 @@ public class Main {
     public static void main(String[] argv) {
 
         test_Version3.main();
-        //Stats_Bulletin.main();
     }
 }

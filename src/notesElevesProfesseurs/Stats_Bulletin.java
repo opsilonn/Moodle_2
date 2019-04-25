@@ -17,6 +17,7 @@ import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.ChartFactory;
+import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.axis.SymbolAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -24,19 +25,22 @@ import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 
 /**
  * Classe représentant un chart de statistiques de l'étudiant
+ *
  * @author Célia
  */
 public class Stats_Bulletin extends ApplicationFrame {
 
-    private Stats_Bulletin(Eleve eleve, School ecole) {
+    private Stats_Bulletin(Eleve eleve, Ecole ecole) {
         super("Statistiques du Bulletin");
 
         Promotion promo = ecole.getPromo(eleve.getPromotion());
 
         ArrayList<Matiere> matieres = new ArrayList<>();
         for (Professeur prof : ecole.getProfesseur()) {
-            if (!eleve.getEvaluations(prof.getMatiere()).isEmpty()) {
+            try {
+                eleve.getEvaluations(prof.getMatiere());
                 matieres.add(prof.getMatiere());
+            } catch (IllegalStateException e) {
             }
         }
 
@@ -60,8 +64,6 @@ public class Stats_Bulletin extends ApplicationFrame {
         chartPanel.setPreferredSize(new java.awt.Dimension(560, 367));
         final XYPlot plot = xylineChart.getXYPlot();
 
-        plot.setDomainAxis(xAxis);
-
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
         renderer.setSeriesPaint(0, Color.RED);
         renderer.setSeriesPaint(1, Color.GREEN);
@@ -72,6 +74,10 @@ public class Stats_Bulletin extends ApplicationFrame {
         renderer.setSeriesStroke(2, new BasicStroke(2.0f));
         renderer.setSeriesStroke(3, new BasicStroke(1.0f));
 
+        NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+        rangeAxis.setRangeWithMargins(0, 20);
+
+        plot.setDomainAxis(xAxis);
         plot.setRenderer(renderer);
         setContentPane(chartPanel);
     }
@@ -108,10 +114,11 @@ public class Stats_Bulletin extends ApplicationFrame {
 
     /**
      * Créer un chart XY de représentation du bulletin
+     *
      * @param eleve {@link Eleve} auquel appartien le bulletin
-     * @param ecole {@link School} d'où vient l'étudiant
+     * @param ecole {@link Ecole} d'où vient l'étudiant
      */
-    public static void main(Eleve eleve, School ecole) {
+    public static void main(Eleve eleve, Ecole ecole) {
         Stats_Bulletin chart = new Stats_Bulletin(eleve, ecole);
         chart.pack();
         RefineryUtilities.centerFrameOnScreen(chart);

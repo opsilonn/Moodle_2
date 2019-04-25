@@ -98,8 +98,9 @@ public class Eleve extends Personne {
                 nb_evaluation++;
             }
         }
-        if(nb_evaluation == 0)
+        if (nb_evaluation == 0) {
             throw new IllegalStateException();
+        }
 
         return sum / nb_evaluation;
     }
@@ -137,7 +138,7 @@ public class Eleve extends Personne {
      *
      * @param matiere Matière dans laquelle on cherche la médiane
      * @return la médiane de la matière
-     * @throws IllegalStateException
+     * @throws IllegalStateException lorsqu'il n'y a pas d'évaluations
      */
     public double getMediane(Matiere matiere) throws IllegalStateException {
 
@@ -213,7 +214,9 @@ public class Eleve extends Personne {
      * @param evaluation Evaluation de l'étudiant à ajouter
      */
     public void addEvaluation(Evaluation evaluation) {
-        this.evaluations.add(evaluation);
+        if (this.evaluations.size() < NB_EVALUATIONS) {
+            this.evaluations.add(evaluation);
+        }
     }
 
     /**
@@ -225,13 +228,25 @@ public class Eleve extends Personne {
         this.promotion = promo;
     }
 
-    public List<Evaluation> getEvaluations(Matiere matiere) {
+    /**
+     * Retourne les {@link Evaluation}s d'une {@link Matiere} particulière
+     *
+     * @param matiere {@link Matiere} recherchée
+     * @return l'ensemble des {@link Evaluation} d'une matière
+     * @throws IllegalStateException Quand il n'y a pas d'évaluations dans la
+     * {@link Matiere} demandée
+     */
+    public List<Evaluation> getEvaluations(Matiere matiere) throws IllegalStateException {
         ArrayList<Evaluation> eval_matiere = new ArrayList<>();
         for (Evaluation eval : this.evaluations) {
             if (eval.getCodeMatiere().equals(matiere.getCode())) {
                 eval_matiere.add(eval);
             }
         }
+        if (eval_matiere.isEmpty()) {
+            throw new IllegalStateException();
+        }
+
         return eval_matiere;
     }
 

@@ -14,7 +14,7 @@ import java.util.Map;
  *
  * @author Célia
  */
-public class School {
+public class Ecole {
 
     Map<String, Promotion> promotions;
     List<Professeur> professeurs;
@@ -22,13 +22,14 @@ public class School {
     /**
      * Constructeur d'une école
      */
-    public School() {
+    public Ecole() {
         promotions = new HashMap();
         professeurs = new ArrayList();
     }
 
     /**
      * Ajoute une promotion à l'école
+     *
      * @param newPromo Nouvelle promotion à ajouter
      */
     public void addPromo(Promotion newPromo) {
@@ -39,7 +40,8 @@ public class School {
 
     /**
      * Retourne la promotion rechercher
-     * @param nomPromo
+     *
+     * @param nomPromo nnom de la promotion
      * @return la promotion recherchée
      */
     public Promotion getPromo(String nomPromo) {
@@ -48,7 +50,8 @@ public class School {
 
     /**
      * Retourne la totalité des promotions de l'école
-     * @return
+     *
+     * @return une map de toutes les promotions
      */
     public Map<String, Promotion> getPromo() {
         return promotions;
@@ -56,7 +59,8 @@ public class School {
 
     /**
      * Ajoute un professeur à l'école
-     * @param prof
+     *
+     * @param prof {@link Professeur} à ajouter
      */
     public void addProfesseur(Professeur prof) {
         professeurs.add(prof);
@@ -64,7 +68,8 @@ public class School {
 
     /**
      * Retourne l'intégralité des professeurs de l'école
-     * @return
+     *
+     * @return une liste des professeurs
      */
     public List<Professeur> getProfesseur() {
         return professeurs;
@@ -72,6 +77,7 @@ public class School {
 
     /**
      * Cherche un professeur dans l'école
+     *
      * @param nom Nom du professeur
      * @param prenom Prenom du professeur
      * @param matiereCode Code de la matière enseignée

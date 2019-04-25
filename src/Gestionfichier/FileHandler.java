@@ -41,7 +41,7 @@ public class FileHandler {
      * @param ecole représente l'ecole à remplir grâce aux fichiers
      * @return si l'opération a été réussie
      */
-    public boolean ReadFiles(School ecole) {
+    public boolean ReadFiles(Ecole ecole) {
         boolean flag;
         flag = ReadProfs(ecole);
         flag = flag && ReadEleves(ecole);
@@ -54,7 +54,7 @@ public class FileHandler {
      * @param ecole représente l'école à laquelle appartient les étudiants
      * @return
      */
-    private boolean ReadEleves(School ecole) {
+    private boolean ReadEleves(Ecole ecole) {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         BufferedReader reader;
         String line;
@@ -78,14 +78,13 @@ public class FileHandler {
 
                 Eleve eleve = new Eleve(elements[0], elements[1], format.parse(elements[2]), Integer.parseInt(elements[3]));
                 int year = Integer.parseInt(elements[3].substring(0, 4));
-                if(year == Year.now().getValue())
-                {
+                if (year == Year.now().getValue()) {
                     int number = Integer.parseInt(elements[3].substring(5));
-                    if ( number > Personne.getIndex()){
+                    if (number > Personne.getIndex()) {
                         Personne.setIndex(number);
                     }
-                } 
-                
+                }
+
                 for (int i = 5; i < elements.length; i = i + 5) {
                     Professeur correcteur = ecole.findProfesseur(elements[i + 1], elements[i + 2], elements[i + 3]);
                     if (correcteur != null) {
@@ -115,10 +114,11 @@ public class FileHandler {
 
     /**
      * Fonction qui permet de lire la base de données profs
+     *
      * @param ecole représente l'école à laquelle appartient les profs
      * @return
      */
-    private boolean ReadProfs(School ecole) {
+    private boolean ReadProfs(Ecole ecole) {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         BufferedReader reader;
         String line;
@@ -138,14 +138,13 @@ public class FileHandler {
                 Matiere matiere = new Matiere(elements[4], elements[5]);
                 Professeur professeur = new Professeur(elements[0], elements[1], format.parse(elements[2]), Integer.parseInt(elements[3]), matiere);
                 int year = Integer.parseInt(elements[3].substring(0, 4));
-                if(year == Year.now().getValue())
-                {
+                if (year == Year.now().getValue()) {
                     int number = Integer.parseInt(elements[3].substring(5));
-                    if ( number >= Personne.getIndex()){
-                        Personne.setIndex(number+1);
+                    if (number >= Personne.getIndex()) {
+                        Personne.setIndex(number + 1);
                     }
-                }            
-                             
+                }
+
                 ecole.addProfesseur(professeur);
             }
             reader.close();
@@ -160,10 +159,10 @@ public class FileHandler {
     /**
      * Fonction qui permet d'écrire dans les bases de données
      *
-     * @param ecole
-     * @return
+     * @param ecole {@link Ecole} dans laquelle mettre les informations
+     * @return si l'operation a été réussie
      */
-    public boolean WriteFiles(School ecole) {
+    public boolean WriteFiles(Ecole ecole) {
         boolean flag;
         flag = WriteTeachers(ecole);
         flag = flag && WriteStudents(ecole);
@@ -173,10 +172,10 @@ public class FileHandler {
     /**
      * Fonction qui permet d'écrire dans la base de données profs
      *
-     * @param ecole
-     * @return
+     * @param ecole {@link Ecole} dans laquelle mettre les informations
+     * @return si l'operation a été réussie
      */
-    private boolean WriteTeachers(School ecole) {
+    private boolean WriteTeachers(Ecole ecole) {
         boolean fileExists = false;
         if (fileProf.exists()) {
             fileExists = true;
@@ -201,10 +200,10 @@ public class FileHandler {
     /**
      * Fonction qui permet d'écrire dans la base de données étudiants
      *
-     * @param ecole
-     * @return
+     * @param ecole {@link Ecole} dans laquelle mettre les informations
+     * @return si l'operation a été réussie
      */
-    private boolean WriteStudents(School ecole) {
+    private boolean WriteStudents(Ecole ecole) {
 
         boolean fileExists = false;
         if (fileEleve.exists()) {
@@ -215,7 +214,7 @@ public class FileHandler {
             writer = new FileWriter(fileEleve);
             String columnsName = "Nom,Prenom,Birthdate,ID,Promotion,Evnote,EvCorrNom,EvCorrPrenom,CodeMatiere,NomMatiere";
             writer.write(columnsName);
-            
+
             // Write in the file each professor with a CSV functioning
             for (String promo_name : ecole.getPromo().keySet()) {
                 for (Eleve e : ecole.getPromo(promo_name).getEleves()) {

@@ -21,9 +21,8 @@ public class Bulletin {
      * @param eleve Eleve auquel appartient le bulletin
      * @param ecole Ecole auquelle appartient l'élève
      */
-    public static void createBulletin(Eleve eleve, School ecole) {
+    public static void createBulletin(Eleve eleve, Ecole ecole) {
         StringBuilder ss = new StringBuilder();
-        DecimalFormat df = new DecimalFormat("#.##");
 
         ArrayList<Matiere> matieres = new ArrayList<>();
         for (Professeur prof : ecole.getProfesseur()) {
@@ -39,58 +38,63 @@ public class Bulletin {
         for (Matiere m : matieres) {
             try {
                 ss.append("| " + m);
-
                 int length = m.toString().length();
-                if (length < 19) {
-                    for (int i = 0; i < 19 - length; i++) {
-                        ss.append(" ");
-                    }
+                for (int i = 0; i < 19 - length; i++) {
+                    ss.append(" ");
                 }
 
-                ss.append(" |");
-
-                String evaluation = "";
+                String evaluation = " |";
                 for (Evaluation eval : eleve.getEvaluations(m)) {
                     evaluation += " " + eval.getNote();
                 }
-                if (evaluation.length() < 55 && evaluation.length() > 0) {
-                    for (int i = 0; i < 55 - evaluation.length(); i++) {
-                        evaluation += " ";
-                    }
+                int evalLength = evaluation.length();
+                for (int i = 0; i < 32 - evalLength; i++) {
+                    evaluation += " ";
                 }
+                
                 ss.append(evaluation);
-                ss.append(" |    " + eleve.getMoyenne(m) + "   |   ");
-                ss.append(df.format(promo.moyennePromotion(m)) + "   |    ");
-                ss.append(df.format(promo.moyenneMaxMinPromotion(m, false)) + "    |    ");
-                ss.append(df.format(promo.moyenneMaxMinPromotion(m, true)) + "   |");
-
-                ss.append("    " + eleve.getMediane(m) + "   |   ");
-                ss.append(df.format(promo.medianePromotion(m)) + "   |    ");
-                ss.append(df.format(promo.medianeMaxMinPromotion(m, false)) + "    |    ");
-                ss.append(df.format(promo.medianeMaxMinPromotion(m, true)) + "   |\n");
+                ss.append(" |    " + format_output(eleve.getMoyenne(m)) + "   |   ");
+                ss.append(format_output(promo.moyennePromotion(m)) + "    |   ");
+                ss.append(format_output(promo.moyenneMaxMinPromotion(m, false)) + "  |   ");
+                ss.append(format_output(promo.moyenneMaxMinPromotion(m, true)) + "  |    ");
+                ss.append(format_output(eleve.getMediane(m)) + "   |   ");
+                ss.append(format_output(promo.medianePromotion(m)) + "    |   ");
+                ss.append(format_output(promo.medianeMaxMinPromotion(m, false)) + "  |   ");
+                ss.append(format_output(promo.medianeMaxMinPromotion(m, true)) + "  |\n");
             } catch (IllegalStateException e) {
-                ss.append(" pas d'évaluation              |           |           |         |         |           |           |         |         |\n");
+                ss.append(" | pas d'évaluation              |           |           |         |         |           |           |         |         |\n");
             }
         }
 
         ss.append("|-----------------------------------------------------|-----------|-----------|---------|---------|-----------|-----------|---------|---------|\n");
 
         try {
-            ss.append("| Général:                                            |    " + eleve.getMoyenneGenerale());
-            ss.append("   |   " + df.format(promo.moyenneGeneralePromotion()));
-            ss.append("   |    " + df.format(promo.moyenneMaxMinPromotion(false)) + "    |    ");
-            ss.append(df.format(promo.moyenneMaxMinPromotion(true)) + "   |    ");
-            ss.append(eleve.getMedianeGenerale());
-            ss.append("   |   " + df.format(promo.medianeGeneralePromotion()));
-            ss.append("   |    " + df.format(promo.medianeMaxMinPromotion(false)) + "    |    ");
-            ss.append(df.format(promo.medianeMaxMinPromotion(true)) + "   |\n");
+            ss.append("| Général:                                            |    " + format_output(eleve.getMoyenneGenerale()) + "   |   ");
+            ss.append(format_output(promo.moyenneGeneralePromotion()) + "    |   ");
+            ss.append(format_output(promo.moyenneMaxMinPromotion(false)) + "  |   ");
+            ss.append(format_output(promo.moyenneMaxMinPromotion(true)) + "  |    ");
+            ss.append(format_output(eleve.getMedianeGenerale()) + "   |   ");
+            ss.append(format_output(promo.medianeGeneralePromotion()) + "    |   ");
+            ss.append(format_output(promo.medianeMaxMinPromotion(false)) + "  |   ");
+            ss.append(format_output(promo.medianeMaxMinPromotion(true)) + "  |\n");
         } catch (IllegalStateException e) {
             ss.append("|  Général:                                         |----NAN----|-----------|---------|---------|----NAN----|-----------|---------|---------|\n");
         }
         ss.append("-----------------------------------------------------------------------------------------------------------------------------------------------\n");
 
         System.out.println(ss.toString());
-        Stats_Bulletin.main(eleve,ecole);
+        Stats_Bulletin.main(eleve, ecole);
+    }
+
+    private static String format_output(double note) {
+        DecimalFormat df = new DecimalFormat("#.#");
+        String formattedString = df.format(note);
+        int length = formattedString.length();
+
+        for (int i = 0; i < 4 - length; i++) {
+            formattedString += " ";
+        }
+        return formattedString;
     }
 
 }

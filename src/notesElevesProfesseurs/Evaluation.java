@@ -35,6 +35,8 @@ public class Evaluation implements Comparable<Evaluation> {
      *
      * @param auteur {@link Eleve} à l'origine de l'évaluation
      * @param correcteur {@link Professeur} correcteur
+     * @param matiere {@link Matiere} de l'évaluation
+     * @param note valeur de la note de l'évaluation
      */
     public Evaluation(Eleve auteur, Professeur correcteur, Matiere matiere, double note) {
         this.note = note;
@@ -54,8 +56,8 @@ public class Evaluation implements Comparable<Evaluation> {
     }
 
     /**
-     * Retourne la note de l'évaluation
-     * @param note
+     * Set la note de l'évaluation
+     * @param note note de l'évaluation
      */
     public void setNote(double note) {
         this.note = note;

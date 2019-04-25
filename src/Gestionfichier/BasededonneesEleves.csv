@@ -1,9 +1,4 @@
 Nom,Prenom,Birthdate,ID,Promotion,Evnote,EvCorrNom,EvCorrPrenom,CodeMatiere,NomMatiere
-bla,bernard,09/12/1970,20190019,2013,16.0,bun,cece,234CE,francais
-famille,prenom,09/12/1970,20190023,2013,18.0,bun,cece,234CE,francais
-coucou,pasdidee,09/12/1970,20190033,2013,7.0,bun,cece,234CE,francais
-Petit,Jacqueline,11/04/2019,20190037,2022
-Martin,Roxanne,11/04/2019,20190038,2022
-Leroux,Thomas,11/04/2019,20190039,2022
-bee,cee,07/08/1997,20190008,2021,12.0,cho,lilia,216ST,maths
-Doe,John,05/04/2019,20190002,Promo Scions
+Petit,Jacqueline,11/04/2000,20190037,2022,16.0,bun,cece,234CE,francais,14.0,bun,cece,234CE,francais,9.0,cho,lilia,216ST,maths,19,tran,georges,250CT,databases
+Martin,Roxanne,12/04/2000,20190038,2022,18.0,bun,cece,234CE,francais,11.0,cho,lilia,216ST,maths,17.5,tran,georges,250CT,databases
+Leroux,Thomas,14/04/2000,20190039,2022,7.0,bun,cece,234CE,francais,15.0,cho,lilia,216ST,maths,4,tran,georges,250CT,databases, 5,tran,georges,250CT,databases
