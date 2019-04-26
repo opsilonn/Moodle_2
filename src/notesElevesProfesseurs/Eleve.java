@@ -252,6 +252,24 @@ public class Eleve extends Personne
     }
 
     /**
+     * Retourne une liste de toutes les {@link Matiere} suivies par l'élève {@link Eleve}
+     *
+     * @return  liste de toutes les {@link Matiere} suivies par l'élève {@link Eleve}
+     */
+    public List<Matiere> getMatiere()
+    {
+        List<Matiere> matieres = new ArrayList<>();
+
+        for (Evaluation eval : evaluations)
+        {
+            if( !matieres.contains( eval.getMatiere() ) )
+                matieres.add(eval.getMatiere());
+        }
+
+        return matieres;
+    }
+
+    /**
      * Créé une représentation textuelle des notes de {@link Eleve}
      *
      * @return représentation textuelle de l'élève selon Personne

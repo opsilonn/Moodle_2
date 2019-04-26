@@ -68,8 +68,8 @@ public class Professeur extends Personne {
     /**
      * Retourne l'Etudiant recherché
      *
-     * @param promo promotion de l'élève rechercher
-     * @param idEleve ID de l'élève rechercher
+     * @param promo promotion de l'élève recherché
+     * @param idEleve ID de l'élève recherché
      * @return l'étudiant
      */
     public Eleve rechercher(Promotion promo, int idEleve) {
@@ -79,13 +79,13 @@ public class Professeur extends Personne {
     /**
      * Mets une note à un étudiant
      *
-     * @param promo promotion de l'élève rechercher
-     * @param idEleve ID de l'élève rechercher
+     * @param promo promotion de l'élève recherché
+     * @param idEleve ID de l'élève recherché
      * @param note valeur de la note à ajouter
      * @param index index de la note à modifier
      * @throws IllegalStateException
      */
-    public void setNote(Promotion promo, int idEleve, int note, int index) throws IllegalStateException {
+    public void setNote(Promotion promo, int idEleve, double note, int index) throws IllegalStateException {
         Eleve eleve = this.rechercher(promo, idEleve);
         if (eleve == null) {
             throw new IllegalStateException();

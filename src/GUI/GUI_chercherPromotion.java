@@ -31,6 +31,7 @@ public class GUI_chercherPromotion extends CustomJFrame
     private JLabel labelErreur;
 
     private JTable promotionTable;
+    private JScrollPane promotion;
 
 
     public GUI_chercherPromotion(School ecole)
@@ -39,7 +40,7 @@ public class GUI_chercherPromotion extends CustomJFrame
         this.ecole = ecole;
 
 
-        labelErreur.setVisible(false);
+        setAffichage(false, false);
         buttonValider.addActionListener( e -> chercherPromotion() );
 
 
@@ -69,12 +70,12 @@ public class GUI_chercherPromotion extends CustomJFrame
 
         if(ecole.getPromo(promoInput) == null)
         {
-            labelErreur.setVisible(true);
+            setAffichage(true, false);
             data = new Object [0][columns.length];
         }
         else
         {
-            labelErreur.setVisible(false);
+            setAffichage(false, true);
             data = new Object [ecole.getPromo(promoInput).getEleves().size()][columns.length];
 
             int index = 0;
@@ -87,8 +88,21 @@ public class GUI_chercherPromotion extends CustomJFrame
             }
         }
 
-        //create table model with data
         DefaultTableModel model = new DefaultTableModel(data, columns);
         promotionTable.setModel(model);
+    }
+
+
+    /**
+     * Rend visible ou non certains éléments de l'interface
+     *
+     * @param bLabelErreur determine si l'on affiche ou non le JLabel Erreur
+     * @param bPromotion determine si l'on affiche ou non la JTable et le JScrollPane affichant la {@link Promotion}
+     */
+    public void setAffichage(boolean bLabelErreur, boolean bPromotion)
+    {
+        labelErreur.setVisible(bLabelErreur);
+        promotion.setVisible(bPromotion);
+        promotionTable.setVisible(bPromotion);
     }
 }

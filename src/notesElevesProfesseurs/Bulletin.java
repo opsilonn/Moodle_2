@@ -11,14 +11,15 @@ import java.util.ArrayList;
  *
  * @author Célia
  */
-public class Bulletin {
-
+public class Bulletin
+{
     /**
      * Creation d'un bulletin de notes pour un {@link Eleve}
      * @param eleve Eleve auquel appartient le bulletin
      * @param ecole Ecole auquelle appartient l'élève
      */
-    public static void createBulletin(Eleve eleve, School ecole) {
+    public static void createBulletin(Eleve eleve, School ecole)
+    {
         ArrayList<Matiere> matieres = new ArrayList<>();
         for (Professeur prof : ecole.getProfesseur())
         {

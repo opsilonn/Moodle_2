@@ -2,9 +2,12 @@ package GUI;
 
 
 import GUIcomponents.CustomJFrame;
+import Gestionfichier.FileHandler;
 import notesElevesProfesseurs.Professeur;
 import notesElevesProfesseurs.School;
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
 /**
@@ -26,6 +29,7 @@ public class GUI_Professeur extends CustomJFrame
     private JLabel labelNom;
     private JLabel labelID;
     private JLabel labelMatiere;
+    private JButton buttonModifier;
 
 
     public GUI_Professeur(Professeur prof, School ecole)
@@ -40,7 +44,17 @@ public class GUI_Professeur extends CustomJFrame
 
 
         buttonChercherEleve.addActionListener(e -> { GUI_chercherEleve promo = new GUI_chercherEleve(ecole, prof.getMatiere()); });
+        buttonModifier.addActionListener(e -> { GUI_modifierNote promo = new GUI_modifierNote(prof, ecole); });
 
+
+        addWindowListener(new WindowAdapter()
+        {
+            public void windowClosing(WindowEvent e)
+            {
+                FileHandler scanner = new FileHandler();
+                scanner.WriteFiles(ecole);
+            }
+        });
 
         add(panel);
         pack();

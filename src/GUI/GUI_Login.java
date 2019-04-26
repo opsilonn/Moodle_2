@@ -2,10 +2,8 @@ package GUI;
 
 
 import GUIcomponents.*;
-import notesElevesProfesseurs.Eleve;
-import notesElevesProfesseurs.Professeur;
-import notesElevesProfesseurs.Promotion;
-import notesElevesProfesseurs.School;
+import notesElevesProfesseurs.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Map;

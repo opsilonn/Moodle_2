@@ -4,6 +4,7 @@ package GUI;
 import GUIcomponents.CustomJFrame;
 import notesElevesProfesseurs.Eleve;
 import notesElevesProfesseurs.Evaluation;
+import notesElevesProfesseurs.Matiere;
 import notesElevesProfesseurs.School;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -34,11 +35,14 @@ public class GUI_Eleve extends CustomJFrame
     private JLabel labelMoyenne;
 
     private JButton buttonCorrecteur;
+    private JButton buttonPromotion;
+
+    private JLabel labelErreur;
 
     private JScrollPane bulletin;
     private JTable bulletinValeurs;
-    private JLabel labelNote;
-    private JButton buttonPromotion;
+    private JScrollPane bulletinPromo;
+    private JTable bulletinPromoValeurs;
 
 
     public GUI_Eleve(Eleve eleve, School ecole)
@@ -62,7 +66,7 @@ public class GUI_Eleve extends CustomJFrame
 
 
         // On donne aux JButtons leurs listeners
-        buttonCorrecteur.addActionListener(e -> System.out.println("YO !!"));
+        buttonCorrecteur.addActionListener(e -> { GUI_correcteurs correcteur = new GUI_correcteurs(eleve, ecole); });
         buttonPromotion.addActionListener(e -> { GUI_chercherPromotion promo = new GUI_chercherPromotion(ecole); });
 
 
@@ -72,12 +76,14 @@ public class GUI_Eleve extends CustomJFrame
         {
             bulletin.setVisible(false);
             bulletinValeurs.setVisible(false);
+            bulletinPromo.setVisible(false);
+            bulletinPromoValeurs.setVisible(false);
         }
         else
         {
-            labelNote.setVisible(false);
+            labelErreur.setVisible(false);
 
-            //headers for the table
+            // table INFORMATION
             String[] columns = new String[] {"Matière", "ID - Matière", "Note", "ID-Note", "Correcteur"};
             Object [][] data = new Object [evaluations.size()][columns.length];
 
@@ -92,10 +98,30 @@ public class GUI_Eleve extends CustomJFrame
                 index++;
             }
 
-
-            //create table model with data
             DefaultTableModel model = new DefaultTableModel(data, columns);
             bulletinValeurs.setModel(model);
+
+
+            System.out.println( eleve.getMatiere() );
+
+            // table COMPARAISON
+            columns = new String[] {"Matière", "ID - Matière", "Votre moyenne", "Minimum", "Moyenne Promotion", "Maximum"};
+            data = new Object [eleve.getMatiere().size()][columns.length];
+
+            index = 0;
+            for (Matiere matiere : eleve.getMatiere())
+            {
+                data[index][0] = matiere.getNom();
+                data[index][1] = matiere.getCode();
+                data[index][2] = eleve.getMoyenne( matiere );
+                data[index][3] = ecole.getPromo( eleve.getPromotion() ).moyenneMaxMinPromotion(matiere,false );
+                data[index][4] = ecole.getPromo( eleve.getPromotion() ).moyennePromotion( matiere );
+                data[index][5] = ecole.getPromo( eleve.getPromotion() ).moyenneMaxMinPromotion(matiere,true );
+                index++;
+            }
+
+            model = new DefaultTableModel(data, columns);
+            bulletinPromoValeurs.setModel(model);
         }
 
         add(panel);
