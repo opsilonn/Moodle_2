@@ -1,6 +1,5 @@
 package notesElevesProfesseurs;
 
-
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ArrayList;
@@ -9,14 +8,13 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-
 /**
  * Représente un élève
  *
  * Cette classe hérite de {@link Personne}
  */
-public class Eleve extends Personne
-{
+public class Eleve extends Personne {
+
     private final List<Evaluation> evaluations;
     private String promotion;
 
@@ -29,8 +27,7 @@ public class Eleve extends Personne
      * {@link Personne} vide
      */
     @Deprecated
-    public Eleve()
-    {
+    public Eleve() {
         super();
         evaluations = new ArrayList<>();
     }
@@ -49,11 +46,27 @@ public class Eleve extends Personne
         evaluations = new ArrayList<>();
     }
 
+    /**
+     * Créé un {@link Eleve} à partir des informations nécessaires pour la
+     * création d'une {@link Personne}
+     *
+     * @param nom Nom de l'{@link Eleve} à instancier ({@link Personne})
+     * @param prenom Prénom de l'{@link Eleve} à instancier ({@link Personne})
+     * @param dateNaissance Date de naissance de l'{@link Eleve} à instancier
+     * ({@link Personne})
+     * @param ID ID étudiant de l'{@link Eleve} à créer.
+     * @param password Mot de passe de l'{@link Eleve}
+     */
     public Eleve(String nom, String prenom, Date dateNaissance, int ID, String password) {
         super(nom, prenom, dateNaissance, ID, password);
         evaluations = new ArrayList<>();
     }
 
+    /**
+     * Retourne la promotion de l'instance
+     *
+     * @return la promotion de l'élève
+     */
     public String getPromotion() {
         return this.promotion;
     }
@@ -87,6 +100,7 @@ public class Eleve extends Personne
      * @return Valeur de la moyenne dans la {@link Matiere} spécifiée
      */
     public double getMoyenne(Matiere matiere) throws IllegalStateException {
+
         // Cas où il n'y a pas d'évaluations
         if (this.evaluations.isEmpty()) {
             throw new IllegalStateException();
@@ -96,13 +110,14 @@ public class Eleve extends Personne
         int nb_evaluation = 0;
 
         for (Evaluation e : this.evaluations) {
-            if (e.getCodeMatiere().equals(matiere.getCode())) {  // TODO: Utiliser plutôt  e.getMatiere().equals(matiere)
+            if (e.getMatiere().equals(matiere)) {
                 sum += e.getNote();
                 nb_evaluation++;
             }
         }
-        if(nb_evaluation == 0)
+        if (nb_evaluation == 0) {
             throw new IllegalStateException();
+        }
 
         return sum / nb_evaluation;
     }
@@ -127,10 +142,10 @@ public class Eleve extends Personne
         Collections.sort(evaluations);
 
         int middle = evaluations.size() / 2;  // Détermination de la position de l'évaluation médiane
-        if (middle % 2 == 1) {  // Si le nb de note est impair : retourne la note du milieu
+        if (evaluations.size() % 2 == 1) {  // Si le nb de note est impair : retourne la note du milieu
             return evaluations.get(middle).getNote();
         } else {  // Si le nb de note est pair : moyenne des deux notes du milieu
-            return (evaluations.get(middle - 1).getNote() + evaluations.get(middle).getNote()) / 2;
+            return (evaluations.get(middle).getNote() + evaluations.get(middle - 1).getNote()) / 2;
         }
 
     }
@@ -140,7 +155,7 @@ public class Eleve extends Personne
      *
      * @param matiere Matière dans laquelle on cherche la médiane
      * @return la médiane de la matière
-     * @throws IllegalStateException
+     * @throws IllegalStateException lorsqu'il n'y a pas d'évaluations
      */
     public double getMediane(Matiere matiere) throws IllegalStateException {
 
@@ -159,12 +174,13 @@ public class Eleve extends Personne
         }
 
         // Tri des notes de l'étudiant par ordre ascendant
-        Collections.sort(evaluations);
+        Collections.sort(evalMatiere);
 
         int middle = evalMatiere.size() / 2;  // Détermination de la position de l'évaluation médiane
-        if (middle % 2 == 1) {  // Si le nb de note est impair : retourne la note du milieu
+        if (evalMatiere.size() % 2 == 1) {  // Si le nb de note est impair : retourne la note du milieu
             return evalMatiere.get(middle).getNote();
         } else {  // Si le nb de note est pair : moyenne des deux notes du milieu
+            System.out.println("1sr" + evalMatiere.get(middle - 1).getNote() + "2nd" + evalMatiere.get(middle).getNote() + "tot" + (evalMatiere.get(middle - 1).getNote() + evalMatiere.get(middle).getNote()) / 2);
             return (evalMatiere.get(middle - 1).getNote() + evalMatiere.get(middle).getNote()) / 2;
         }
     }
@@ -201,12 +217,13 @@ public class Eleve extends Personne
      *
      * @return la liste d'évaluations
      */
-    public List<Evaluation> getEvaluation()
-    {
-        try { return  evaluations; }
-        catch (Exception e) { return null; }
+    public List<Evaluation> getEvaluation() {
+        try {
+            return evaluations;
+        } catch (Exception e) {
+            return null;
+        }
     }
-
 
     /**
      * Retourne l'évaluation à l'index donné
@@ -222,14 +239,17 @@ public class Eleve extends Personne
         }
     }
 
-
     /**
      * Ajout d'une évaluation à l'étudiant
      *
      * @param evaluation Evaluation de l'étudiant à ajouter
      */
     public void addEvaluation(Evaluation evaluation) {
-        this.evaluations.add(evaluation);
+        if (this.evaluations.size() < NB_EVALUATIONS) {
+            this.evaluations.add(evaluation);
+        } else {
+            System.out.println("This student already has " + NB_EVALUATIONS + " evaluations.");
+        }
     }
 
     /**
@@ -241,29 +261,42 @@ public class Eleve extends Personne
         this.promotion = promo;
     }
 
-    public List<Evaluation> getEvaluations(Matiere matiere) {
+    /**
+     * Retourne les {@link Evaluation}s d'une {@link Matiere} particulière
+     *
+     * @param matiere {@link Matiere} recherchée
+     * @return l'ensemble des {@link Evaluation} d'une matière
+     * @throws IllegalStateException Quand il n'y a pas d'évaluations dans la
+     * {@link Matiere} demandée
+     */
+    public List<Evaluation> getEvaluations(Matiere matiere) throws IllegalStateException {
         ArrayList<Evaluation> eval_matiere = new ArrayList<>();
         for (Evaluation eval : this.evaluations) {
             if (eval.getCodeMatiere().equals(matiere.getCode())) {
                 eval_matiere.add(eval);
             }
         }
+        if (eval_matiere.isEmpty()) {
+            throw new IllegalStateException();
+        }
+
         return eval_matiere;
     }
 
     /**
-     * Retourne une liste de toutes les {@link Matiere} suivies par l'élève {@link Eleve}
+     * Retourne une liste de toutes les {@link Matiere} suivies par l'élève
+     * {@link Eleve}
      *
-     * @return  liste de toutes les {@link Matiere} suivies par l'élève {@link Eleve}
+     * @return liste de toutes les {@link Matiere} suivies par l'élève
+     * {@link Eleve}
      */
-    public List<Matiere> getMatiere()
-    {
+    public List<Matiere> getMatiere() {
         List<Matiere> matieres = new ArrayList<>();
 
-        for (Evaluation eval : evaluations)
-        {
-            if( !matieres.contains( eval.getMatiere() ) )
+        for (Evaluation eval : evaluations) {
+            if (!matieres.contains(eval.getMatiere())) {
                 matieres.add(eval.getMatiere());
+            }
         }
 
         return matieres;

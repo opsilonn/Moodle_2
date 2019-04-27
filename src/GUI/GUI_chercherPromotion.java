@@ -4,7 +4,8 @@ package GUI;
 import GUIcomponents.CustomJFrame;
 import GUIcomponents.CustomJTextField;
 import notesElevesProfesseurs.Eleve;
-import notesElevesProfesseurs.School;
+import notesElevesProfesseurs.Ecole;
+import notesElevesProfesseurs.Promotion;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,8 +19,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class GUI_chercherPromotion extends CustomJFrame
 {
-    private static final int dimX = 600;
-    private static final int dimY = 400;
+    private static final int DIMX = 600;
+    private static final int DIMY = 400;
 
 
     private JPanel panel;
@@ -34,9 +35,9 @@ public class GUI_chercherPromotion extends CustomJFrame
     private JScrollPane promotion;
 
 
-    public GUI_chercherPromotion(School ecole)
+    public GUI_chercherPromotion(Ecole ecole)
     {
-        super("Chercher Promotion", ecole, false, dimX, dimY);
+        super("Chercher Promotion", ecole, false, DIMX, DIMY);
         this.ecole = ecole;
 
 

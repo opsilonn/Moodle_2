@@ -35,10 +35,18 @@ public abstract class Personne
         this.password = PASSWORD_PAR_DEFAUT;
     }
     
+    /**
+     * Set l'index_ID static de la classe 
+     * @param index - la valeur à donnée à l'index_ID
+     */
     public static void setIndex(int index){
         index_ID = index;
     }
     
+    /**
+     * Retourne le ID_static de la classe 
+     * @return the index_ID of a person
+     */
     public static int getIndex(){
         return index_ID;
     }
@@ -66,6 +74,7 @@ public abstract class Personne
      * @param prenom Prénom de la {@link Personne} à créer
      * @param dateNaissance Date de naissance de la {@link Personne} à créer
      * @param ID Identifiant unique de la {@link Personne} à créer
+     * @param password Mot de passe lié à la {@link Personne}
      */
     public Personne(String nom, String prenom, Date dateNaissance, int ID, String password) {
         this.nom = nom;

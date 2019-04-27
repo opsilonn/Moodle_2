@@ -5,7 +5,7 @@ import GUIcomponents.CustomJFrame;
 import notesElevesProfesseurs.Eleve;
 import notesElevesProfesseurs.Evaluation;
 import notesElevesProfesseurs.Professeur;
-import notesElevesProfesseurs.School;
+import notesElevesProfesseurs.Ecole;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -14,7 +14,7 @@ import java.util.Set;
 
 public class GUI_correcteurs extends CustomJFrame
 {
-    private static final int dimX = 500;
+    private static final int DIMX = 500;
     private static final int dimY = 500;
 
     private JPanel panel;
@@ -24,9 +24,9 @@ public class GUI_correcteurs extends CustomJFrame
     private JScrollPane correcteursScrollPane;
     private JTable correcteursTable;
 
-    public GUI_correcteurs(Eleve eleve, School ecole)
+    public GUI_correcteurs(Eleve eleve, Ecole ecole)
     {
-        super("Liste Correcteurs", ecole, true, dimX, dimY);
+        super("Liste Correcteurs", ecole, true, DIMX, dimY);
 
         Set<Professeur> correcteur = eleve.getCorrecteurs();
 

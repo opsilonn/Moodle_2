@@ -1,7 +1,7 @@
 package GUIcomponents;
 
 
-import notesElevesProfesseurs.School;
+import notesElevesProfesseurs.Ecole;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -18,9 +18,9 @@ import java.io.IOException;
  */
 public abstract class CustomJFrame extends JFrame
 {
-    protected School ecole;
-    protected final static String pathLogo = "./src/pictures/logo.png";
-    protected final static String pathLogoFull = "./src/pictures/logoFull.png";
+    protected Ecole ecole;
+    protected final static String PATHLOGO = "./src/pictures/logo.png";
+    protected final static String PATHLOGOFULL = "./src/pictures/logoFull.png";
 
     /**
      * default @CustomJFrame's constructor.
@@ -37,14 +37,14 @@ public abstract class CustomJFrame extends JFrame
      * Regular @CustomJFrame's constructor that includes the JFrame's size.
      * <p>
      * @param title Type of the JFrame we want to create.
-     * @param ecole Reference of the School database
+     * @param ecole Reference of the Ecole database
      * @param closeOnExit if true, the program is closed when we exit the JFrame
      * @param dimX width of the JFrame
      * @param dimY height of the JFrame
      * */
-    public CustomJFrame(String title, School ecole, boolean closeOnExit, int dimX, int dimY)
+    public CustomJFrame(String title, Ecole ecole, boolean closeOnExit, int dimX, int dimY)
     {
-        try { setIconImage( ImageIO.read( new File(pathLogo)) ); }
+        try { setIconImage(ImageIO.read(new File(PATHLOGO)) ); }
         catch (IOException e) { System.out.println("Icon not found"); }
 
         setTitle(title);

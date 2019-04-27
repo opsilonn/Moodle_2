@@ -50,6 +50,7 @@ public class Professeur extends Personne {
      * @param dateNaissance Date de naissance du Professeur à instancier
      * ({@link Personne})
      * @param ID ID du professeur
+     * @param password Mot de passe du professeur à instancier
      * @param matiere Matiere enseignée par le Professeur à instancier
      */
     public Professeur(String nom, String prenom, Date dateNaissance, int ID, String password, Matiere matiere) {
@@ -83,7 +84,7 @@ public class Professeur extends Personne {
      * @param idEleve ID de l'élève recherché
      * @param note valeur de la note à ajouter
      * @param index index de la note à modifier
-     * @throws IllegalStateException
+     * @throws IllegalStateException lorsque l'{@link Eleve} n'est pas trouvé
      */
     public void setNote(Promotion promo, int idEleve, double note, int index) throws IllegalStateException {
         Eleve eleve = this.rechercher(promo, idEleve);
@@ -140,6 +141,10 @@ public class Professeur extends Personne {
         return stringCSV;
     }
     
+    /**
+     * Retourne une représentation textuelle de l'instant
+     * @return la représentation du {@link Professeur}
+     */
     public String profToString(){
         return super.toString() + "Matiere : " + this.getMatiere();
     }

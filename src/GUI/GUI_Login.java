@@ -35,13 +35,18 @@ public class GUI_Login extends CustomJFrame
     public JButton buttonLogin;
     public JLabel labelIncorrect;
 
-
-    public GUI_Login(School ecole)
+    /**
+     * Création de l'interface de login
+     * @param ecole - Ecole dans laquelle on se trouve
+     */
+    public GUI_Login(Ecole ecole)
     {
         super("Login", ecole, true, dimX, dimY);
+        /*?*/labelLogo = new JLabel();
+        /*?*/labelIncorrect = new JLabel();
 
         // Adds the logo image
-        ImageIcon imageIcon = new ImageIcon(pathLogoFull); // load the image to a imageIcon
+        ImageIcon imageIcon = new ImageIcon(PATHLOGOFULL); // load the image to a imageIcon
         Image image = imageIcon.getImage(); // transform it
         Image newimg = image.getScaledInstance((int) (dimX * 0.9), dimY/3,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
         imageIcon = new ImageIcon(newimg);  // transform it back

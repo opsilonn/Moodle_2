@@ -1,10 +1,10 @@
 package notesElevesProfesseurs;
 
 /**
- * Classe représentant une évaluation
- * Chaque évaluation possède une note, un auteur, un correcteur, une matière et une ID.
- * L'ID n'est pas unique mais correspond à une évaluation globale. 
- * 
+ * Classe représentant une évaluation Chaque évaluation possède une note, un
+ * auteur, un correcteur, une matière et une ID. L'ID n'est pas unique mais
+ * correspond à une évaluation globale.
+ *
  * @author Célia
  */
 public class Evaluation implements Comparable<Evaluation> {
@@ -35,6 +35,8 @@ public class Evaluation implements Comparable<Evaluation> {
      *
      * @param auteur {@link Eleve} à l'origine de l'évaluation
      * @param correcteur {@link Professeur} correcteur
+     * @param matiere {@link Matiere} de l'évaluation
+     * @param note valeur de la note de l'évaluation
      */
     public Evaluation(Eleve auteur, Professeur correcteur, Matiere matiere, double note) {
         this.note = note;
@@ -53,7 +55,6 @@ public class Evaluation implements Comparable<Evaluation> {
         return this.note;
     }
 
-
     /**
      * Retourne la {@link Matiere} de l'évaluation
      *
@@ -65,6 +66,7 @@ public class Evaluation implements Comparable<Evaluation> {
 
     /**
      * Assigne la valeur de la note de l'évaluation
+     *
      * @param note valeur à assigner à la note de l'évaluation
      */
     public void setNote(double note) {
@@ -89,14 +91,14 @@ public class Evaluation implements Comparable<Evaluation> {
         return this.matiere.getCode();
     }
 
-
     /**
      * Retourne le {@code code} de l'{@link Evaluation}
      *
      * @return Code de l'instance d'{@link Evaluation}
      */
-    public int getID() { return id; }
-
+    public int getID() {
+        return id;
+    }
 
     /**
      * Créé une représentation textuelle de l'instance
@@ -133,9 +135,9 @@ public class Evaluation implements Comparable<Evaluation> {
             return false;
         }
         Evaluation e = (Evaluation) o;
-        return  e.auteur.equals(auteur) 
-                && e.correcteur.equals(correcteur) 
-                && e.note == note 
+        return e.auteur.equals(auteur)
+                && e.correcteur.equals(correcteur)
+                && e.note == note
                 && e.matiere.equals(matiere)
                 && e.id == id;
     }
@@ -144,13 +146,14 @@ public class Evaluation implements Comparable<Evaluation> {
     public int hashCode() {
         return auteur.hashCode() + correcteur.hashCode() + matiere.hashCode();
     }
-    
+
     /**
      * Fonction de création d'une représentation CSV d'une évaluation
+     *
      * @return l'instance textuelle formaté en CSV
      */
-    public String EvalToCSV(){
+    public String EvalToCSV() {
         return this.note + ","
-             + this.correcteur.ID;
+                + this.correcteur.ID;
     }
 }

@@ -66,14 +66,14 @@ public class test_Version1 {
         System.out.println("moy promo physique: " + promo.moyennePromotion(matiere));
 
         System.out.println("\nAffichage de la Promotion 2021.\n" + promo);
-        promo.triMoyenneCroissant();
+        promo.triMoyenne(true);
         System.out.println("\nTri par moyenne croissante de la promotion: \n" + promo);
-        promo.triMoyenneDecroissant();
+        promo.triMoyenne(false);
         System.out.println("\nTri par moyenne décroissante de la promotion: \n" + promo);
 
-        promo.triMedianeCroissant();
+        promo.triMediane(true);
         System.out.println("\nTri par médiane croissante de la promotion: \n" + promo);
-        promo.triMedianeDecroissant();
+        promo.triMediane(false);
         System.out.println("\nTri par médiane décroissante de la promotion: \n" + promo);
     }
 }

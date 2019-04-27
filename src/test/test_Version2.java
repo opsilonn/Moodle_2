@@ -11,7 +11,7 @@ import notesElevesProfesseurs.Eleve;
 import notesElevesProfesseurs.Matiere;
 import notesElevesProfesseurs.Professeur;
 import notesElevesProfesseurs.Promotion;
-import notesElevesProfesseurs.School;
+import notesElevesProfesseurs.Ecole;
 
 /**
  *
@@ -23,7 +23,7 @@ public class test_Version2 {
      * Fonction de test de la version 2
      */
     public static void main() {
-        School ecole = new School();
+        Ecole ecole = new Ecole();
         FileHandler scanner = new FileHandler();
         scanner.ReadFiles(ecole);
 
@@ -44,13 +44,13 @@ public class test_Version2 {
         p.addEleve(E1);
         p.addEleve(E2);
         ecole.addPromo(p);
-        System.out.println("\nEcriture des données sur le fichier csv.\n");
+        System.out.println("Ecriture des données sur le fichier csv :");
         scanner.WriteFiles(ecole);
 
-        
-        School ecole2 = new School();
-        scanner.ReadFiles(ecole2);
-        System.out.println("Affichage des nouvelles données lues sur le fichier csv :\n" + ecole2.toString());
+        System.out.println("Création d'une nouvelle Ecole.");
+        Ecole newEcole = new Ecole();
+        scanner.ReadFiles(newEcole);
+        System.out.println("Affichage des nouvelles données lues sur le fichier csv :\n" + newEcole.toString());
 
     }
 

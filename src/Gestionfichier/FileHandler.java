@@ -26,12 +26,15 @@ import notesElevesProfesseurs.*;
  */
 public class FileHandler
 {
-    private File fileEleve;
-    private File fileProf;
+    private final File fileEleve;
+    private final File fileProf;
 
     private static final String FILENAME_ELEVE = "./src/Gestionfichier/BasededonneesEleves.csv";
     private static final String FILENAME_PROF  = "./src/Gestionfichier/BasededonneesProfs.csv";
 
+    /**
+     * Constructeur d'un {@link FileHandler}
+     */
     public FileHandler()
     {
         fileEleve = new File(FILENAME_ELEVE);
@@ -44,7 +47,7 @@ public class FileHandler
      * @param ecole représente l'ecole à remplir grâce aux fichiers
      * @return si l'opération a été réussie
      */
-    public boolean ReadFiles(School ecole)
+    public boolean ReadFiles(Ecole ecole)
     {
         return ReadProfs(ecole) && ReadEleves(ecole);
     }
@@ -75,7 +78,7 @@ public class FileHandler
      * @param ecole représente l'école à laquelle appartient les étudiants
      * @return si l'opération a été réussie
      */
-    private boolean ReadEleves(School ecole)
+    private boolean ReadEleves(Ecole ecole)
     {
         BufferedReader reader = bufferReader(fileEleve);
         if(reader == null) return false;
@@ -138,7 +141,7 @@ public class FileHandler
      * @param ecole représente l'école à laquelle appartient les profs
      * @return si l'opération a été réussie
      */
-    private boolean ReadProfs(School ecole)
+    private boolean ReadProfs(Ecole ecole)
     {
         BufferedReader reader = bufferReader(fileProf);
         if(reader == null) return false;
@@ -183,7 +186,7 @@ public class FileHandler
      * @param ecole structure à écrire dans les fichiers .csv
      * @return si l'opération est réussie ou non
      */
-    public boolean WriteFiles(School ecole)
+    public boolean WriteFiles(Ecole ecole)
     {
         return WriteTeachers(ecole) && WriteStudents(ecole);
     }
@@ -195,7 +198,7 @@ public class FileHandler
      * @param ecole structure à écrire dans les fichiers .csv
      * @return si l'opération est réussie ou non
      */
-    private boolean WriteTeachers(School ecole)
+    private boolean WriteTeachers(Ecole ecole)
     {
         try
         {
@@ -224,12 +227,12 @@ public class FileHandler
      * @param ecole structure à écrire dans les fichiers .csv
      * @return si l'opération est réussie ou non
      */
-    private boolean WriteStudents(School ecole)
+    private boolean WriteStudents(Ecole ecole)
     {
         try
         {
             FileWriter writer = new FileWriter(fileEleve);
-            String columnsName = "Nom,Prenom,Birthdate,ID,Promotion,Evnote,EvCorrNom,EvCorrPrenom,CodeMatiere,NomMatiere";
+            String columnsName = "Nom,Prenom,Birthdate,ID,MDP,Promotion,Evnote,EvCorrID";
             writer.write(columnsName);
             
             // Write in the file each professor with a CSV functioning

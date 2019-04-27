@@ -70,7 +70,7 @@ public class Promotion {
     /**
      * Retourne la liste d'étudiant présent dans la promotion
      *
-     * @return
+     * @return la liste des étudiants
      */
     public List<Eleve> getEleves() {
         return eleves;
@@ -91,7 +91,7 @@ public class Promotion {
      *
      * @return la moyenne
      */
-    public double moyenneGeneralePromotion() {
+    public double moyenneGeneralePromotion() throws IllegalStateException {
         double sum = 0;
         int size = eleves.size();
         for (Eleve e : this.eleves) {
@@ -101,6 +101,10 @@ public class Promotion {
                 size--;
             }
         }
+        if (size == 0) {
+            throw new IllegalStateException();
+        }
+
         return sum / size;
     }
 
@@ -108,9 +112,9 @@ public class Promotion {
      * Calcul de la moyenne pour la matière de la promotion
      *
      * @param matiere Matière pour le calcul de la moyenne
-     * @return
+     * @return la moyenne de la promotion
      */
-    public double moyennePromotion(Matiere matiere) {
+    public double moyennePromotion(Matiere matiere) throws IllegalStateException {
         double sum = 0;
         int size = eleves.size();
         for (Eleve e : this.eleves) {
@@ -120,52 +124,89 @@ public class Promotion {
                 size--;
             }
         }
+
+        if (size == 0) {
+            throw new IllegalStateException();
+        }
+
         return sum / size;
     }
 
     /**
-     * Calcul de la médiane de l'ensemble de la promotion
+     * Calcul de la médiane de l'ensemble de la {@link Promotion}
      *
-     * @return médiane
+     * @return médiane générale de la promotion
      */
-    public double medianeGeneralePromotion() {
-        double sum = 0;
-        int size = eleves.size();
+    public double medianeGeneralePromotion() throws IllegalStateException {
+        ArrayList<Double> medianes = new ArrayList<>();
         for (Eleve e : this.eleves) {
             try {
-                sum += e.getMedianeGenerale();
+                medianes.add(e.getMedianeGenerale());
             } catch (IllegalStateException exception) {
-                size--;
             }
         }
-        return sum / size;
+
+        // Cas où il n'y a pas de médianes
+        if (medianes.isEmpty()) {
+            throw new IllegalStateException();
+        }
+        if (medianes.size() == 1) {
+            return medianes.get(0);
+        }
+
+        // Tri des notes de la promotion par ordre ascendant
+        Collections.sort(medianes);
+
+        int middle = medianes.size() / 2;  // Détermination de la position de l'évaluation médiane
+        if (middle % 2 == 1) {  // Si le nb de note est impair : retourne la note du milieu
+            return medianes.get(middle);
+        } else {  // Si le nb de note est pair : moyenne des deux notes du milieu
+            return (medianes.get(middle) + medianes.get(middle - 1)) / 2;
+        }
     }
 
     /**
-     * Calcul de la médiane de la promotion pour une certaine {@link Matière}
+     * Calcul de la médiane de la promotion pour une certaine {@link Matiere}
      *
      * @param matiere Matière pour le calcul de la médiane
      * @return médiane
      */
-    public double medianePromotion(Matiere matiere) {
-        double sum = 0;
-        int size = eleves.size();
+    public double medianePromotion(Matiere matiere) throws IllegalStateException {
+        ArrayList<Double> medianes = new ArrayList<>();
         for (Eleve e : this.eleves) {
             try {
-                sum += e.getMediane(matiere);
+                medianes.add(e.getMediane(matiere));
             } catch (IllegalStateException exception) {
-                size--;
             }
         }
-        return sum / size;
+
+        // Cas où il n'y a pas de médianes
+        if (medianes.isEmpty()) {
+            throw new IllegalStateException();
+        }
+        if (medianes.size() == 1) {
+            return medianes.get(0);
+        }
+
+        // Tri des notes de la promotion par ordre ascendant
+        Collections.sort(medianes);
+
+        int middle = medianes.size() / 2;  // Détermination de la position de l'évaluation médiane
+        if (middle % 2 == 1) {  // Si le nb de note est impair : retourne la note du milieu
+            return medianes.get(middle);
+        } else {  // Si le nb de note est pair : moyenne des deux notes du milieu
+            return (medianes.get(middle) + medianes.get(middle - 1)) / 2;
+        }
     }
 
     /**
+     * Calcul de la Médiane Générale minimale ou maximale de la
+     * {@link Promotion} sur la {@link Matiere} renseignée
      *
      * @param matiere matiere pour laquelle il faut trouver la médiane
-     * @param mode mode d'utilisation de la fonction: true -> trouve le max,
-     * false -> trouve le min.
-     * @return
+     * @param mode mode d'utilisation de la fonction: true = trouve le max,
+     * false = trouve le min.
+     * @return la médiane max ou min de la promotion sur la matière demandée
      */
     public double medianeMaxMinPromotion(Matiere matiere, boolean mode) {
         double medianeToReturn = -1;
@@ -188,6 +229,14 @@ public class Promotion {
         return medianeToReturn;
     }
 
+    /**
+     * Calcul de la Médiane Générale minimale ou maximale de la
+     * {@link Promotion} sur la {@link Matiere} renseignée
+     *
+     * @param mode mode d'utilisation de la fonction: true = trouve le max,
+     * false = trouve le min.
+     * @return la médiane max ou min de la promotion sur la matière demandée
+     */
     public double medianeMaxMinPromotion(boolean mode) {
         double medianeToReturn = -1;
         try {
@@ -209,6 +258,17 @@ public class Promotion {
         return medianeToReturn;
     }
 
+    /**
+     * Calcul de la Moyenne minimale ou maximale de la {@link Promotion} sur la
+     * {@link Matiere} renseignée
+     *
+     * @param matiere - {@link Matiere} dans laquelle nous cherchons la moyenne
+     * min ou max
+     * @param mode - mode d'utilisation de la fonction: true = trouve le max,
+     * false = trouve le min.
+     * @return la moyenne générale max ou min de la promotion dans la matière
+     * renseignée
+     */
     public double moyenneMaxMinPromotion(Matiere matiere, boolean mode) {
         double moyenneToReturn = -1;
         try {
@@ -230,6 +290,13 @@ public class Promotion {
         return moyenneToReturn;
     }
 
+    /**
+     * Calcul de la moyenne Générale minimale ou maximale de la promotion
+     *
+     * @param mode mode d'utilisation de la fonction: true = trouve le max,
+     * false = trouve le min.
+     * @return la moyenne générale max ou min de la promotion
+     */
     public double moyenneMaxMinPromotion(boolean mode) {
         double moyenneToReturn = -1;
         try {
@@ -263,32 +330,33 @@ public class Promotion {
 
     /**
      * Tri de la promotion par la moyenne en ordre croissant
+     *
+     * @param mode - si mode == true alors tri croissant si mode == false alors
+     * tri décroissant
      */
-    public void triMoyenneCroissant() {
-        ComparatorEleve c = new ComparatorEleve();
-        Collections.sort(eleves, new ComparatorEleve.ComparatorMoyenne());
+    public void triMoyenne(boolean mode) {
+        if (mode) {
+            Collections.sort(eleves, new ComparatorEleve.ComparatorMoyenne());
+        } else {
+            Collections.sort(eleves, new ComparatorEleve.ComparatorMoyenne().reversed());
+        }
+
     }
 
     /**
-     * Tri de la promotion par la moyenne en ordre décroissant
+     * Tri de la promotion par la médiane en ordre croissant ou décroissant en
+     * fonction du mode
+     *
+     * @param mode - si mode == true alors tri croissant si mode == false alors tri
+     * décroissant
      */
-    public void triMoyenneDecroissant() {
-        Collections.sort(eleves, new ComparatorEleve.ComparatorMoyenne().reversed());
-    }
+    public void triMediane(boolean mode) {
+        if (mode) {
+            Collections.sort(eleves, new ComparatorEleve.ComparatorMediane());
+        } else {
+            Collections.sort(eleves, new ComparatorEleve.ComparatorMediane().reversed());
+        }
 
-    /**
-     * Tri de la promotion par la médiane en ordre croissant
-     */
-    public void triMedianeCroissant() {
-        ComparatorEleve c = new ComparatorEleve();
-        Collections.sort(eleves, new ComparatorEleve.ComparatorMediane());
-    }
-
-    /**
-     * Tri de la promotion par la médiane en ordre décroissant
-     */
-    public void triMedianeDecroissant() {
-        Collections.sort(eleves, new ComparatorEleve.ComparatorMediane().reversed());
     }
 
     @Override

@@ -9,7 +9,7 @@ import Gestionfichier.FileHandler;
 import java.util.List;
 import notesElevesProfesseurs.Bulletin;
 import notesElevesProfesseurs.Eleve;
-import notesElevesProfesseurs.School;
+import notesElevesProfesseurs.Ecole;
 
 /**
  *
@@ -21,14 +21,14 @@ public class test_Version3 {
      * Fonction de test de la version 3
      */
     public static void main(){
-        School ecole = new School();
+        Ecole ecole = new Ecole();
         FileHandler scanner = new FileHandler();
         scanner.ReadFiles(ecole);
-        System.out.println(ecole.toString());
         
-        List<Eleve> eleves = ecole.getPromo("2013").getEleves();
-        System.out.println(eleves.get(0));
+        List<Eleve> eleves = ecole.getPromo("2022").getEleves();
         Bulletin.createBulletin(eleves.get(0), ecole);
+        Bulletin.createBulletin(eleves.get(1), ecole);
+        Bulletin.createBulletin(eleves.get(2), ecole);
     }
     
 }
