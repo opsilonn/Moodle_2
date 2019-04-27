@@ -24,8 +24,8 @@ import notesElevesProfesseurs.*;
  */
 public class FileHandler {
 
-    File fileEleve;
-    File fileProf;
+    private final File fileEleve;
+    private final File fileProf;
 
     private static final String FILENAME_ELEVE = "C:\\Users\\CéliaB\\Documents\\GitHub\\Moodle_2\\Moodle_2\\src\\Gestionfichier\\BasededonneesEleves.csv";
     private static final String FILENAME_PROF = "C:\\Users\\CéliaB\\Documents\\GitHub\\Moodle_2\\Moodle_2\\src\\Gestionfichier\\BasededonneesProfs.csv";

@@ -264,31 +264,25 @@ public class Promotion {
     /**
      * Tri de la promotion par la moyenne en ordre croissant
      */
-    public void triMoyenneCroissant() {
-        ComparatorEleve c = new ComparatorEleve();
-        Collections.sort(eleves, new ComparatorEleve.ComparatorMoyenne());
+    public void triMoyenne(boolean mode) {
+        if (mode) {
+            Collections.sort(eleves, new ComparatorEleve.ComparatorMoyenne());
+        } else {
+            Collections.sort(eleves, new ComparatorEleve.ComparatorMoyenne().reversed());
+        }
+
     }
 
     /**
-     * Tri de la promotion par la moyenne en ordre décroissant
+     * Tri de la promotion par la médiane en ordre croissant ou décroissant en fonction du mode
      */
-    public void triMoyenneDecroissant() {
-        Collections.sort(eleves, new ComparatorEleve.ComparatorMoyenne().reversed());
-    }
+    public void triMediane(boolean mode) {
+        if (mode) {
+            Collections.sort(eleves, new ComparatorEleve.ComparatorMediane());
+        } else {
+            Collections.sort(eleves, new ComparatorEleve.ComparatorMediane().reversed());
+        }
 
-    /**
-     * Tri de la promotion par la médiane en ordre croissant
-     */
-    public void triMedianeCroissant() {
-        ComparatorEleve c = new ComparatorEleve();
-        Collections.sort(eleves, new ComparatorEleve.ComparatorMediane());
-    }
-
-    /**
-     * Tri de la promotion par la médiane en ordre décroissant
-     */
-    public void triMedianeDecroissant() {
-        Collections.sort(eleves, new ComparatorEleve.ComparatorMediane().reversed());
     }
 
     @Override

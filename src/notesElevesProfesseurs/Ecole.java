@@ -16,8 +16,8 @@ import java.util.Map;
  */
 public class Ecole {
 
-    Map<String, Promotion> promotions;
-    List<Professeur> professeurs;
+    private final Map<String, Promotion> promotions;
+    private final List<Professeur> professeurs;
 
     /**
      * Constructeur d'une école
@@ -41,7 +41,7 @@ public class Ecole {
     /**
      * Retourne la promotion rechercher
      *
-     * @param nomPromo nnom de la promotion
+     * @param nomPromo nom de la promotion
      * @return la promotion recherchée
      */
     public Promotion getPromo(String nomPromo) {
