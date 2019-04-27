@@ -3,20 +3,21 @@ package GUI;
 import GUIcomponents.CustomJFrame;
 import GUIcomponents.CustomJTextField;
 import notesElevesProfesseurs.*;
+
 import javax.swing.*;
 import java.util.Map;
 
 /**
  * Fenêtre dédiée à l'ajout d'une note
- *
+ * <p>
  * Cette classe hérite de {@link CustomJFrame}
  *
  * @author Hugues
  */
-public class GUI_modifierNote extends CustomJFrame {
+class GUI_modifierNote extends CustomJFrame {
 
-    private static final int DIMX = 600;
-    private static final int DIMY = 400;
+    private static final int DIM_X = 600;
+    private static final int DIM_Y = 400;
 
     private final Professeur prof;
 
@@ -34,7 +35,7 @@ public class GUI_modifierNote extends CustomJFrame {
     private JComboBox<String> comboBoxNote;
 
     public GUI_modifierNote(Professeur prof, Ecole ecole) {
-        super("Ajouter note", ecole, false, DIMX, DIMY);
+        super("Ajouter note", ecole, false, DIM_X, DIM_Y);
         this.prof = prof;
 
         labelErreur.setVisible(false);
@@ -108,9 +109,14 @@ public class GUI_modifierNote extends CustomJFrame {
 
         for (Eleve eleve : ecole.getPromo((String) comboBoxPromo.getSelectedItem()).getEleves()) {
             if (comboBoxID.getSelectedItem() != null && eleve.getID() == (int) comboBoxID.getSelectedItem()) {
-                for (Evaluation eval : eleve.getEvaluations(prof.getMatiere())) {
-                    comboBoxNote.addItem(cpt++ + " : " + eval.getNote());
+                try {
+                    for (Evaluation eval : eleve.getEvaluations(prof.getMatiere())) {
+                        comboBoxNote.addItem(cpt++ + " : " + eval.getNote());
+                    }
+                } catch (IllegalStateException ignored) {
+
                 }
+
             }
         }
 

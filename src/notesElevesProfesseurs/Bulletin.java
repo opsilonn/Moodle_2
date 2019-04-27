@@ -6,14 +6,13 @@
 package notesElevesProfesseurs;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 
 /**
  * Classe matérialisant un bulletin étudiant
  *
  * @author Célia
  */
-public class Bulletin {
+class Bulletin {
 
     /**
      * Creation d'un bulletin de notes pour un {@link Eleve}
@@ -78,7 +77,7 @@ public class Bulletin {
         ss.append("-----------------------------------------------------------------------------------------------------------------------------------------------\n");
 
         System.out.println(ss.toString());
-        //Stats_Bulletin.main(eleve, ecole);
+        Stats_Bulletin.main(eleve, ecole);
     }
 
     private static String format_output(double note) {

@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Hugues
  */
-public class GUI_chercherPromotion extends CustomJFrame
+class GUI_chercherPromotion extends CustomJFrame
 {
     private static final int DIMX = 600;
     private static final int DIMY = 400;
@@ -100,7 +100,7 @@ public class GUI_chercherPromotion extends CustomJFrame
      * @param bLabelErreur determine si l'on affiche ou non le JLabel Erreur
      * @param bPromotion determine si l'on affiche ou non la JTable et le JScrollPane affichant la {@link Promotion}
      */
-    public void setAffichage(boolean bLabelErreur, boolean bPromotion)
+    private void setAffichage(boolean bLabelErreur, boolean bPromotion)
     {
         labelErreur.setVisible(bLabelErreur);
         promotion.setVisible(bPromotion);

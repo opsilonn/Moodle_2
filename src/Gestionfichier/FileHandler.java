@@ -45,11 +45,12 @@ public class FileHandler
      * Fonction qui permet de lire les deux fichiers de base de données
      *
      * @param ecole représente l'ecole à remplir grâce aux fichiers
-     * @return si l'opération a été réussie
      */
-    public boolean ReadFiles(Ecole ecole)
+    public void ReadFiles(Ecole ecole)
     {
-        return ReadProfs(ecole) && ReadEleves(ecole);
+        if (ReadProfs(ecole)) {
+            ReadEleves(ecole);
+        }
     }
 
 
@@ -184,11 +185,12 @@ public class FileHandler
      * Fonction qui permet d'écrire dans les bases de données
      *
      * @param ecole structure à écrire dans les fichiers .csv
-     * @return si l'opération est réussie ou non
      */
-    public boolean WriteFiles(Ecole ecole)
+    public void WriteFiles(Ecole ecole)
     {
-        return WriteTeachers(ecole) && WriteStudents(ecole);
+        if (WriteTeachers(ecole)) {
+            WriteStudents(ecole);
+        }
     }
 
 

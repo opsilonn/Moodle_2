@@ -11,7 +11,7 @@ import java.util.Comparator;
  *
  * @author Célia
  */
-public class ComparatorEleve {
+class ComparatorEleve {
 
     /**
      *Comparateur d'Eleve en fonction de la moyenne
@@ -32,15 +32,8 @@ public class ComparatorEleve {
                 return 1;
             }
 
-            if (moy1 == moy2) {
-                return 0;
-            }
+            return Double.compare(moy1, moy2);
 
-            if (moy1 < moy2) {
-                return -1;
-            }
-
-            return 1;
         }
     }
 
@@ -63,15 +56,8 @@ public class ComparatorEleve {
                 return 1;
             }
 
-            if (med1 == med2) {
-                return 0;
-            }
+            return Double.compare(med1, med2);
 
-            if (med1 < med2) {
-                return -1;
-            }
-
-            return 1;
         }
     }
 

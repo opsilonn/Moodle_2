@@ -16,12 +16,10 @@ import java.util.List;
  *
  * @author Hugues
  */
-public class GUI_Eleve extends CustomJFrame {
+class GUI_Eleve extends CustomJFrame {
 
-    private static final int DIMX = 500;
-    private static final int DIMY = 500;
-
-    private Eleve eleve;
+    private static final int DIM_X = 500;
+    private static final int DIM_Y = 500;
 
     private JPanel panel;
 
@@ -47,8 +45,7 @@ public class GUI_Eleve extends CustomJFrame {
      * @param ecole - {@link Ecole} où étudie l'{@link Eleve}
      */
     public GUI_Eleve(Eleve eleve, Ecole ecole) {
-        super("Eleve - " + eleve.getPrenom() + " " + eleve.getNom(), ecole, true, DIMX, DIMY);
-        this.eleve = eleve;
+        super("Eleve - " + eleve.getPrenom() + " " + eleve.getNom(), ecole, true, DIM_X, DIM_Y);
 
         // On rentre tous les labels
         labelNom.setText(eleve.getPrenom() + " " + eleve.getNom().toUpperCase());

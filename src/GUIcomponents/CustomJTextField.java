@@ -28,8 +28,8 @@ public class CustomJTextField extends JPasswordField
     // "ALPHA_NUMERIC",
     // "ALL"
 
-    private String type;
-    private boolean password;
+    private final String type;
+    private final boolean password;
 
 
     public CustomJTextField(String type, boolean password, int maxChar)
@@ -79,7 +79,7 @@ public class CustomJTextField extends JPasswordField
      * Returns the text contained in this <code>TextComponent</code>.
      * @return the text
      */
-    public String Field()
+    private String Field()
     {
         Document doc = getDocument();
         Segment txt = new Segment();

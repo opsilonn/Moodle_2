@@ -3,7 +3,6 @@ package GUI;
 
 import GUIcomponents.CustomJFrame;
 import notesElevesProfesseurs.Eleve;
-import notesElevesProfesseurs.Evaluation;
 import notesElevesProfesseurs.Professeur;
 import notesElevesProfesseurs.Ecole;
 
@@ -12,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import java.util.Set;
 
 
-public class GUI_correcteurs extends CustomJFrame
+class GUI_correcteurs extends CustomJFrame
 {
     private static final int DIMX = 500;
     private static final int dimY = 500;

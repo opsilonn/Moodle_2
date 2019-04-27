@@ -9,16 +9,16 @@ import java.util.Date;  // On préfère utiliser des classes déjà existantes e
  */
 public abstract class Personne
 {
-    protected int ID;
-    protected String password;
-    protected String nom;
-    protected String prenom;
-    protected Date dateNaissance;
+    final int ID;
+    final String password;
+    final String nom;
+    final String prenom;
+    final Date dateNaissance;
 
     private static final String NOM_PAR_DEFAUT = "Doe";
     private static final String PRENOM_PAR_DEFAUT = "John";
     private static int index_ID = -1;
-    private static String PASSWORD_PAR_DEFAUT = "1";
+    private static final String PASSWORD_PAR_DEFAUT = "1";
 
     /**
      * Constructeur par défaut
@@ -58,7 +58,7 @@ public abstract class Personne
      * @param prenom Prénom de la personne
      * @param dateNaissance Date de naissance de la personne
      */
-    public Personne(String nom, String prenom, Date dateNaissance) {
+    Personne(String nom, String prenom, Date dateNaissance) {
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
@@ -76,7 +76,7 @@ public abstract class Personne
      * @param ID Identifiant unique de la {@link Personne} à créer
      * @param password Mot de passe lié à la {@link Personne}
      */
-    public Personne(String nom, String prenom, Date dateNaissance, int ID, String password) {
+    Personne(String nom, String prenom, Date dateNaissance, int ID, String password) {
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;

@@ -10,10 +10,10 @@ package notesElevesProfesseurs;
 public class Evaluation implements Comparable<Evaluation> {
 
     private double note;
-    private Eleve auteur;
-    private Professeur correcteur;
-    private Matiere matiere;
-    private int id;
+    private final Eleve auteur;
+    private final Professeur correcteur;
+    private final Matiere matiere;
+    private final int id;
 
     private static int _compteur_evaluations = 0;
 

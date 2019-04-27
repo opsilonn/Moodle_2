@@ -73,7 +73,7 @@ public class Professeur extends Personne {
      * @param idEleve ID de l'élève recherché
      * @return l'étudiant
      */
-    public Eleve rechercher(Promotion promo, int idEleve) {
+    private Eleve rechercher(Promotion promo, int idEleve) {
         return promo.rechercher(idEleve);
     }
 

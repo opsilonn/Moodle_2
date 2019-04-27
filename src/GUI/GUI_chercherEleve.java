@@ -13,12 +13,12 @@ import java.util.Map;
  *
  * Cette classe hérite de {@link CustomJFrame}
  */
-public class GUI_chercherEleve extends CustomJFrame {
+class GUI_chercherEleve extends CustomJFrame {
 
     private static final int DIMX = 600;
     private static final int DIMY = 400;
 
-    Matiere matiere;
+    private final Matiere matiere;
 
     private JPanel panel;
 
@@ -87,10 +87,8 @@ public class GUI_chercherEleve extends CustomJFrame {
                 labelNom.setText(eleve.getNom().toUpperCase());
                 labelPrenom.setText(eleve.getPrenom());
 
-                if (eleve.getEvaluations(matiere).size() == 0) {
-                    labelErreur2.setVisible(true);
-                    tableNotes.setVisible(false);
-                } else {
+                try{
+                    eleve.getEvaluations(matiere);
                     labelErreur2.setVisible(false);
                     tableNotes.setVisible(true);
 
@@ -107,6 +105,11 @@ public class GUI_chercherEleve extends CustomJFrame {
                     //create table model with data
                     DefaultTableModel model = new DefaultTableModel(data, columns);
                     tableNotes.setModel(model);
+
+                }
+                catch (IllegalStateException e){
+                    labelErreur2.setVisible(true);
+                    tableNotes.setVisible(false);
                 }
             }
         }

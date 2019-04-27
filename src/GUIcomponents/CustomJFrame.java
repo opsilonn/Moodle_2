@@ -19,7 +19,7 @@ import java.io.IOException;
 public abstract class CustomJFrame extends JFrame
 {
     protected Ecole ecole;
-    protected final static String PATHLOGO = "./src/pictures/logo.png";
+    private final static String PATHLOGO = "./src/pictures/logo.png";
     protected final static String PATHLOGOFULL = "./src/pictures/logoFull.png";
 
     /**
@@ -42,7 +42,7 @@ public abstract class CustomJFrame extends JFrame
      * @param dimX width of the JFrame
      * @param dimY height of the JFrame
      * */
-    public CustomJFrame(String title, Ecole ecole, boolean closeOnExit, int dimX, int dimY)
+    protected CustomJFrame(String title, Ecole ecole, boolean closeOnExit, int dimX, int dimY)
     {
         try { setIconImage(ImageIO.read(new File(PATHLOGO)) ); }
         catch (IOException e) { System.out.println("Icon not found"); }

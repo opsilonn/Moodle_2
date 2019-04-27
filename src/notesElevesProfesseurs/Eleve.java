@@ -10,7 +10,7 @@ import java.util.Set;
 
 /**
  * Représente un élève
- *
+ * <p>
  * Cette classe hérite de {@link Personne}
  */
 public class Eleve extends Personne {
@@ -36,10 +36,10 @@ public class Eleve extends Personne {
      * Créé un {@link Eleve} à partir des informations nécessaires pour la
      * création d'une {@link Personne}
      *
-     * @param nom Nom de l'{@link Eleve} à instancier ({@link Personne})
-     * @param prenom Prénom de l'{@link Eleve} à instancier ({@link Personne})
+     * @param nom           Nom de l'{@link Eleve} à instancier ({@link Personne})
+     * @param prenom        Prénom de l'{@link Eleve} à instancier ({@link Personne})
      * @param dateNaissance Date de naissance de l'{@link Eleve} à instancier
-     * ({@link Personne})
+     *                      ({@link Personne})
      */
     public Eleve(String nom, String prenom, Date dateNaissance) {
         super(nom, prenom, dateNaissance);
@@ -50,12 +50,12 @@ public class Eleve extends Personne {
      * Créé un {@link Eleve} à partir des informations nécessaires pour la
      * création d'une {@link Personne}
      *
-     * @param nom Nom de l'{@link Eleve} à instancier ({@link Personne})
-     * @param prenom Prénom de l'{@link Eleve} à instancier ({@link Personne})
+     * @param nom           Nom de l'{@link Eleve} à instancier ({@link Personne})
+     * @param prenom        Prénom de l'{@link Eleve} à instancier ({@link Personne})
      * @param dateNaissance Date de naissance de l'{@link Eleve} à instancier
-     * ({@link Personne})
-     * @param ID ID étudiant de l'{@link Eleve} à créer.
-     * @param password Mot de passe de l'{@link Eleve}
+     *                      ({@link Personne})
+     * @param ID            ID étudiant de l'{@link Eleve} à créer.
+     * @param password      Mot de passe de l'{@link Eleve}
      */
     public Eleve(String nom, String prenom, Date dateNaissance, int ID, String password) {
         super(nom, prenom, dateNaissance, ID, password);
@@ -76,7 +76,7 @@ public class Eleve extends Personne {
      *
      * @return Moyenne des évaluations de l'instance
      * @throws IllegalStateException S'il n'existe aucune instance
-     * d'{@link Evaluation} associée à l'instance d'{@link Eleve}
+     *                               d'{@link Evaluation} associée à l'instance d'{@link Eleve}
      */
     public double getMoyenneGenerale() throws IllegalStateException {
         // Cas où il n'y a pas d'évaluations
@@ -127,7 +127,7 @@ public class Eleve extends Personne {
      *
      * @return Valeur de la médiane des {@link Evaluation} de l'instance
      * @throws IllegalStateException Si aucune {@link Evaluation} n'est associée
-     * à l'instance d'{@link Eleve}
+     *                               à l'instance d'{@link Eleve}
      */
     public double getMedianeGenerale() throws IllegalStateException {
         // Cas où il n'y a pas d'évaluations
@@ -267,7 +267,7 @@ public class Eleve extends Personne {
      * @param matiere {@link Matiere} recherchée
      * @return l'ensemble des {@link Evaluation} d'une matière
      * @throws IllegalStateException Quand il n'y a pas d'évaluations dans la
-     * {@link Matiere} demandée
+     *                               {@link Matiere} demandée
      */
     public List<Evaluation> getEvaluations(Matiere matiere) throws IllegalStateException {
         ArrayList<Evaluation> eval_matiere = new ArrayList<>();
@@ -307,7 +307,7 @@ public class Eleve extends Personne {
      *
      * @return représentation textuelle de l'élève selon Personne
      */
-    public String toStringNotes() {
+    private String toStringNotes() {
         if (this.evaluations.isEmpty()) {
             return "pas d'évaluation présente\n";
         }

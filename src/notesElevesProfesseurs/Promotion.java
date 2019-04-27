@@ -142,7 +142,7 @@ public class Promotion {
         for (Eleve e : this.eleves) {
             try {
                 medianes.add(e.getMedianeGenerale());
-            } catch (IllegalStateException exception) {
+            } catch (IllegalStateException ignored) {
             }
         }
 
@@ -176,7 +176,7 @@ public class Promotion {
         for (Eleve e : this.eleves) {
             try {
                 medianes.add(e.getMediane(matiere));
-            } catch (IllegalStateException exception) {
+            } catch (IllegalStateException ignored) {
             }
         }
 
@@ -212,7 +212,7 @@ public class Promotion {
         double medianeToReturn = -1;
         try {
             medianeToReturn = eleves.get(0).getMediane(matiere);
-        } catch (IllegalStateException exception) {
+        } catch (IllegalStateException ignored) {
         }
 
         for (Eleve e : this.eleves) {
@@ -223,7 +223,7 @@ public class Promotion {
                 } else if ((mediane > medianeToReturn && mode == true) || (mediane < medianeToReturn && mode == false)) {
                     medianeToReturn = mediane;
                 }
-            } catch (IllegalStateException exception) {
+            } catch (IllegalStateException ignored) {
             }
         }
         return medianeToReturn;
@@ -241,7 +241,7 @@ public class Promotion {
         double medianeToReturn = -1;
         try {
             medianeToReturn = eleves.get(0).getMedianeGenerale();
-        } catch (IllegalStateException exception) {
+        } catch (IllegalStateException ignored) {
         }
 
         for (Eleve e : this.eleves) {
@@ -252,7 +252,7 @@ public class Promotion {
                 } else if ((mediane > medianeToReturn && mode == true) || (mediane < medianeToReturn && mode == false)) {
                     medianeToReturn = mediane;
                 }
-            } catch (IllegalStateException exception) {
+            } catch (IllegalStateException ignored) {
             }
         }
         return medianeToReturn;
@@ -273,7 +273,7 @@ public class Promotion {
         double moyenneToReturn = -1;
         try {
             moyenneToReturn = eleves.get(0).getMoyenne(matiere);
-        } catch (IllegalStateException exception) {
+        } catch (IllegalStateException ignored) {
         };
 
         for (Eleve e : this.eleves) {
@@ -284,7 +284,7 @@ public class Promotion {
                 } else if ((moy > moyenneToReturn && mode == true) || (moy < moyenneToReturn && mode == false)) {
                     moyenneToReturn = moy;
                 }
-            } catch (IllegalStateException exception) {
+            } catch (IllegalStateException ignored) {
             }
         }
         return moyenneToReturn;
@@ -301,7 +301,7 @@ public class Promotion {
         double moyenneToReturn = -1;
         try {
             moyenneToReturn = eleves.get(0).getMoyenneGenerale();
-        } catch (IllegalStateException exception) {
+        } catch (IllegalStateException ignored) {
         };
 
         for (Eleve e : this.eleves) {
@@ -312,7 +312,7 @@ public class Promotion {
                 } else if ((moy > moyenneToReturn && mode == true) || (moy < moyenneToReturn && mode == false)) {
                     moyenneToReturn = moy;
                 }
-            } catch (IllegalStateException exception) {
+            } catch (IllegalStateException ignored) {
             }
         }
         return moyenneToReturn;
@@ -329,16 +329,16 @@ public class Promotion {
     }
 
     /**
-     * Tri de la promotion par la moyenne en ordre croissant
+     * Tri de la promotion par la moyenne en ordre croissant ou décroissant en fonction du mode
      *
      * @param mode - si mode == true alors tri croissant si mode == false alors
      * tri décroissant
      */
     public void triMoyenne(boolean mode) {
         if (mode) {
-            Collections.sort(eleves, new ComparatorEleve.ComparatorMoyenne());
+            eleves.sort(new ComparatorEleve.ComparatorMoyenne());
         } else {
-            Collections.sort(eleves, new ComparatorEleve.ComparatorMoyenne().reversed());
+            eleves.sort(new ComparatorEleve.ComparatorMoyenne().reversed());
         }
 
     }
@@ -352,9 +352,9 @@ public class Promotion {
      */
     public void triMediane(boolean mode) {
         if (mode) {
-            Collections.sort(eleves, new ComparatorEleve.ComparatorMediane());
+            eleves.sort(new ComparatorEleve.ComparatorMediane());
         } else {
-            Collections.sort(eleves, new ComparatorEleve.ComparatorMediane().reversed());
+            eleves.sort(new ComparatorEleve.ComparatorMediane().reversed());
         }
 
     }

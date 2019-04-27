@@ -5,30 +5,29 @@
  */
 package notesElevesProfesseurs;
 
-import java.awt.Color;
-import java.awt.BasicStroke;
-import java.util.ArrayList;
-
+import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.ui.ApplicationFrame;
-import org.jfree.ui.RefineryUtilities;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.ChartFactory;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.axis.SymbolAxis;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.xy.XYSeriesCollection;
+import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+import org.jfree.ui.ApplicationFrame;
+import org.jfree.ui.RefineryUtilities;
+
+import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Classe représentant un chart de statistiques de l'étudiant
  *
  * @author Célia
  */
-public class Stats_Bulletin extends ApplicationFrame {
+class Stats_Bulletin extends ApplicationFrame {
 
     private Stats_Bulletin(Eleve eleve, Ecole ecole) {
         super("Statistiques du Bulletin");
@@ -40,7 +39,7 @@ public class Stats_Bulletin extends ApplicationFrame {
             try {
                 eleve.getEvaluations(prof.getMatiere());
                 matieres.add(prof.getMatiere());
-            } catch (IllegalStateException e) {
+            } catch (IllegalStateException ignored) {
             }
         }
 

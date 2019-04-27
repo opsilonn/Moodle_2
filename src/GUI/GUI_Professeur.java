@@ -16,12 +16,10 @@ import java.awt.event.WindowEvent;
  *
  * @author Hugues
  */
-public class GUI_Professeur extends CustomJFrame {
+class GUI_Professeur extends CustomJFrame {
 
     private static final int DIMX = 500;
     private static final int DIMY = 500;
-
-    private final Professeur prof;
 
     private JPanel panel;
     private JButton buttonChercherEleve;
@@ -38,7 +36,6 @@ public class GUI_Professeur extends CustomJFrame {
      */
     public GUI_Professeur(Professeur prof, Ecole ecole) {
         super("Professeur - " + prof.getPrenom() + " " + prof.getNom(), ecole, true, DIMX, DIMY);
-        this.prof = prof;
 
         // On rentre tous les labels
         labelNom.setText(prof.getPrenom() + " " + prof.getNom().toUpperCase());

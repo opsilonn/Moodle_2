@@ -8,7 +8,7 @@ import javax.swing.*;
  *
  * @author Célia
  */
-public class Main {
+class Main {
 
     /**
      * Fonction main du projet qui lance les classes de test
@@ -20,11 +20,6 @@ public class Main {
      * @throws java.lang.IllegalAccessException
      */
     public static void main(String[] argv) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
-        //test_Version1.main();
-        //System.out.println("____________________________________________");
-        test_Version2.main();
-        System.out.println("____________________________________________");
-        test_Version3.main();
 
         test_Version4.main();
     }
