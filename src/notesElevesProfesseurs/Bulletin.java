@@ -12,8 +12,8 @@ import java.text.DecimalFormat;
  *
  * @author Célia
  */
-class Bulletin {
-
+public class Bulletin
+{
     /**
      * Creation d'un bulletin de notes pour un {@link Eleve}
      *

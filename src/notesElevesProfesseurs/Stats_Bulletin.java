@@ -27,8 +27,8 @@ import java.util.ArrayList;
  *
  * @author Célia
  */
-class Stats_Bulletin extends ApplicationFrame {
-
+class Stats_Bulletin extends ApplicationFrame
+{
     private Stats_Bulletin(Eleve eleve, Ecole ecole) {
         super("Statistiques du Bulletin");
 

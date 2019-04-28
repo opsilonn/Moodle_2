@@ -8,15 +8,15 @@ package test;
 import Gestionfichier.FileHandler;
 import java.util.List;
 import notesElevesProfesseurs.Bulletin;
-import notesElevesProfesseurs.Eleve;
 import notesElevesProfesseurs.Ecole;
+import notesElevesProfesseurs.Eleve;
 
 /**
  *
  * @author Célia
  */
-public class test_Version3 {
-    
+public class test_Version3
+{
     /**
      * Fonction de test de la version 3
      */

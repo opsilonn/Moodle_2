@@ -3,8 +3,8 @@ package GUI;
 
 import GUIcomponents.CustomJFrame;
 import GUIcomponents.CustomJTextField;
-import notesElevesProfesseurs.Eleve;
 import notesElevesProfesseurs.Ecole;
+import notesElevesProfesseurs.Eleve;
 import notesElevesProfesseurs.Promotion;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

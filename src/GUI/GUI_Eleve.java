@@ -1,10 +1,11 @@
 package GUI;
 
 import GUIcomponents.CustomJFrame;
+import notesElevesProfesseurs.Ecole;
 import notesElevesProfesseurs.Eleve;
 import notesElevesProfesseurs.Evaluation;
 import notesElevesProfesseurs.Matiere;
-import notesElevesProfesseurs.Ecole;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;

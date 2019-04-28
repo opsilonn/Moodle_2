@@ -7,11 +7,8 @@ package test;
 
 import Gestionfichier.FileHandler;
 import java.util.Date;
-import notesElevesProfesseurs.Eleve;
-import notesElevesProfesseurs.Matiere;
-import notesElevesProfesseurs.Professeur;
-import notesElevesProfesseurs.Promotion;
-import notesElevesProfesseurs.Ecole;
+
+import notesElevesProfesseurs.*;
 
 /**
  *

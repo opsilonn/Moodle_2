@@ -1,13 +1,15 @@
 package GUI;
 
+
 import GUIcomponents.CustomJFrame;
 import Gestionfichier.FileHandler;
-import notesElevesProfesseurs.Professeur;
 import notesElevesProfesseurs.Ecole;
 import notesElevesProfesseurs.Eleve;
+import notesElevesProfesseurs.Professeur;
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 
 /**
  * Fenêtre dédiée à l'utilisation du logiciel par un {@link Professeur}
