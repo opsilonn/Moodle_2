@@ -105,6 +105,7 @@ class GUI_chercherEleve extends CustomJFrame {
                     //create table model with data
                     DefaultTableModel model = new DefaultTableModel(data, columns);
                     tableNotes.setModel(model);
+                    centrerJTable(tableNotes);
 
                 }
                 catch (IllegalStateException e){

@@ -25,7 +25,7 @@ class GUI_correcteurs extends CustomJFrame
 
     public GUI_correcteurs(Eleve eleve, Ecole ecole)
     {
-        super("Liste Correcteurs", ecole, true, DIMX, dimY);
+        super("Liste Correcteurs", ecole, false, DIMX, dimY);
 
         Set<Professeur> correcteur = eleve.getCorrecteurs();
 
@@ -53,6 +53,7 @@ class GUI_correcteurs extends CustomJFrame
 
             DefaultTableModel model = new DefaultTableModel(data, columns);
             correcteursTable.setModel(model);
+            centrerJTable(correcteursTable);
         }
 
         add(panel);

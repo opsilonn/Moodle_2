@@ -5,6 +5,7 @@
  */
 package notesElevesProfesseurs;
 
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -19,8 +20,10 @@ import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
+
 import java.awt.*;
 import java.util.ArrayList;
+
 
 /**
  * Classe représentant un chart de statistiques de l'étudiant
