@@ -14,5 +14,6 @@ out/*
 ./out
 ./out/*
 Moodle_2.iml
-./jfreechart-1.0.19
-./jfreechart-1.0.19/*
+jfreechart-1.0.19
+jfreechart-1.0.19.zip
+jfreechart-1.0.19/*
