@@ -17,9 +17,9 @@ import java.util.List;
  *
  * @author Hugues
  */
-class GUI_Eleve extends CustomJFrame {
-
-    private static final int DIM_X = 500;
+class GUI_Eleve extends CustomJFrame
+{
+    private static final int DIM_X = 800;
     private static final int DIM_Y = 500;
 
     private JPanel panel;
@@ -45,78 +45,111 @@ class GUI_Eleve extends CustomJFrame {
      * @param eleve - {@link Eleve} connecté
      * @param ecole - {@link Ecole} où étudie l'{@link Eleve}
      */
-    public GUI_Eleve(Eleve eleve, Ecole ecole) {
+    public GUI_Eleve(Eleve eleve, Ecole ecole)
+    {
         super("Eleve - " + eleve.getPrenom() + " " + eleve.getNom(), ecole, true, DIM_X, DIM_Y);
 
         // On rentre tous les labels
-        labelNom.setText(eleve.getPrenom() + " " + eleve.getNom().toUpperCase());
-        labelID.setText(String.valueOf(eleve.getID()));
-        labelPromotion.setText(eleve.getPromotion());
-        try {
-            labelMoyenne.setText(String.valueOf(eleve.getMoyenneGenerale()));
-        } catch (IllegalStateException e) {
-            labelMoyenne.setText("Non définie");
-        }
+        setInformations(eleve);
+
 
         // On donne aux JButtons leurs listeners
-        buttonCorrecteur.addActionListener(e -> {
-            GUI_correcteurs correcteur = new GUI_correcteurs(eleve, ecole);
-        });
-        buttonPromotion.addActionListener(e -> {
-            GUI_chercherPromotion promo = new GUI_chercherPromotion(ecole);
-        });
+        buttonCorrecteur.addActionListener(e -> { GUI_correcteurs correcteur = new GUI_correcteurs(eleve, ecole); });
+        buttonPromotion.addActionListener(e -> { GUI_chercherPromotion promo = new GUI_chercherPromotion(ecole); });
 
-        // On affiche toutes les notes de l'élève
+        // On affiche en conséquence tous les champs de l'élève
         List<Evaluation> evaluations = eleve.getEvaluation();
-        if (evaluations.size() == 0) {
+        if (evaluations.size() == 0)
+        {
             bulletin.setVisible(false);
             bulletinValeurs.setVisible(false);
             bulletinPromo.setVisible(false);
             bulletinPromoValeurs.setVisible(false);
-        } else {
+        }
+        else
+        {
             labelErreur.setVisible(false);
 
-            // table INFORMATION
-            String[] columns = new String[]{"Matière", "ID - Matière", "Note", "ID-Note", "Correcteur"};
-            Object[][] data = new Object[evaluations.size()][columns.length];
-
-            int index = 0;
-            for (Evaluation eval : evaluations) {
-                data[index][0] = eval.getMatiere().getNom();
-                data[index][1] = eval.getCodeMatiere();
-                data[index][2] = String.valueOf(eval.getNote());
-                data[index][3] = eval.getID();
-                data[index][4] = eval.getCorrecteur().toString();
-                index++;
-            }
-
-            DefaultTableModel model = new DefaultTableModel(data, columns);
-            bulletinValeurs.setModel(model);
-
-            System.out.println(eleve.getMatiere());
-
-            // table COMPARAISON
-            columns = new String[]{"Matière", "ID - Matière", "Votre moyenne", "Minimum", "Moyenne Promotion", "Maximum"};
-            data = new Object[eleve.getMatiere().size()][columns.length];
-
-            index = 0;
-            for (Matiere matiere : eleve.getMatiere()) {
-                data[index][0] = matiere.getNom();
-                data[index][1] = matiere.getCode();
-                data[index][2] = eleve.getMoyenne(matiere);
-                data[index][3] = ecole.getPromo(eleve.getPromotion()).moyenneMaxMinPromotion(matiere, false);
-                data[index][4] = ecole.getPromo(eleve.getPromotion()).moyennePromotion(matiere);
-                data[index][5] = ecole.getPromo(eleve.getPromotion()).moyenneMaxMinPromotion(matiere, true);
-                index++;
-            }
-
-            model = new DefaultTableModel(data, columns);
-            bulletinPromoValeurs.setModel(model);
+            setBulletin(eleve, evaluations);
+            setBulletinComparatif(eleve, evaluations);
         }
+
 
         add(panel);
         pack();
         revalidate();
         setVisible(true);
+    }
+
+
+    /**
+     * Remplit les champs de l'identité de l'{@link Eleve} connecté
+     */
+    private void setInformations(Eleve eleve)
+    {
+        labelNom.setText(eleve.getPrenom() + " " + eleve.getNom().toUpperCase());
+        labelID.setText(String.valueOf(eleve.getID()));
+        labelPromotion.setText(eleve.getPromotion());
+        try
+        {
+            labelMoyenne.setText(String.valueOf(eleve.getMoyenneGenerale()));
+        }
+        catch (IllegalStateException e)
+        {
+            labelMoyenne.setText("Non définie");
+        }
+    }
+
+
+    /**
+     * Remplit les champs des notes de l'{@link Eleve} connecté
+     */
+    private void setBulletin(Eleve eleve, List<Evaluation> evaluations)
+    {
+        // table INFORMATION
+        String[] columns = new String[]{"Matière", "ID - Matière", "Note", "ID-Note", "Correcteur"};
+        Object[][] data = new Object[evaluations.size()][columns.length];
+        int index = 0;
+
+        for (Evaluation eval : evaluations)
+        {
+            data[index][0] = eval.getMatiere().getNom();
+            data[index][1] = eval.getCodeMatiere();
+            data[index][2] = String.valueOf(eval.getNote());
+            data[index][3] = eval.getID();
+            data[index][4] = eval.getCorrecteur().toString();
+            index++;
+        }
+
+        DefaultTableModel model = new DefaultTableModel(data, columns);
+        bulletinValeurs.setModel(model);
+        centrerJTable(bulletinValeurs);
+    }
+
+
+    /**
+     * Remplit les champs comparatifs des notes de l'{@link Eleve} connecté
+     */
+    private void setBulletinComparatif(Eleve eleve, List<Evaluation> evaluations)
+    {
+        // table COMPARAISON
+        String[] columns = new String[]{"Matière", "ID - Matière", "Votre moyenne", "Minimum", "Moyenne Promotion", "Maximum"};
+        Object[][] data = new Object[eleve.getMatiere().size()][columns.length];
+        int index = 0;
+
+        for (Matiere matiere : eleve.getMatiere())
+        {
+            data[index][0] = matiere.getNom();
+            data[index][1] = matiere.getCode();
+            data[index][2] = eleve.getMoyenne(matiere);
+            data[index][3] = ecole.getPromo(eleve.getPromotion()).moyenneMaxMinPromotion(matiere, false);
+            data[index][4] = ecole.getPromo(eleve.getPromotion()).moyennePromotion(matiere);
+            data[index][5] = ecole.getPromo(eleve.getPromotion()).moyenneMaxMinPromotion(matiere, true);
+            index++;
+        }
+
+        DefaultTableModel model = new DefaultTableModel(data, columns);
+        bulletinPromoValeurs.setModel(model);
+        centrerJTable(bulletinPromoValeurs);
     }
 }

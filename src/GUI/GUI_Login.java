@@ -23,9 +23,6 @@ public class GUI_Login extends CustomJFrame
     private static final int DIM_Y = 500;
 
     private JPanel panel;
-    private JPanel panelLogo;
-    private JPanel panelInputs;
-    private JPanel panelForm;
 
     private JLabel labelLogo;
 
@@ -34,6 +31,7 @@ public class GUI_Login extends CustomJFrame
 
     public JButton buttonLogin;
     public JLabel labelIncorrect;
+
 
     /**
      * Création de l'interface de login
@@ -69,6 +67,13 @@ public class GUI_Login extends CustomJFrame
     }
 
 
+    /**
+     * Lorsque appelée, vérifie si les inputs correspondent à un membre de la BDD.
+     * Si oui, lance la fenêtre correspondante :
+     * - {@link GUI_Eleve} si un {@link Eleve} se connecte;
+     * - {@link GUI_Professeur} si un {@link Professeur} se connecte;
+     * Affiche un message d'erreur sinon.
+     */
     private void loginVerifier()
     {
         int inputID = 0;
