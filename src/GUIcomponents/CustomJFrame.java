@@ -60,7 +60,6 @@ public abstract class CustomJFrame extends JFrame
         setLocationRelativeTo(null);
     }
 
-
     /**
      * Centre les valeurs d'une JTable passée en argument
      * <p>

@@ -10,14 +10,14 @@ import javax.swing.*;
  *
  * @author Hugues
  */
-public class test_Version4
-{
-    public static void main() throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException
-    {
-        // On remplit la structure ecole
+public class test_Version4 {
+
+    public static void main() throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
+        // On rempli la structure ecole
         Ecole ecole = new Ecole();
         FileHandler scanner = new FileHandler();
         scanner.ReadFiles(ecole);
+        System.out.println(ecole.toString());
 
         // On affiche la fenêtre LOGIN
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

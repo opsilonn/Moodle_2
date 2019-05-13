@@ -29,8 +29,8 @@ public class FileHandler
     private final File fileEleve;
     private final File fileProf;
 
-    private static final String FILENAME_ELEVE = "./src/Gestionfichier/BasededonneesEleves.csv";
-    private static final String FILENAME_PROF  = "./src/Gestionfichier/BasededonneesProfs.csv";
+    private static final String FILENAME_ELEVE = "./res/BasededonneesEleves.csv";
+    private static final String FILENAME_PROF  = "./res/BasededonneesProfs.csv";
 
     /**
      * Constructeur d'un {@link FileHandler}

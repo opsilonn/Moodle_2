@@ -5,7 +5,6 @@
  */
 package notesElevesProfesseurs;
 
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -20,18 +19,16 @@ import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
-
 import java.awt.*;
 import java.util.ArrayList;
-
 
 /**
  * Classe représentant un chart de statistiques de l'étudiant
  *
  * @author Célia
  */
-class Stats_Bulletin extends ApplicationFrame
-{
+class Stats_Bulletin extends ApplicationFrame {
+
     private Stats_Bulletin(Eleve eleve, Ecole ecole) {
         super("Statistiques du Bulletin");
 
