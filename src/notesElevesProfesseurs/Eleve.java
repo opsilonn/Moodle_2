@@ -46,6 +46,24 @@ public class Eleve extends Personne {
         evaluations = new ArrayList<>();
     }
 
+
+    /**
+     * Créé un {@link Eleve} à partir des informations nécessaires pour la
+     * création d'une {@link Personne}
+     *
+     * @param nom           Nom de l'{@link Eleve} à instancier ({@link Personne})
+     * @param prenom        Prénom de l'{@link Eleve} à instancier ({@link Personne})
+     * @param dateNaissance Date de naissance de l'{@link Eleve} à instancier
+     *                      ({@link Personne})
+     * @param password      Mot de passe de l'{@link Eleve}
+     */
+    public Eleve(String nom, String prenom, Date dateNaissance, String password, String promotion) {
+        super(nom, prenom, dateNaissance, password);
+        this.promotion = promotion;
+        evaluations = new ArrayList<>();
+    }
+
+
     /**
      * Créé un {@link Eleve} à partir des informations nécessaires pour la
      * création d'une {@link Personne}

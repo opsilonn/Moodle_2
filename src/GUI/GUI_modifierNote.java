@@ -59,7 +59,8 @@ class GUI_modifierNote extends CustomJFrame {
      * Met à jour le Dropdown contenant la liste des {@link Promotion} Si vide,
      * affiche un message d'erreur ; sinon, appelle la fonction setID
      */
-    private void setPromo() {
+    private void setPromo()
+    {
         comboBoxPromo.removeAllItems();
 
         for (Map.Entry<String, Promotion> promo : ecole.getPromo().entrySet()) {

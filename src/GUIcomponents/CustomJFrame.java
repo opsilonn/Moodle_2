@@ -1,11 +1,14 @@
 package GUIcomponents;
 
 
+import Gestionfichier.FileHandler;
 import notesElevesProfesseurs.Ecole;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -75,5 +78,23 @@ public abstract class CustomJFrame extends JFrame
             table.getColumnModel().getColumn(i).setCellRenderer(custom);
 
         ((DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+    }
+
+
+    /**
+     * Si l'on ferme la fenêtre, on sauvegarde la BDD dans les fichiers .csv
+     *
+     * */
+    protected void sauvegarderBDDApresFermeture()
+    {
+        addWindowListener(new WindowAdapter()
+        {
+            @Override
+            public void windowClosing(WindowEvent e)
+            {
+                FileHandler scanner = new FileHandler();
+                scanner.WriteFiles(ecole);
+            }
+        });
     }
 }

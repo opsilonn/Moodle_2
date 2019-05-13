@@ -18,7 +18,7 @@ import java.awt.event.WindowEvent;
  *
  * @author Hugues
  */
-class GUI_Professeur extends CustomJFrame
+class GUI_USER_Professeur extends CustomJFrame
 {
     private static final int DIMX = 500;
     private static final int DIMY = 500;
@@ -36,7 +36,7 @@ class GUI_Professeur extends CustomJFrame
      * @param prof - {@link Professeur} connecté
      * @param ecole - {@link Ecole} où étudie l'{@link Eleve}
      */
-    public GUI_Professeur(Professeur prof, Ecole ecole)
+    public GUI_USER_Professeur(Professeur prof, Ecole ecole)
     {
         super("Professeur - " + prof.getPrenom() + " " + prof.getNom(), ecole, true, DIMX, DIMY);
 
@@ -49,17 +49,7 @@ class GUI_Professeur extends CustomJFrame
         buttonChercherEleve.addActionListener(e -> { GUI_chercherEleve promo = new GUI_chercherEleve(ecole, prof.getMatiere()); });
         buttonModifier.addActionListener(e -> { GUI_modifierNote promo = new GUI_modifierNote(prof, ecole); });
 
-
-        // Si l'on ferme la fenêtre, on sauvegarde la BDD dans les fichiers .csv
-        addWindowListener(new WindowAdapter()
-        {
-            @Override
-            public void windowClosing(WindowEvent e)
-            {
-                FileHandler scanner = new FileHandler();
-                scanner.WriteFiles(ecole);
-            }
-        });
+        sauvegarderBDDApresFermeture();
 
         add(panel);
         pack();

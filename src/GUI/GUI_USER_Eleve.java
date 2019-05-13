@@ -8,6 +8,7 @@ import notesElevesProfesseurs.Matiere;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ import java.util.List;
  *
  * @author Hugues
  */
-class GUI_Eleve extends CustomJFrame
+class GUI_USER_Eleve extends CustomJFrame
 {
     private static final int DIM_X = 800;
     private static final int DIM_Y = 500;
@@ -38,6 +39,7 @@ class GUI_Eleve extends CustomJFrame
     private JTable bulletinValeurs;
     private JScrollPane bulletinPromo;
     private JTable bulletinPromoValeurs;
+    private JButton buttonStats;
 
     /**
      * Création de l'interface pour un {@link Eleve}
@@ -45,7 +47,7 @@ class GUI_Eleve extends CustomJFrame
      * @param eleve - {@link Eleve} connecté
      * @param ecole - {@link Ecole} où étudie l'{@link Eleve}
      */
-    public GUI_Eleve(Eleve eleve, Ecole ecole)
+    public GUI_USER_Eleve(Eleve eleve, Ecole ecole)
     {
         super("Eleve - " + eleve.getPrenom() + " " + eleve.getNom(), ecole, true, DIM_X, DIM_Y);
 
@@ -56,6 +58,15 @@ class GUI_Eleve extends CustomJFrame
         // On donne aux JButtons leurs listeners
         buttonCorrecteur.addActionListener(e -> { GUI_correcteurs correcteur = new GUI_correcteurs(eleve, ecole); });
         buttonPromotion.addActionListener(e -> { GUI_chercherPromotion promo = new GUI_chercherPromotion(ecole); });
+        buttonStats.addActionListener(e -> { /*ADD SOMETHING HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEERE*/ });
+
+        // ADD SOMETHING ABOVE :)
+
+
+
+
+
+
 
         // On affiche en conséquence tous les champs de l'élève
         List<Evaluation> evaluations = eleve.getEvaluation();

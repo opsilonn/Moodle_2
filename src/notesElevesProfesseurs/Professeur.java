@@ -1,7 +1,9 @@
 package notesElevesProfesseurs;
 
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 
 /**
  * Représente un professeur
@@ -39,6 +41,26 @@ public class Professeur extends Personne {
         super(nom, prenom, dateNaissance);
         this.matiere = matiere;
     }
+
+
+    /**
+     * Constructeur pour un professeur.
+     *
+     * Reprend exactement le constructeur de {@link Personne}
+     *
+     * @param nom Nom du Professeur à instancier ({@link Personne})
+     * @param prenom Prénom du Professeur à instancier ({@link Personne})
+     * @param dateNaissance Date de naissance du Professeur à instancier
+     * ({@link Personne})
+     * @param password Mot de passe du professeur à instancier
+     * @param matiere Matiere enseignée par le Professeur à instancier
+     */
+    public Professeur(String nom, String prenom, Date dateNaissance, String password, Matiere matiere)
+    {
+        super(nom, prenom, dateNaissance, password);
+        this.matiere = matiere;
+    }
+
 
     /**
      * Constructeur pour un professeur.

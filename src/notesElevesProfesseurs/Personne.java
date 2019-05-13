@@ -27,7 +27,8 @@ public abstract class Personne
      * paramètres par défaut sont fixes, pas aléatoires
      */
     @Deprecated  // On évite de créer des Personnes vides
-    public Personne() {
+    public Personne()
+    {
         this.nom = NOM_PAR_DEFAUT;
         this.prenom = PRENOM_PAR_DEFAUT;
         this.ID = createID(); 
@@ -65,6 +66,26 @@ public abstract class Personne
         this.ID = createID();   // ID généré par une bibliothèque Java native
         this.password = PASSWORD_PAR_DEFAUT;
     }
+
+
+    /**
+     * Créé une instance de {@link Personne} en se basant sur son {@code nom},
+     * son {@code prenom}, sa {@code dateNaissance} et son
+     *
+     * @param nom Nom de la {@link Personne} à créer
+     * @param prenom Prénom de la {@link Personne} à créer
+     * @param dateNaissance Date de naissance de la {@link Personne} à créer
+     * @param password Mot de passe lié à la {@link Personne}
+     */
+    Personne(String nom, String prenom, Date dateNaissance, String password)
+    {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
+        this.password = password;
+        ID = createID();
+    }
+
 
     /**
      * Créé une instance de {@link Personne} en se basant sur son {@code nom},

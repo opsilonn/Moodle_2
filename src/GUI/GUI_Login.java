@@ -22,6 +22,10 @@ public class GUI_Login extends CustomJFrame
     private static final int DIM_X = 500;
     private static final int DIM_Y = 500;
 
+
+    private static final String ADMIN_ID = "0000";
+    private static final String ADMIN_PASSWORD = "1";
+
     private JPanel panel;
 
     private JLabel labelLogo;
@@ -70,17 +74,18 @@ public class GUI_Login extends CustomJFrame
     /**
      * Lorsque appelée, vérifie si les inputs correspondent à un membre de la BDD.
      * Si oui, lance la fenêtre correspondante :
-     * - {@link GUI_Eleve} si un {@link Eleve} se connecte;
-     * - {@link GUI_Professeur} si un {@link Professeur} se connecte;
+     * - {@link GUI_USER_Eleve} si un {@link Eleve} se connecte;
+     * - {@link GUI_USER_Professeur} si un {@link Professeur} se connecte;
      * Affiche un message d'erreur sinon.
      */
     private void loginVerifier()
     {
-        int inputID = 0;
-        String inputPassword = "";
+        int inputID;
+        String inputPassword;
 
         Professeur userProf = null;
         Eleve userEleve = null;
+        boolean admin = false;
 
 
         // On vérifie la taille de l'input ID : si nulle, on évite toute vérification
@@ -110,20 +115,24 @@ public class GUI_Login extends CustomJFrame
                         userEleve = eleve;
                 }
             }
+
+            // On vérifie s'il y a correspondance avec un ADMIN
+            admin = (Objects.equals(ADMIN_ID, fieldID.getText()) && Objects.equals(ADMIN_PASSWORD, inputPassword));
         }
 
 
         // On agit en conséquence : ouverture de fenêtre appropriée si Login réussi, sinon message d'erreur
-        if(userProf != null || userEleve != null)
+        if(userProf != null || userEleve != null || admin)
         {
             // Ouverture de la page appropriée
             CustomJFrame mainWindow;
-            if( userProf != null )  mainWindow = new GUI_Professeur(userProf, ecole);
-            if( userEleve != null ) mainWindow = new GUI_Eleve(userEleve, ecole);
+            if( userProf != null )  mainWindow = new GUI_USER_Professeur(userProf, ecole);
+            if( userEleve != null ) mainWindow = new GUI_USER_Eleve(userEleve, ecole);
+            if(admin) mainWindow = new GUI_USER_Admin(ecole);
 
 
             // Fermeture du login
-            this.dispose();
+            dispose();
         }
         else
             labelIncorrect.setVisible(true);
