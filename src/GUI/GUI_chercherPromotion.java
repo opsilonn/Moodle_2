@@ -40,8 +40,7 @@ class GUI_chercherPromotion extends CustomJFrame {
         super("Chercher Promotion", ecole, false, DIMX, DIMY);
         this.ecole = ecole;
 
-
-        setAffichage(false, false);
+        //setAffichage(false);
         buttonValider.addActionListener( e -> chercherPromotion() );
 
 

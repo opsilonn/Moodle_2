@@ -5,10 +5,10 @@ import notesElevesProfesseurs.Ecole;
 import notesElevesProfesseurs.Eleve;
 import notesElevesProfesseurs.Evaluation;
 import notesElevesProfesseurs.Matiere;
+import notesElevesProfesseurs.Stats_Bulletin;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionListener;
 import java.util.List;
 
 /**
@@ -56,14 +56,11 @@ class GUI_USER_Eleve extends CustomJFrame
 
 
         // On donne aux JButtons leurs listeners
-        buttonCorrecteur.addActionListener(e -> { GUI_correcteurs correcteur = new GUI_correcteurs(eleve, ecole); });
-        buttonPromotion.addActionListener(e -> { GUI_chercherPromotion promo = new GUI_chercherPromotion(ecole); });
-        buttonStats.addActionListener(e -> { /*ADD SOMETHING HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEERE*/ });
+        buttonCorrecteur.addActionListener(e -> { new GUI_correcteurs(eleve, ecole); });
+        buttonPromotion.addActionListener(e -> { new GUI_chercherPromotion(ecole); });
+        buttonStats.addActionListener(e -> { Stats_Bulletin.main(eleve, ecole); });
 
         // ADD SOMETHING ABOVE :)
-
-
-
 
 
 
