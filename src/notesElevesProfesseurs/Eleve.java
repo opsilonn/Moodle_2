@@ -198,7 +198,6 @@ public class Eleve extends Personne {
         if (evalMatiere.size() % 2 == 1) {  // Si le nb de note est impair : retourne la note du milieu
             return evalMatiere.get(middle).getNote();
         } else {  // Si le nb de note est pair : moyenne des deux notes du milieu
-            System.out.println("1sr" + evalMatiere.get(middle - 1).getNote() + "2nd" + evalMatiere.get(middle).getNote() + "tot" + (evalMatiere.get(middle - 1).getNote() + evalMatiere.get(middle).getNote()) / 2);
             return (evalMatiere.get(middle - 1).getNote() + evalMatiere.get(middle).getNote()) / 2;
         }
     }
