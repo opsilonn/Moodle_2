@@ -5,10 +5,10 @@ import GUIcomponents.CustomJFrame;
 import GUIcomponents.CustomJTextField;
 import notesElevesProfesseurs.Eleve;
 import notesElevesProfesseurs.Ecole;
-import notesElevesProfesseurs.Promotion;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.util.List;
 
 
 /**
@@ -18,7 +18,8 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Hugues
  */
-class GUI_chercherPromotion extends CustomJFrame {
+class GUI_chercherPromotion extends CustomJFrame
+{
     private static final int DIMX = 600;
     private static final int DIMY = 400;
 
@@ -40,9 +41,8 @@ class GUI_chercherPromotion extends CustomJFrame {
         super("Chercher Promotion", ecole, false, DIMX, DIMY);
         this.ecole = ecole;
 
-        labelErreur.setVisible(false);
+        setDisplay(true);
         buttonValider.addActionListener( e -> chercherPromotion() );
-
 
         add(panel);
         pack();
@@ -62,41 +62,44 @@ class GUI_chercherPromotion extends CustomJFrame {
      * si la Promotion est trouvée (et comporte au moins un {@link Eleve}, on l'affiche
      * si elle n'est pas trouvée / est vide, on affiche un message d'erreur
      */
-    private void chercherPromotion() {
+    private void chercherPromotion()
+    {
         String promoInput = fieldPromotion.getText();
 
-        boolean X =  (ecole.getPromo(promoInput) != null);
+        boolean hasResult =  (ecole.getPromo(promoInput) != null);
 
-        //setAffichage(X);
-        if(X) {
+
+        setDisplay(hasResult);
+
+
+        if(hasResult)
+        {
+            List<Eleve> promotion = ecole.getPromo(promoInput).getEleves();
             String[] columns = new String[]{"Matière", "ID", "Note"};
-            Object[][] data;
+            Object[][] data = new Object[promotion.size()][columns.length];
 
-            data = new Object[ecole.getPromo(promoInput).getEleves().size()][columns.length];
             int index = 0;
-            for (Eleve eleve : ecole.getPromo(promoInput).getEleves()) {
+            for (Eleve eleve : promotion)
+            {
                 data[index][0] = eleve.getID();
                 data[index][1] = eleve.getNom().toUpperCase();
                 data[index][2] = eleve.getPrenom();
                 index++;
             }
-            promotionTable.setModel(new DefaultTableModel(data, columns));
+            promotionTable.setModel( new DefaultTableModel(data, columns) );
             centrerJTable(promotionTable);
         }
-        else {
-            labelErreur.setVisible(true);
-        }
-
-
     }
 
 
     /**
-     * Rend visible ou non certains éléments de l'interface
-     *
-     * @param hasResult vaut true si l'on a trouvé un ou plusieurs résultats, sinon vaut false
+     * Affiche ou cache des éléments de l'interface en conséquence de l'input ;
+     * si vrai, on affiche les résultats ;
+     * si faux, on affiche un message d'erreur
+     * @param hasResult booléen qui vaut true si l'input de l'utilisateur correspond effectivement à une promotion
      */
-    private void setAffichage(boolean hasResult) {
+    private void setDisplay(boolean hasResult)
+    {
         labelErreur.setVisible(!hasResult);
         promotion.setVisible(hasResult);
     }

@@ -22,7 +22,7 @@ import java.util.List;
 class GUI_USER_Eleve extends CustomJFrame
 {
     private static final int DIM_X = 800;
-    private static final int DIM_Y = 500;
+    private static final int DIM_Y = 600;
 
     private JPanel panel;
 
@@ -52,7 +52,7 @@ class GUI_USER_Eleve extends CustomJFrame
      */
     public GUI_USER_Eleve(Eleve eleve, Ecole ecole)
     {
-        super("Eleve - " + eleve.getPrenom() + " " + eleve.getNom(), ecole, true, DIM_X, DIM_Y);
+        super("Eleve - " + eleve.getPrenom() + " " + eleve.getNom().toUpperCase(), ecole, true, DIM_X, DIM_Y);
 
         // On rentre tous les labels
         setInformations(eleve);
