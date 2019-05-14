@@ -5,6 +5,7 @@
  */
 package notesElevesProfesseurs;
 
+import GUIcomponents.CustomJFrame;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -25,12 +26,15 @@ import java.util.ArrayList;
 /**
  * Classe représentant un chart de statistiques de l'étudiant
  *
+ * Cette classe hérite de {@link CustomJFrame}
+ *
  * @author Célia
  */
-public class Stats_Bulletin extends ApplicationFrame {
+public class Stats_Bulletin extends CustomJFrame {
 
-    private Stats_Bulletin(Eleve eleve, Ecole ecole) {
-        super("Statistiques du Bulletin");
+    private Stats_Bulletin(Eleve eleve, Ecole ecole)
+    {
+        super("Statistiques du Bulletin", null, false, 500, 500);
 
         Promotion promo = ecole.getPromo(eleve.getPromotion());
 
@@ -84,24 +88,24 @@ public class Stats_Bulletin extends ApplicationFrame {
     private XYDataset createDataset(Eleve eleve, Promotion promo, ArrayList<Matiere> matieres) {
 
         final XYSeries promo_moy = new XYSeries("Promo");
-        for (int i = 0; i < matieres.size(); i++) {
+        for (int i = 0; i < matieres.size(); i++)
             promo_moy.add(i, promo.moyennePromotion(matieres.get(i)));
-        }
+
 
         final XYSeries promo_mini = new XYSeries("Promo Mini");
-        for (int i = 0; i < matieres.size(); i++) {
+        for (int i = 0; i < matieres.size(); i++)
             promo_mini.add(i, promo.moyenneMaxMinPromotion(matieres.get(i), false));
-        }
+
 
         final XYSeries etudiant = new XYSeries("Etudiant");
-        for (int i = 0; i < matieres.size(); i++) {
+        for (int i = 0; i < matieres.size(); i++)
             etudiant.add(i, eleve.getMoyenne(matieres.get(i)));
-        }
+
 
         final XYSeries promo_maxi = new XYSeries("Promo Maxi");
-        for (int i = 0; i < matieres.size(); i++) {
+        for (int i = 0; i < matieres.size(); i++)
             promo_maxi.add(i, promo.moyenneMaxMinPromotion(matieres.get(i), true));
-        }
+
 
         final XYSeriesCollection dataset = new XYSeriesCollection();
         dataset.addSeries(promo_mini);
@@ -117,7 +121,8 @@ public class Stats_Bulletin extends ApplicationFrame {
      * @param eleve {@link Eleve} auquel appartien le bulletin
      * @param ecole {@link Ecole} d'où vient l'étudiant
      */
-    public static void main(Eleve eleve, Ecole ecole) {
+    public static void main(Eleve eleve, Ecole ecole)
+    {
         Stats_Bulletin chart = new Stats_Bulletin(eleve, ecole);
         chart.pack();
         RefineryUtilities.centerFrameOnScreen(chart);
