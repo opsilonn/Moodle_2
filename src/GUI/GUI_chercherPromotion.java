@@ -40,7 +40,7 @@ class GUI_chercherPromotion extends CustomJFrame {
         super("Chercher Promotion", ecole, false, DIMX, DIMY);
         this.ecole = ecole;
 
-        //setAffichage(false);
+        labelErreur.setVisible(false);
         buttonValider.addActionListener( e -> chercherPromotion() );
 
 
@@ -82,6 +82,9 @@ class GUI_chercherPromotion extends CustomJFrame {
             }
             promotionTable.setModel(new DefaultTableModel(data, columns));
             centrerJTable(promotionTable);
+        }
+        else {
+            labelErreur.setVisible(true);
         }
 
 

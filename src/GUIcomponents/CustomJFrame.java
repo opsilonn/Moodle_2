@@ -46,9 +46,6 @@ public abstract class CustomJFrame extends JFrame
      * */
     protected CustomJFrame(String title, Ecole ecole, boolean closeOnExit, int dimX, int dimY)
     {
-        try { setIconImage(ImageIO.read(new File(PATHLOGO)) ); }
-        catch (IOException e) { System.out.println("Icon not found"); }
-
         setTitle(title);
         this.ecole = ecole;
         setPreferredSize(new Dimension(dimX, dimY));

@@ -184,7 +184,6 @@ public class GUI_CreerPersonne extends CustomJFrame {
      * Crée un {@link Eleve} avec les inputs
      */
     private void creerEleve() {
-        JOptionPane.showConfirmDialog(this, "Pensez à écrire le reste du code ! là, l'élève n'est pas ajouté à la bdd");
 
         Date date;
         try {

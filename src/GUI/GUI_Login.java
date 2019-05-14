@@ -27,8 +27,6 @@ public class GUI_Login extends CustomJFrame {
 
     private JPanel panel;
 
-    private JLabel labelLogo;
-
     public JTextField fieldID;
     public JPasswordField fieldPassword;
 
@@ -43,16 +41,6 @@ public class GUI_Login extends CustomJFrame {
      */
     public GUI_Login(Ecole ecole) {
         super("Login", ecole, true, DIM_X, DIM_Y);
-
-        // Adds the logo image
-        ImageIcon imageIcon = new ImageIcon(PATHLOGOFULL); // load the image to a imageIcon
-        Image image = imageIcon.getImage(); // transform it
-        Image newimg = image.getScaledInstance((int) (DIM_X * 0.9), DIM_Y / 3, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-        imageIcon = new ImageIcon(newimg);  // transform it back
-        labelLogo.setIcon(imageIcon);
-
-        fieldPassword.setText("1");
-        fieldID.setText("20190019");
 
 
         labelIncorrect.setVisible(false);

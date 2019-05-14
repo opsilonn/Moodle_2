@@ -34,8 +34,8 @@ public class GUI_USER_Admin extends CustomJFrame
         super("Admin", ecole, true, DIM_X, DIM_Y);
 
 
-        buttonEleve.addActionListener(e -> { GUI_CreerPersonne frame = new GUI_CreerPersonne(ecole, "élève"); } );
-        buttonProfesseur.addActionListener(e -> { GUI_CreerPersonne frame = new GUI_CreerPersonne(ecole, "professeur"); } );
+        buttonEleve.addActionListener(e -> { new GUI_CreerPersonne(ecole, "élève"); } );
+        buttonProfesseur.addActionListener(e -> { new GUI_CreerPersonne(ecole, "professeur"); } );
         sauvegarderBDDApresFermeture();
 
 

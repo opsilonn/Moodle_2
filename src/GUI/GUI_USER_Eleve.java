@@ -9,6 +9,7 @@ import notesElevesProfesseurs.Stats_Bulletin;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -41,6 +42,8 @@ class GUI_USER_Eleve extends CustomJFrame
     private JTable bulletinPromoValeurs;
     private JButton buttonStats;
 
+    private DecimalFormat df = new DecimalFormat("#.##");
+
     /**
      * Création de l'interface pour un {@link Eleve}
      *
@@ -59,9 +62,6 @@ class GUI_USER_Eleve extends CustomJFrame
         buttonCorrecteur.addActionListener(e -> { new GUI_correcteurs(eleve, ecole); });
         buttonPromotion.addActionListener(e -> { new GUI_chercherPromotion(ecole); });
         buttonStats.addActionListener(e -> { Stats_Bulletin.main(eleve, ecole); });
-
-        // ADD SOMETHING ABOVE :)
-
 
 
 
@@ -100,7 +100,7 @@ class GUI_USER_Eleve extends CustomJFrame
         labelPromotion.setText(eleve.getPromotion());
         try
         {
-            labelMoyenne.setText(String.valueOf(eleve.getMoyenneGenerale()));
+            labelMoyenne.setText(df.format(eleve.getMoyenneGenerale()));
         }
         catch (IllegalStateException e)
         {
@@ -129,8 +129,7 @@ class GUI_USER_Eleve extends CustomJFrame
             index++;
         }
 
-        DefaultTableModel model = new DefaultTableModel(data, columns);
-        bulletinValeurs.setModel(model);
+        bulletinValeurs.setModel(new DefaultTableModel(data, columns));
         centrerJTable(bulletinValeurs);
     }
 
@@ -149,15 +148,18 @@ class GUI_USER_Eleve extends CustomJFrame
         {
             data[index][0] = matiere.getNom();
             data[index][1] = matiere.getCode();
-            data[index][2] = eleve.getMoyenne(matiere);
-            data[index][3] = ecole.getPromo(eleve.getPromotion()).moyenneMaxMinPromotion(matiere, false);
-            data[index][4] = ecole.getPromo(eleve.getPromotion()).moyennePromotion(matiere);
-            data[index][5] = ecole.getPromo(eleve.getPromotion()).moyenneMaxMinPromotion(matiere, true);
+            data[index][2] = formatNumber(eleve.getMoyenne(matiere));
+            data[index][3] = formatNumber(ecole.getPromo(eleve.getPromotion()).moyenneMaxMinPromotion(matiere, false));
+            data[index][4] = formatNumber(ecole.getPromo(eleve.getPromotion()).moyennePromotion(matiere));
+            data[index][5] = formatNumber(ecole.getPromo(eleve.getPromotion()).moyenneMaxMinPromotion(matiere, true));
             index++;
         }
 
-        DefaultTableModel model = new DefaultTableModel(data, columns);
-        bulletinPromoValeurs.setModel(model);
+        bulletinPromoValeurs.setModel(new DefaultTableModel(data, columns));
         centrerJTable(bulletinPromoValeurs);
+    }
+
+    private String formatNumber(double number){
+        return df.format(number);
     }
 }

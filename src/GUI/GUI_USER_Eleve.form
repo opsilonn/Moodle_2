@@ -145,6 +145,7 @@
           <component id="e74d0" class="javax.swing.JTable" binding="bulletinValeurs">
             <constraints/>
             <properties>
+              <enabled value="false"/>
               <font size="11"/>
             </properties>
           </component>
@@ -190,7 +191,9 @@
         <children>
           <component id="f94d3" class="javax.swing.JTable" binding="bulletinPromoValeurs">
             <constraints/>
-            <properties/>
+            <properties>
+              <enabled value="false"/>
+            </properties>
           </component>
         </children>
       </scrollpane>
